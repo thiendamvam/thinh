@@ -32,6 +32,7 @@ public class WelcomeActivity extends FragmentActivity implements
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
+		btnEnter.setOnClickListener(this);
 		context = this;
 	}
 

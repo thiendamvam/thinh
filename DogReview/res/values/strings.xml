@@ -9,5 +9,6 @@
     <string name="welcome_screen_des2">～犬語でもっとイイ関係～</string>
     <string name="welcome_screen_enter">Enter</string>
     <string name="splash_text">Welcome to my app</string>
+    <string name="back">Back</string>
 
 </resources>

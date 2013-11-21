@@ -7,6 +7,6 @@
 	<dimen name="welcome_des">36sp</dimen>
 	<dimen name="welcome_enter">36sp</dimen>
 	<dimen name="big_text">26sp</dimen>
-	<dimen name="normal_text">16sp</dimen>
+	<dimen name="normal_text">18sp</dimen>
 	<dimen name="small_text">10sp</dimen>
 </resources>

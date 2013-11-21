@@ -25,7 +25,7 @@ public class FavouriteActivity extends FragmentActivity implements
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
 		super.onCreate(arg0);
-		setContentView(R.layout.welcome_screen);
+		setContentView(R.layout.index_screen);
 		imgBtnHome = (ImageButton) findViewById(R.id.imgBtn_home);
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting);
 		btnEnter = (Button) findViewById(R.id.btnEnter);
@@ -43,14 +43,7 @@ public class FavouriteActivity extends FragmentActivity implements
 			exeHomeClicked();
 		} else if (id == R.id.imgBtn_setting) {
 			exeMenuClicked();
-		} else if (id == R.id.btnEnter) {
-			exeEnterClicked();
 		}
-	}
-
-	private void exeEnterClicked() {
-		// TODO Auto-generated method stub
-
 	}
 
 	private void exeHomeClicked() {

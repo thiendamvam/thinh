@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -15,6 +15,43 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="header_title">
+        <item name="android:textColor">@color/welcome_title</item>
+        <item name="android:textSize">@dimen/welcome_title</item>
+    </style>
+
+    <style name="description_text">
+        <item name="android:textColor">@color/welcome_des</item>
+        <item name="android:textSize">@dimen/welcome_des</item>
+    </style>
+
+    <style name="normal_text">
+        <item name="android:textColor">@color/welcome_title</item>
+        <item name="android:textSize">@dimen/welcome_title</item>
+    </style>
+
+    <style name="big_text">
+        <item name="android:textColor">@color/welcome_title</item>
+        <item name="android:textSize">@dimen/big_text</item>
+    </style>
+
+    <style name="big_text_bold">
+        <item name="android:textColor">@color/welcome_title</item>
+        <item name="android:textSize">@dimen/big_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="normal_text_bold">
+        <item name="android:textColor">@color/welcome_title</item>
+        <item name="android:textSize">@dimen/welcome_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="small_text">
+        <item name="android:textColor">@color/welcome_title</item>
+        <item name="android:textSize">@dimen/normal_text</item>
     </style>
 
 </resources>

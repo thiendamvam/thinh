@@ -4,5 +4,10 @@
     <string name="app_name">DogReview</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="welcome_screen_title">Welcome</string>
+    <string name="welcome_screen_des">イヌのココロ</string>
+    <string name="welcome_screen_des2">～犬語でもっとイイ関係～</string>
+    <string name="welcome_screen_enter">Enter</string>
+    <string name="splash_text">Welcome to my app</string>
 
 </resources>

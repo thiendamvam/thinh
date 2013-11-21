@@ -4,5 +4,6 @@
     <color name="welcome_title">#754d0e</color>
     <color name="welcome_des">#997845</color>
     <color name="welcome_enter">#754d0e</color>
+    <color name="white">@android:color/white</color>
 	<color name="transparant">@android:color/transparent</color>
 </resources>

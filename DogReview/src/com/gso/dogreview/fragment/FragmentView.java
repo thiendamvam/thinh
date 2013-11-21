@@ -1,5 +1,7 @@
 package com.gso.dogreview.fragment;
 
+import com.gso.dogreview.R;
+
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -11,7 +13,7 @@ public class FragmentView extends DialogFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		In
-		return super.onCreateView(inflater, container, savedInstanceState);
+		View v = inflater.inflate(R.layout.image_popup_screen, false);
+		reuturn v;
 	}
 }

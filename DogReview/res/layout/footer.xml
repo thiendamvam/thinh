@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <Button
+        android:id="@+id/img_btn_back"
+        style="@style/normal_text_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_back"
+        android:text="@string/back" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+
+        <ImageButton
+            android:id="@+id/img_btn_twitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparant"
+            android:onClick="onTwitterClicked"
+            android:src="@drawable/ic_twitter" />
+
+        <ImageButton
+            android:id="@+id/img_btn_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/img_btn_twitter"
+            android:background="@color/transparant"
+            android:onClick="onFacebookClicked"
+            android:src="@drawable/ic_facebook" />
+    </RelativeLayout>
+
+</RelativeLayout>

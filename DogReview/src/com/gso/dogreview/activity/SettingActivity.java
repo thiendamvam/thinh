@@ -1,5 +1,7 @@
 package com.gso.dogreview.activity;
 
+import com.gso.dogreview.R;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -9,5 +11,6 @@ public class SettingActivity extends FragmentActivity {
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
 		super.onCreate(arg0);
+		setContentView(R.layout.setting_screen);
 	}
 }

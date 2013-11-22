@@ -5,7 +5,10 @@
     <color name="welcome_des">#997845</color>
     <color name="welcome_enter">#754d0e</color>
     <color name="white">@android:color/white</color>
+    <color name="black">@android:color/black</color>
+    <color name="setting_dilivery">#cbcbcb</color>
     <color name="bg_item_listview_index">#fbf0e4</color>
     <color name="bg_item_listview_index_pressed">#d9ccb9</color>
-	<color name="transparant">@android:color/transparent</color>
+    <color name="transparant">@android:color/transparent</color>
+
 </resources>

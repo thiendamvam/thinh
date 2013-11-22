@@ -79,12 +79,13 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.tvDescription = (TextView)view.findViewById(R.id.tvDes);
 			view.setTag(viewHolder);
 
-			viewHolder.imgAvatar.setImageResource(R.drawable.ic_logo);
+			
 			viewHolder.tvName.setText(item.getName()+"at positioin "+position);
 			viewHolder.tvDescription.setText(item.getDescription());
 //			viewList.put(String.valueOf(position), view);
-			view.setBackgroundColor(Color.BLUE);
+			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
 			if(position%2==0&&position%3==0){
+				
 				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
 			}else{
 				

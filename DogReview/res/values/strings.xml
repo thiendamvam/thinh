@@ -10,5 +10,11 @@
     <string name="welcome_screen_enter">Enter</string>
     <string name="splash_text">Welcome to my app</string>
     <string name="back">Back</string>
+    <string name="setting_row1">このアプリについて</string>
+    <string name="setting_row2">アイコンの説明</string>
+    <string name="setting_row3">更新情報</string>
+    <string name="setting_row4">お気に入りの全消去</string>
+    <string name="name_dev">デベロッパー情報</string>
+    <string name="email_dev">inunokimochi_app@gmail.com</string>
 
 </resources>

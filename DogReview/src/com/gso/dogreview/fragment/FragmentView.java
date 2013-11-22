@@ -13,7 +13,7 @@ public class FragmentView extends DialogFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View v = inflater.inflate(R.layout.image_popup_screen, false);
-		reuturn v;
+		View v = inflater.inflate(R.layout.image_popup_screen, container, false);
+		return v;
 	}
 }

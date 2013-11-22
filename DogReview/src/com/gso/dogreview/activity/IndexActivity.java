@@ -27,7 +27,8 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 	private Context context;
 	private ListView lvDogs;
 	private DogAdapter adapter;
-
+	private RelativeLayout rlListViewContent;
+	
 	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
@@ -38,16 +39,22 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		lvDogs = (ListView)findViewById(R.id.lv_list_item);
-		
+		rlListViewContent = (RelativeLayout)findViewById(R.id.rlListViewContent);
 		
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		lvDogs.setOnScrollListener(this	);
-		exeListDogs();
+		
 		
 		
 	}
 
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		// TODO Auto-generated method stub
+		super.onWindowFocusChanged(hasFocus);
+		exeListDogs();
+	}
 	private void exeListDogs() {
 		// TODO Auto-generated method stub
 		ArrayList<Dog> dogList = getDataDogs();
@@ -69,7 +76,7 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
-		 adapter = new DogAdapter(context, dogList);
+		 adapter = new DogAdapter(context, dogList,rlListViewContent);
 		lvDogs2.setAdapter(adapter);
 	}
 
@@ -124,14 +131,20 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 	public void onScroll(AbsListView view, int firstVisibleItem,
 			int visibleItemCount, int totalItemCount) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 		// TODO Auto-generated method stub
-		Log.d("onScrollStateChanged", "onScrollStateChanged");
-		adapter.notifyDataSetChanged();
-		lvDogs.invalidate();
+		Log.e("onScrollStateChanged", "onScrollStateChanged");
+//		if(scrollState == 2)
+		{
+			Log.e("onScrollStateChanged", "stop scroll");
+			DogAdapter.valueResetItemPosition = 0;
+			adapter.notifyDataSetChanged();
+			lvDogs.invalidate();
+			lvDogs.invalidateViews();
+		}
 	}
 }

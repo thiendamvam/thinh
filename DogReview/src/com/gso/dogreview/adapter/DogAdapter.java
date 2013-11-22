@@ -6,36 +6,41 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gso.dogreview.DogReviewApplication;
-import com.gso.dogreview.MainActivity;
 import com.gso.dogreview.R;
 import com.gso.dogreview.activity.IndexActivity;
 import com.gso.dogreview.model.Dog;
 
 public class DogAdapter extends BaseAdapter {
 
+	public static int valueResetItemPosition = 1000 ;
 	private final List<Dog> list;
 	private Context context;
 	private HashMap<String, View> viewList = new HashMap<String, View>();
 	public static List<ViewUserHolder> listSectionView = new ArrayList<ViewUserHolder>();
-	float deviceWidth ;
-	float deviceHeight;
-	public DogAdapter(Context context, List<Dog> doglist) {
+	float listviewWidth ;
+	float listviewHeight;
+	float density;
+	public DogAdapter(Context context, List<Dog> doglist, RelativeLayout listViewContent) {
 		this.context = context;
 		this.list = doglist;
-		deviceWidth  = DogReviewApplication.Instance().getDisplay().getWidth();
-		deviceHeight  = DogReviewApplication.Instance().getDisplay().getHeight();
+		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)listViewContent.getLayoutParams();
+		listviewWidth  = listViewContent.getWidth();
+		listviewHeight  = listViewContent.getHeight();
+		Log.e("DogAdapter",listviewWidth+" and height "+listviewHeight);
+		density =DogReviewApplication.Instance().getDensity();
+		valueResetItemPosition = 0;
 	}
 
 	public void resetData() {
@@ -58,11 +63,13 @@ public class DogAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(int position2, View convertView, ViewGroup parent) {
 		View view = null;
 //		convertView = viewList.get("" + position);
-		Dog item = list.get(position);
-		if (convertView == null) {
+		int position = valueResetItemPosition!=1000?valueResetItemPosition:position2;
+		Log.e("getView",position+"is postion on windows and position of listview "+position2);
+		Dog item = list.get(position2);
+//		if (convertView == null) {
 			LayoutInflater inflator = ((IndexActivity) context)
 					.getLayoutInflater();
 			view = inflator.inflate(R.layout.dog_item, null);
@@ -78,20 +85,27 @@ public class DogAdapter extends BaseAdapter {
 //			viewList.put(String.valueOf(position), view);
 			view.setBackgroundColor(Color.BLUE);
 			if(position%2==0&&position%3==0){
-				view.setLayoutParams(new AbsListView.LayoutParams((int)(deviceWidth-20)-3*30,(int)deviceHeight/7));
+				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
 			}else{
 				
-				int mod= position%3 , value;
+				int mod= position%7 , value;
+				if(mod >= 3){
+					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((mod-3)*30*density),(int)listviewHeight/7));			
+				}else{
+					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3 - mod)*30*density),(int)listviewHeight/7));
+				}
 				
-				
-				view.setLayoutParams(new AbsListView.LayoutParams((int)(deviceWidth-20)-(3-mod)*30,(int)deviceHeight/7));	
+					
 			}
 			
-		} else {
-			view = convertView;
-
-		}
-		
+//		} else {
+//			view = convertView;
+//
+//		}
+		view.requestLayout();
+		view.invalidate();
+		view.setTag(position);
+		valueResetItemPosition++;
 		return view;
 	}
 

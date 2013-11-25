@@ -18,12 +18,24 @@
             android:layout_centerVertical="true"
             android:scaleType="fitXY" />
 
+        <ImageButton
+            android:id="@+id/imgFavourtie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="7dp"
+            android:background="@color/transparant"
+            android:src="@drawable/ic_favourite_fc" />
+
         <TextView
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/imgFavourtie"
             android:layout_toRightOf="@+id/imgAvatar" />
 
         <TextView

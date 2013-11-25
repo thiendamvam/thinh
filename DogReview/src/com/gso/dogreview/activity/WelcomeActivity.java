@@ -27,7 +27,7 @@ public class WelcomeActivity extends FragmentActivity implements
 		super.onCreate(arg0);
 		setContentView(R.layout.welcome_screen);
 		imgBtnHome = (ImageButton) findViewById(R.id.imgBtn_home);
-		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting);
+		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		btnEnter = (Button) findViewById(R.id.btnEnter);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		imgBtnHome.setOnClickListener(this);
@@ -42,7 +42,7 @@ public class WelcomeActivity extends FragmentActivity implements
 		int id = v.getId();
 		if (id == R.id.imgBtn_home) {
 			exeHomeClicked();
-		} else if (id == R.id.imgBtn_setting) {
+		} else if (id == R.id.imgBtn_setting_menu) {
 			exeMenuClicked();
 		} else if (id == R.id.btnEnter) {
 			exeEnterClicked();

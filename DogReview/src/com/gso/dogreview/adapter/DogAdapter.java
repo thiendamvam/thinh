@@ -84,19 +84,27 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.tvDescription.setText(item.getDescription());
 //			viewList.put(String.valueOf(position), view);
 			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
-			if(position%2==0&&position%3==0){
-				
-				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
-			}else{
-				
-				int mod= position%7 , value;
-				if(mod >= 3){
-					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((mod-3)*30*density),(int)listviewHeight/7));			
-				}else{
-					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3 - mod)*30*density),(int)listviewHeight/7));
-				}
-				
-					
+//			if(position%2==0&&position%3==0){
+//				
+//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
+//			}else{
+//				
+//				int mod= position%7 , value;
+//				if(mod >= 3){
+//					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((mod-3)*30*density),(int)listviewHeight/7));			
+//				}else{
+//					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3 - mod)*30*density),(int)listviewHeight/7));
+//				}
+//				
+//					
+//			}
+			
+			if(position==0||position==5){
+				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3)*30*density),(int)listviewHeight/6));
+			}else if(position==1||position==4){
+				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((2)*30*density),(int)listviewHeight/6));
+			}else if(position==2||position==3){
+				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((1)*30*density),(int)listviewHeight/6));
 			}
 			
 //		} else {

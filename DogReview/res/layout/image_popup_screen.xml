@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/transparant"
-    android:padding="5dp" >
+    android:padding="0dp" >
 
     <ImageView
+        android:id="@+id/imgeContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="fitXY"
         android:background="@color/transparant" />
 
     <ImageButton
@@ -15,7 +17,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_margin="3dp"
+        android:layout_marginTop="15dp"
+         android:layout_marginRight="10dp"
+        android:layout_alignParentTop="true"
         android:background="@color/transparant"
         android:src="@drawable/btn_close" />
 

@@ -11,15 +11,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.model.Dog;
 
-public class IndexActivity extends FragmentActivity implements OnScrollListener, OnClickListener {
+public class IndexActivity extends FragmentActivity implements
+		OnScrollListener, OnClickListener {
 
 	private ImageButton imgBtnHome;
 	private ImageButton imgBtnSetting;
@@ -28,7 +33,9 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 	private ListView lvDogs;
 	private DogAdapter adapter;
 	private RelativeLayout rlListViewContent;
-	
+	private Button btnBack;
+	private TextView tvHeaderTitle;
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
@@ -36,17 +43,20 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 		setContentView(R.layout.index_screen);
 		context = this;
 		imgBtnHome = (ImageButton) findViewById(R.id.imgBtn_home);
-		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting);
+		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
-		lvDogs = (ListView)findViewById(R.id.lv_list_item);
-		rlListViewContent = (RelativeLayout)findViewById(R.id.rlListViewContent);
-		
+		btnBack = (Button) findViewById(R.id.img_btn_back);
+		lvDogs = (ListView) findViewById(R.id.lv_list_item);
+		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
+		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
+		tvHeaderTitle.setText("Index");
+
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
-		lvDogs.setOnScrollListener(this	);
-		
-		
-		
+		btnBack.setOnClickListener(this);
+		lvDogs.setOnScrollListener(this);
+		lvDogs.setOnItemClickListener(onItemClicked);
+
 	}
 
 	@Override
@@ -55,6 +65,15 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 		super.onWindowFocusChanged(hasFocus);
 		exeListDogs();
 	}
+
+	public OnItemClickListener onItemClicked = new OnItemClickListener() {
+		@Override
+		public void onItemClick(android.widget.AdapterView<?> arg0, View arg1,
+				int arg2, long arg3) {
+			Toast.makeText(context, "clicked", Toast.LENGTH_LONG).show();
+		};
+	};
+
 	private void exeListDogs() {
 		// TODO Auto-generated method stub
 		ArrayList<Dog> dogList = getDataDogs();
@@ -64,11 +83,11 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 	private ArrayList<Dog> getDataDogs() {
 		// TODO Auto-generated method stub
 		ArrayList<Dog> list = new ArrayList<Dog>();
-		for(int i=0; i < 10; i++){
+		for (int i = 0; i < 20; i++) {
 			Dog item = new Dog();
-			item.setName("a"+i);
-			item.setAvatar(""+R.drawable.ic_logo);
-			item.setDescription("des"+i);
+			item.setName("a" + i);
+			item.setAvatar("" + R.drawable.ic_logo);
+			item.setDescription("des" + i);
 			list.add(item);
 		}
 		return list;
@@ -76,7 +95,7 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
-		 adapter = new DogAdapter(context, dogList,rlListViewContent);
+		adapter = new DogAdapter(context, dogList, rlListViewContent);
 		lvDogs2.setAdapter(adapter);
 	}
 
@@ -86,8 +105,10 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 		int id = v.getId();
 		if (id == R.id.imgBtn_home) {
 			exeHomeClicked();
-		} else if (id == R.id.imgBtn_setting) {
+		} else if (id == R.id.imgBtn_setting_menu) {
 			exeMenuClicked();
+		} else if (id == R.id.img_btn_back) {
+			finish();
 		}
 	}
 
@@ -119,12 +140,13 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 		Intent i = new Intent(context, FavouriteActivity.class);
 		startActivity(i);
 	}
-	
-	public void onTwitterClicked(View v){
-		
+
+	public void onTwitterClicked(View v) {
+
 	}
-	public void onFacebookClicked(View v){
-		
+
+	public void onFacebookClicked(View v) {
+
 	}
 
 	@Override
@@ -138,7 +160,7 @@ public class IndexActivity extends FragmentActivity implements OnScrollListener,
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 		// TODO Auto-generated method stub
 		Log.e("onScrollStateChanged", "onScrollStateChanged");
-//		if(scrollState == 2)
+		// if(scrollState == 2)
 		{
 			Log.e("onScrollStateChanged", "stop scroll");
 			DogAdapter.valueResetItemPosition = 0;

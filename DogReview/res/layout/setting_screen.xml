@@ -15,9 +15,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/header"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/white_contener"
         android:orientation="vertical"
         android:paddingLeft="2dp"
@@ -26,6 +26,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="row1Cliked"
             android:padding="10dp" >
 
             <TextView
@@ -48,6 +49,7 @@
         <View style="@style/setting_list_divider" />
 
         <RelativeLayout
+            android:onClick="row2Cliked"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp" >
@@ -72,6 +74,7 @@
         <View style="@style/setting_list_divider" />
 
         <RelativeLayout
+            android:onClick="row3Cliked"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp" >
@@ -98,6 +101,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="row4Cliked"
             android:padding="10dp" >
 
             <TextView
@@ -117,6 +121,18 @@
                 android:src="@drawable/ic_favourite" />
         </RelativeLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_setting_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="-20dp"
+        android:visibility="gone" >
+
+        <include layout="@layout/menu_setting" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

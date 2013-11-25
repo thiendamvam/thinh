@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.gso.dogreview.R;
 
@@ -20,6 +21,7 @@ public class FavouriteActivity extends FragmentActivity implements
 	private RelativeLayout rlSettingMenu;
 	private Context context;
 	private Button btnEnter;
+	private TextView tvHeaderTitle;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -32,6 +34,9 @@ public class FavouriteActivity extends FragmentActivity implements
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
+		tvHeaderTitle = (TextView)findViewById(R.id.tvHeaderTitle);
+		tvHeaderTitle.setText("Favourtes");
+		
 		context = this;
 	}
 

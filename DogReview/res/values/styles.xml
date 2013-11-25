@@ -44,6 +44,7 @@
         <item name="android:textSize">@dimen/setting_text_dev_info</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="big_text">
         <item name="android:textColor">@color/welcome_title</item>
         <item name="android:textSize">@dimen/big_text</item>
@@ -71,5 +72,9 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">1dp</item>
     </style>
+
+    <declare-styleable name="CenterSymmetricListview">
+        <attr name="indent_offset" format="dimension" />
+    </declare-styleable>
 
 </resources>

@@ -55,7 +55,7 @@ public class IndexActivity extends FragmentActivity implements
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
 		lvDogs.setOnScrollListener(this);
-		lvDogs.setOnItemClickListener(onItemClicked);
+		lvDogs.setOnItemClickListener(onItemClicked);//
 
 	}
 

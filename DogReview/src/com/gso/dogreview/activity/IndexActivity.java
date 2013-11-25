@@ -97,6 +97,8 @@ public class IndexActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		adapter = new DogAdapter(context, dogList, rlListViewContent);
 		lvDogs2.setAdapter(adapter);
+		lvDogs2.setTranslationX(10.2f);
+		lvDogs2.setTranslationY(5f);
 	}
 
 	@Override
@@ -165,8 +167,8 @@ public class IndexActivity extends FragmentActivity implements
 			Log.e("onScrollStateChanged", "stop scroll");
 			DogAdapter.valueResetItemPosition = 0;
 			adapter.notifyDataSetChanged();
-			lvDogs.invalidate();
-			lvDogs.invalidateViews();
+//			lvDogs.invalidate();
+//			lvDogs.invalidateViews();
 		}
 	}
 }

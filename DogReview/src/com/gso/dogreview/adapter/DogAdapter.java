@@ -67,6 +67,8 @@ public class DogAdapter extends BaseAdapter {
 		View view = null;
 //		convertView = viewList.get("" + position);
 		int position = valueResetItemPosition!=1000?valueResetItemPosition:position2;
+		if(position > 6 )
+			position = 0;
 		Log.e("getView",position+"is postion on windows and position of listview "+position2);
 		Dog item = list.get(position2);
 //		if (convertView == null) {
@@ -111,8 +113,8 @@ public class DogAdapter extends BaseAdapter {
 //			view = convertView;
 //
 //		}
-		view.requestLayout();
-		view.invalidate();
+//		view.requestLayout();
+//		view.invalidate();
 		view.setTag(position);
 		valueResetItemPosition++;
 		return view;

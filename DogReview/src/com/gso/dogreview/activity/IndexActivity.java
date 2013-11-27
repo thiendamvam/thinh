@@ -13,11 +13,13 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
@@ -33,12 +35,13 @@ public class IndexActivity extends FragmentActivity implements
 	private ImageButton imgBtnSetting;
 	private RelativeLayout rlSettingMenu;
 	private Context context;
-	private CenterSymmetricListview lvDogs;
+	private ListView lvDogs;
 	private DogAdapter adapter;
 	private RelativeLayout rlListViewContent;
 	private Button btnBack;
 	private TextView tvHeaderTitle;
 	private MyListView myListView;
+	private ToggleButton tglOptionLv;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -50,16 +53,32 @@ public class IndexActivity extends FragmentActivity implements
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		btnBack = (Button) findViewById(R.id.img_btn_back);
-		lvDogs = (CenterSymmetricListview) findViewById(R.id.lv_list_item);
+		lvDogs = (ListView) findViewById(R.id.lv_list_item);
 		myListView = (MyListView) findViewById(R.id.lv_list_item_cutom);
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		tvHeaderTitle.setText("Index");
 		
+		tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
+		tglOptionLv.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if(tglOptionLv.isChecked()){
+					lvDogs.setVisibility(View.INVISIBLE);
+					myListView.setVisibility(View.VISIBLE);
+				}else{
+					lvDogs.setVisibility(View.VISIBLE);
+					myListView.setVisibility(View.INVISIBLE);
+				}
+			}
+		});
+		
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
-		lvDogs.setOnScrollListener(this);
+//		lvDogs.setOnScrollListener(this);
 		lvDogs.setOnItemClickListener(onItemClicked);//
 
 	}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.gso.dogreview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_index" >
@@ -8,13 +9,22 @@
         android:id="@+id/header"
         layout="@layout/navigationbar" />
 
+    <ToggleButton
+        android:id="@+id/tglOptionLv"
+        android:checked="false"
+        android:textOn="2dListview"
+        android:textOff="3dListview"
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <RelativeLayout
         android:id="@+id/rlListViewContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rlFooter"
-        android:layout_below="@+id/header"
-        android:layout_marginTop="-17dp" >
+        android:layout_below="@+id /tglOptionLv"
+        android:layout_marginTop="-1dp" >
 
         <com.gso.dogreview.view.CenterSymmetricListview
             android:id="@+id/lv_list_item"
@@ -22,15 +32,16 @@
             android:layout_height="match_parent"
             android:divider="@color/transparant"
             android:dividerHeight="5dp"
-            android:visibility="invisible" 
-        />
+            android:visibility="visible"
+            app:indent_offset="32dp" />
 
         <com.gso.dogreview.view.MyListView
             android:id="@+id/lv_list_item_cutom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@color/setting_dilivery"
-            android:dividerHeight="5dp" >
+            android:dividerHeight="5dp"
+            android:visibility="invisible" >
         </com.gso.dogreview.view.MyListView>
     </RelativeLayout>
 

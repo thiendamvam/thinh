@@ -101,13 +101,13 @@ public class DogAdapter extends BaseAdapter {
 //					
 //			}
 			
-			if(position==0||position==5){
-				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3)*30*density),(int)listviewHeight/6));
-			}else if(position==1||position==4){
-				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((2)*30*density),(int)listviewHeight/6));
-			}else if(position==2||position==3){
-				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((1)*30*density),(int)listviewHeight/6));
-			}
+//			if(position==0||position==5){
+//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3)*30*density),(int)listviewHeight/6));
+//			}else if(position==1||position==4){
+//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((2)*30*density),(int)listviewHeight/6));
+//			}else if(position==2||position==3){
+//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((1)*30*density),(int)listviewHeight/6));
+//			}
 			
 //		} else {
 //			view = convertView;

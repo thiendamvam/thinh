@@ -82,7 +82,7 @@ public class DogAdapter extends BaseAdapter {
 			view.setTag(viewHolder);
 
 			
-			viewHolder.tvName.setText(item.getName()+"at positioin "+position);
+			viewHolder.tvName.setText(item.getName()+context.getResources().getString(R.string.name_dev)+position);
 			viewHolder.tvDescription.setText(item.getDescription());
 //			viewList.put(String.valueOf(position), view);
 			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);

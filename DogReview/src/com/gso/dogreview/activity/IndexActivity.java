@@ -22,6 +22,9 @@ import android.widget.Toast;
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.model.Dog;
+import com.gso.dogreview.util.SimpleDynamics;
+import com.gso.dogreview.view.CenterSymmetricListview;
+import com.gso.dogreview.view.MyListView;
 
 public class IndexActivity extends FragmentActivity implements
 		OnScrollListener, OnClickListener {
@@ -30,11 +33,12 @@ public class IndexActivity extends FragmentActivity implements
 	private ImageButton imgBtnSetting;
 	private RelativeLayout rlSettingMenu;
 	private Context context;
-	private ListView lvDogs;
+	private CenterSymmetricListview lvDogs;
 	private DogAdapter adapter;
 	private RelativeLayout rlListViewContent;
 	private Button btnBack;
 	private TextView tvHeaderTitle;
+	private MyListView myListView;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -46,11 +50,12 @@ public class IndexActivity extends FragmentActivity implements
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		btnBack = (Button) findViewById(R.id.img_btn_back);
-		lvDogs = (ListView) findViewById(R.id.lv_list_item);
+		lvDogs = (CenterSymmetricListview) findViewById(R.id.lv_list_item);
+		myListView = (MyListView) findViewById(R.id.lv_list_item_cutom);
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		tvHeaderTitle.setText("Index");
-
+		
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
@@ -97,8 +102,8 @@ public class IndexActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		adapter = new DogAdapter(context, dogList, rlListViewContent);
 		lvDogs2.setAdapter(adapter);
-		lvDogs2.setTranslationX(10.2f);
-		lvDogs2.setTranslationY(5f);
+		myListView.setAdapter(adapter);
+		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
 	}
 
 	@Override
@@ -167,8 +172,8 @@ public class IndexActivity extends FragmentActivity implements
 			Log.e("onScrollStateChanged", "stop scroll");
 			DogAdapter.valueResetItemPosition = 0;
 			adapter.notifyDataSetChanged();
-//			lvDogs.invalidate();
-//			lvDogs.invalidateViews();
+			lvDogs.invalidate();
+			lvDogs.invalidateViews();
 		}
 	}
 }

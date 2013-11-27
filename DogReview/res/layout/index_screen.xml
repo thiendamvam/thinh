@@ -16,13 +16,22 @@
         android:layout_below="@+id/header"
         android:layout_marginTop="-17dp" >
 
-        <ListView
+        <com.gso.dogreview.view.CenterSymmetricListview
             android:id="@+id/lv_list_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@color/transparant"
+            android:dividerHeight="5dp"
+            android:visibility="invisible" 
+        />
+
+        <com.gso.dogreview.view.MyListView
+            android:id="@+id/lv_list_item_cutom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/setting_dilivery"
             android:dividerHeight="5dp" >
-        </ListView>
+        </com.gso.dogreview.view.MyListView>
     </RelativeLayout>
 
     <RelativeLayout

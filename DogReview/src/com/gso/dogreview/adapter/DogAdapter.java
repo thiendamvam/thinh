@@ -80,7 +80,7 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.tvName = (TextView)view.findViewById(R.id.tvName);
 			viewHolder.tvDescription = (TextView)view.findViewById(R.id.tvDes);
 			viewHolder.imgFav = (ImageView)view.findViewById(R.id.imgFavourtie);
-
+			viewHolder.imgFav.setBackgroundResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
 			
 			viewHolder.tvName.setText(item.getName()+context.getResources().getString(R.string.name_dev)+position);
 			viewHolder.tvDescription.setText(item.getDescription());

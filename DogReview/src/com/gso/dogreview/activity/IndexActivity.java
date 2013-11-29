@@ -212,8 +212,9 @@ public class IndexActivity extends FragmentActivity implements
 				item.setFavourite(true);
 			}
 			db.close();
-			v.setBackgroundResource(item.isFavourite()?R.drawable.ic_favourite_unfc:R.drawable.ic_favourite_fc);
+			v.setBackgroundResource(item.isFavourite()?R.drawable.ic_favourite_unfc:R.drawable.ic_favourite_unfc);
 			v.requestLayout();
+			adapter.notifyDataSetChanged();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

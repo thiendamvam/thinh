@@ -56,6 +56,7 @@ public class DogAdapter extends BaseAdapter {
 		
 		public ImageView imgAvatar;
 		public TextView tvName, tvAddress, tvDescription;
+		public ImageView imgFav;
 
 		public ViewUserHolder() {
 
@@ -72,20 +73,21 @@ public class DogAdapter extends BaseAdapter {
 		Log.e("getView",position+"is postion on windows and position of listview "+position2);
 		Dog item = list.get(position2);
 //		if (convertView == null) {
-			LayoutInflater inflator = ((IndexActivity) context)
-					.getLayoutInflater();
-			view = inflator.inflate(R.layout.dog_item, null);
+			
+			view = LayoutInflater.from(context).inflate(R.layout.dog_item, null);
 			final ViewUserHolder viewHolder = new ViewUserHolder();
 			viewHolder.imgAvatar = (ImageView)view.findViewById(R.id.imgAvatar);
 			viewHolder.tvName = (TextView)view.findViewById(R.id.tvName);
 			viewHolder.tvDescription = (TextView)view.findViewById(R.id.tvDes);
-			view.setTag(viewHolder);
+			viewHolder.imgFav = (ImageView)view.findViewById(R.id.imgFavourtie);
 
 			
 			viewHolder.tvName.setText(item.getName()+context.getResources().getString(R.string.name_dev)+position);
 			viewHolder.tvDescription.setText(item.getDescription());
 //			viewList.put(String.valueOf(position), view);
 			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
+			
+			viewHolder.imgFav.setTag(item);
 //			if(position%2==0&&position%3==0){
 //				
 //				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));

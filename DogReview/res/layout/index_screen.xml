@@ -9,7 +9,8 @@
         android:id="@+id/header"
         layout="@layout/navigationbar" />
 
-    <ToggleButton
+    <!--
+         <ToggleButton
         android:id="@+id/tglOptionLv"
         android:checked="false"
         android:textOn="2dListview"
@@ -17,13 +18,14 @@
         android:layout_below="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    -->
 
     <RelativeLayout
         android:id="@+id/rlListViewContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rlFooter"
-        android:layout_below="@+id /tglOptionLv"
+        android:layout_below="@+id/header"
         android:layout_marginTop="-1dp" >
 
         <com.gso.dogreview.view.CenterSymmetricListview

@@ -6,6 +6,7 @@ public class Dog {
 	private String name;
 	private String description;
 	private String avatar;
+	private boolean isFavourite;
 
 	/**
 	 * @return the avatar
@@ -64,6 +65,20 @@ public class Dog {
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the isFavourite
+	 */
+	public boolean isFavourite() {
+		return isFavourite;
+	}
+
+	/**
+	 * @param isFavourite the isFavourite to set
+	 */
+	public void setFavourite(boolean isFavourite) {
+		this.isFavourite = isFavourite;
 	}
 
 }

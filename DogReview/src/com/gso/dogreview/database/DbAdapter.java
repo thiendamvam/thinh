@@ -21,6 +21,7 @@ public class DbAdapter {
 	public static final String DOG_NAME = "DOG_NAME";
 	public static final String DOG_DESC = "DOG_DESC";
 	public static final String DOG_AVATAR = "DOG_AVATAR";
+	public static final String DOG_FAVOURITE = "DOG_FAVOURITE";
 
 	/*
 	 * Comment table
@@ -43,7 +44,7 @@ public class DbAdapter {
 	private static final String DATABASE_DOG_CREATE = "create virtual table "
 			+ DOG_TABLE + " USING FTS3(" + DOG_ID
 			+ " text not null primary key," + DOG_NAME + " text," + DOG_DESC
-			+ " text," + DOG_AVATAR + " text" +
+			+ " text," + DOG_AVATAR + " text," +DOG_FAVOURITE + " integer" +
 
 			");";
 
@@ -114,20 +115,24 @@ public class DbAdapter {
 	 * Get and inseart dog
 	 */
 
-	public Cursor getDogList(String query) {
+	public Cursor getDogList() {
 
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
-				DOG_AVATAR }, DOG_NAME + " MATCH ?", new String[] { "*" + query
+				DOG_AVATAR, DOG_FAVOURITE }, null, null, null, null, null);
+	}
+	public Cursor getDogListByName(String query) {
+
+		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
+				DOG_AVATAR, DOG_FAVOURITE }, DOG_NAME + " MATCH ?", new String[] { "*" + query
 				+ "*" }, null, null, null);
 	}
-
 	public boolean insertDog(Dog dog) throws SQLiteException {
 		ContentValues insertedValue = new ContentValues();
 		insertedValue.put(DOG_ID, dog.getId());
 		insertedValue.put(DOG_NAME, dog.getName());
 		insertedValue.put(DOG_DESC, dog.getDescription());
 		insertedValue.put(DOG_AVATAR, dog.getAvatar());
-
+		insertedValue.put(DOG_FAVOURITE, dog.isFavourite()?1:0);
 		Cursor c = mDb.rawQuery("select *	from " + DOG_TABLE + " where "
 				+ DOG_ID + "='" + dog.getId() + "'", null);
 		if (c.getCount() < 1) {
@@ -165,5 +170,18 @@ public class DbAdapter {
 			return false;
 		}
 
+	}
+
+	public boolean removeDog(Dog item) {
+		// TODO Auto-generated method stub
+		try {
+			String quereClause = DOG_ID + "=?";
+	    	String[] args = { item.getId()};
+	    	return mDb.delete(DOG_TABLE, quereClause, args) > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

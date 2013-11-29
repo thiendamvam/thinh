@@ -43,8 +43,10 @@ public class CenterSymmetricListview extends ListView {
 		int i = indexOfChild(child);
 		final int newWidth = width - (Math.abs(center - i) * mIndentOffset);
 		canvas.save();
-		canvas.clipRect(new Rect(child.getLeft(), child.getTop(), child
-				.getLeft() + newWidth, child.getBottom()));
+//		canvas.clipRect(new Rect(child.getLeft(), child.getTop(), child
+//				.getLeft() + newWidth, child.getBottom()));
+		child.setLayoutParams(new LayoutParams(child
+				.getLeft() + newWidth, child.getMeasuredHeight()));
 		boolean result = super.drawChild(canvas, child, drawingTime);
 		canvas.restore();
 		return result;

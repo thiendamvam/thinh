@@ -23,6 +23,7 @@ import android.widget.ToggleButton;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
+import com.gso.dogreview.database.DbAdapter;
 import com.gso.dogreview.model.Dog;
 import com.gso.dogreview.util.SimpleDynamics;
 import com.gso.dogreview.view.CenterSymmetricListview;
@@ -41,7 +42,8 @@ public class IndexActivity extends FragmentActivity implements
 	private Button btnBack;
 	private TextView tvHeaderTitle;
 	private MyListView myListView;
-	private ToggleButton tglOptionLv;
+//	private ToggleButton tglOptionLv;
+	private DbAdapter db;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -58,22 +60,23 @@ public class IndexActivity extends FragmentActivity implements
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		tvHeaderTitle.setText("Index");
+		db = new DbAdapter(context);
 		
-		tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
-		tglOptionLv.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				// TODO Auto-generated method stub
-				if(tglOptionLv.isChecked()){
-					lvDogs.setVisibility(View.INVISIBLE);
-					myListView.setVisibility(View.VISIBLE);
-				}else{
-					lvDogs.setVisibility(View.VISIBLE);
-					myListView.setVisibility(View.INVISIBLE);
-				}
-			}
-		});
+//		tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
+//		tglOptionLv.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//			
+//			@Override
+//			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//				// TODO Auto-generated method stub
+//				if(tglOptionLv.isChecked()){
+//					lvDogs.setVisibility(View.INVISIBLE);
+//					myListView.setVisibility(View.VISIBLE);
+//				}else{
+//					lvDogs.setVisibility(View.VISIBLE);
+//					myListView.setVisibility(View.INVISIBLE);
+//				}
+//			}
+//		});
 		
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
@@ -112,6 +115,7 @@ public class IndexActivity extends FragmentActivity implements
 			item.setName("a" + i);
 			item.setAvatar("" + R.drawable.ic_logo);
 			item.setDescription("des" + i);
+			item.setFavourite(false);
 			list.add(item);
 		}
 		return list;
@@ -193,6 +197,26 @@ public class IndexActivity extends FragmentActivity implements
 			adapter.notifyDataSetChanged();
 			lvDogs.invalidate();
 			lvDogs.invalidateViews();
+		}
+	}
+	
+	public void onIconFavouriteClicked(View v){
+		Dog item = (Dog)v.getTag();
+		try {
+			db.open();
+			if(item.isFavourite()){
+				db.removeDog(item);
+				item.setFavourite(false);
+			}else{
+				db.insertDog(item);
+				item.setFavourite(true);
+			}
+			db.close();
+			v.setBackgroundResource(item.isFavourite()?R.drawable.ic_favourite_unfc:R.drawable.ic_favourite_fc);
+			v.requestLayout();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 }

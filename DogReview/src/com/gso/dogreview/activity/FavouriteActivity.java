@@ -61,7 +61,7 @@ public class FavouriteActivity extends FragmentActivity implements
 		myListView = (MyListView) findViewById(R.id.lv_list_item_cutom);
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
-		tvHeaderTitle.setText("Favourite");
+		tvHeaderTitle.setText("FAVO");
 		db = new DbAdapter(context);
 
 		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
@@ -145,7 +145,7 @@ public class FavouriteActivity extends FragmentActivity implements
 
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
-		adapter = new DogAdapter(context, dogList, rlListViewContent);
+		adapter = new DogAdapter(context, dogList, rlListViewContent, 2);
 		lvDogs2.setAdapter(adapter);
 		myListView.setAdapter(adapter);
 		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
@@ -249,6 +249,15 @@ public class FavouriteActivity extends FragmentActivity implements
 			}
 
 		}
+	}
+
+	public void onItemClickListener(View v) {
+		// TODO Auto-generated method stub
+		ViewUserHolder holder = (ViewUserHolder)v.getTag();
+		Dog item = holder.data;
+		Intent i = new Intent(FavouriteActivity.this, DogDetailActivity.class);
+		i.putExtra("data", item);
+		startActivity(i);
 	}
 
 }

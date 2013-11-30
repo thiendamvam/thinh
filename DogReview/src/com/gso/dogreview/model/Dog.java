@@ -1,6 +1,8 @@
 package com.gso.dogreview.model;
 
-public class Dog {
+import java.io.Serializable;
+
+public class Dog implements Serializable{
 
 	private String id;
 	private String name;

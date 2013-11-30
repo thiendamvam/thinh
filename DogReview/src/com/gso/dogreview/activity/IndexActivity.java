@@ -45,6 +45,18 @@ public class IndexActivity extends FragmentActivity implements
 	// private ToggleButton tglOptionLv;
 	private DbAdapter db;
 
+	public OnItemClickListener onItemClickListener = new OnItemClickListener() {
+		public void onItemClick(android.widget.AdapterView<?> arg0, View arg1,
+				int arg2, long arg3) {
+			
+			ViewUserHolder holder = (ViewUserHolder)arg1.getTag();
+			Dog item = holder.data;
+			Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
+			i.putExtra("data", item);
+			startActivity(i);
+		};
+	};
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
@@ -60,8 +72,8 @@ public class IndexActivity extends FragmentActivity implements
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		tvHeaderTitle.setText("INDEX");
+//		lvDogs.setOnItemClickListener(onItemClicked);
 		db = new DbAdapter(context);
-		
 
 		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
 		// tglOptionLv.setOnCheckedChangeListener(new
@@ -85,7 +97,7 @@ public class IndexActivity extends FragmentActivity implements
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
 		// lvDogs.setOnScrollListener(this);
-		lvDogs.setOnItemClickListener(onItemClicked);//
+		lvDogs.setOnItemClickListener(onItemClickListener);//
 
 	}
 
@@ -96,13 +108,13 @@ public class IndexActivity extends FragmentActivity implements
 		exeListDogs();
 	}
 
-	public OnItemClickListener onItemClicked = new OnItemClickListener() {
-		@Override
-		public void onItemClick(android.widget.AdapterView<?> arg0, View arg1,
-				int arg2, long arg3) {
-			Toast.makeText(context, "clicked", Toast.LENGTH_LONG).show();
-		};
-	};
+//	public OnItemClickListener onItemClicked = new OnItemClickListener() {
+//		@Override
+//		public void onItemClick(android.widget.AdapterView<?> arg0, View arg1,
+//				int arg2, long arg3) {
+//			Toast.makeText(context, "clicked", Toast.LENGTH_LONG).show();
+//		};
+//	};
 
 	private void exeListDogs() {
 		// TODO Auto-generated method stub
@@ -167,7 +179,7 @@ public class IndexActivity extends FragmentActivity implements
 
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
-		adapter = new DogAdapter(context, dogList, rlListViewContent);
+		adapter = new DogAdapter(context, dogList, rlListViewContent,1);
 		lvDogs2.setAdapter(adapter);
 		myListView.setAdapter(adapter);
 		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
@@ -253,11 +265,11 @@ public class IndexActivity extends FragmentActivity implements
 				if (item.isFavourite()) {
 					item.setFavourite(false);
 					db.updateDog(item);
-					
+
 				} else {
 					item.setFavourite(true);
 					db.updateDog(item);
-					
+
 				}
 				db.close();
 				holder.imgFav
@@ -272,7 +284,17 @@ public class IndexActivity extends FragmentActivity implements
 
 		}
 	}
-	public void onFacebookClicked(){
-//		FacebookHanlder fbHandler = new Faceboo
+
+	public void onFacebookClicked() {
+		// FacebookHanlder fbHandler = new Faceboo
+	}
+
+	public void onItemClickListener(View v) {
+		// TODO Auto-generated method stub
+		ViewUserHolder holder = (ViewUserHolder)v.getTag();
+		Dog item = holder.data;
+		Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
+		i.putExtra("data", item);
+		startActivity(i);
 	}
 }

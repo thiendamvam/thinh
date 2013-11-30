@@ -13,7 +13,7 @@
     <application
         android:name="com.gso.dogreview.DogReviewApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icon_2x"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -37,6 +37,10 @@
                     android:host="twitter"
                     android:scheme="perm" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.gso.dogreview.activity.DogDetailActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="com.gso.dogreview.activity.WelcomeActivity"

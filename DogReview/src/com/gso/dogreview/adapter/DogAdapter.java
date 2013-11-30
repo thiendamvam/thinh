@@ -16,9 +16,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
+import com.gso.dogreview.activity.FavouriteActivity;
 import com.gso.dogreview.activity.IndexActivity;
 import com.gso.dogreview.model.Dog;
 
@@ -32,9 +34,11 @@ public class DogAdapter extends BaseAdapter {
 	float listviewWidth ;
 	float listviewHeight;
 	float density;
-	public DogAdapter(Context context, List<Dog> doglist, RelativeLayout listViewContent) {
+	private int type;
+	public DogAdapter(Context context, List<Dog> doglist, RelativeLayout listViewContent, int type) {
 		this.context = context;
 		this.list = doglist;
+		this.type = type;
 		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)listViewContent.getLayoutParams();
 		listviewWidth  = listViewContent.getWidth();
 		listviewHeight  = listViewContent.getHeight();
@@ -121,8 +125,21 @@ public class DogAdapter extends BaseAdapter {
 //		}
 //		view.requestLayout();
 //		view.invalidate();
-		view.setTag(position);
+		view.setTag(viewHolder);
 		valueResetItemPosition++;
+		
+		view.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(type == 1){
+					((IndexActivity)context).onItemClickListener(v);
+				}else if(type == 2){
+					((FavouriteActivity)context).onItemClickListener(v);
+				}
+			}
+		});
 		return view;
 	}
 
@@ -149,6 +166,7 @@ public class DogAdapter extends BaseAdapter {
 		for(Dog item:list){
 			if(item.getId().equals(data.getId())){
 				list.remove(item);
+				
 			}
 		}
 		super.notifyDataSetChanged();

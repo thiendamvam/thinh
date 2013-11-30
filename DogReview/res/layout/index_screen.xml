@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/rlFooter"
         android:layout_below="@+id/header"
-        android:layout_marginTop="-17dp" >
+        android:layout_marginTop="-2dp" >
 
         <com.gso.dogreview.view.CenterSymmetricListview
             android:id="@+id/lv_list_item"
@@ -44,7 +44,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/header"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="-20dp"
+        android:layout_marginTop="-2dp"
         android:visibility="gone" >
 
         <include layout="@layout/menu_setting" >

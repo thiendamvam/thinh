@@ -41,7 +41,7 @@ public class SettingActivity extends FragmentActivity implements
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting);
 		imgBtnSetting.setVisibility(View.GONE);
 		tvHeaderTitle = (TextView)findViewById(R.id.tvHeaderTitle);
-		tvHeaderTitle.setText("Setting");
+		tvHeaderTitle.setText("SET UP");
 
 		imgBtnBack.setOnClickListener(this);
 		imgBtnHome.setOnClickListener(this);

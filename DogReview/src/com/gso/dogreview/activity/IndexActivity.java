@@ -252,7 +252,7 @@ public class IndexActivity extends FragmentActivity implements
 			db.close();
 			v.setBackgroundResource(item.isFavourite()?R.drawable.ic_favourite_unfc:R.drawable.ic_favourite_unfc);
 			v.requestLayout();
-//			adapter.notifyDataSetChanged();
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

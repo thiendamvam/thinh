@@ -67,9 +67,10 @@ public class DogAdapter extends BaseAdapter {
 	public View getView(int position2, View convertView, ViewGroup parent) {
 		View view = null;
 //		convertView = viewList.get("" + position);
-		int position = valueResetItemPosition!=1000?valueResetItemPosition:position2;
-		if(position > 6 )
-			position = 0;
+//		int position = valueResetItemPosition!=1000?valueResetItemPosition:position2;
+//		if(position > 6 )
+//			position = 0;
+		int position = position2;
 		Log.e("getView",position+"is postion on windows and position of listview "+position2);
 		Dog item = list.get(position2);
 //		if (convertView == null) {
@@ -82,7 +83,7 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.imgFav = (ImageView)view.findViewById(R.id.imgFavourtie);
 			viewHolder.imgFav.setBackgroundResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
 			
-			viewHolder.tvName.setText(item.getName()+context.getResources().getString(R.string.name_dev)+position);
+			viewHolder.tvName.setText(item.getName());
 			viewHolder.tvDescription.setText(item.getDescription());
 //			viewList.put(String.valueOf(position), view);
 			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);

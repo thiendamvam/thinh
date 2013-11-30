@@ -16,5 +16,12 @@
     <string name="setting_row4">お気に入りの全消去</string>
     <string name="name_dev">デベロッパー情報</string>
     <string name="email_dev">inunokimochi_app@gmail.com</string>
+    
+    <!-- Exel file detail -->
+    <string name="detail">詳細</string>
+    <string name="number">番号</string>
+    <string name="title">表題</string>
+    <string name="illustation">イラストA</string>
+    <string name="comment">コメントA</string>
 
 </resources>

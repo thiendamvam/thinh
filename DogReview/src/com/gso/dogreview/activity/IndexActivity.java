@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.database.DbAdapter;
 import com.gso.dogreview.model.Dog;
+import com.gso.dogreview.service.ExelService;
 import com.gso.dogreview.util.SimpleDynamics;
 import com.gso.dogreview.view.CenterSymmetricListview;
 import com.gso.dogreview.view.MyListView;
@@ -59,7 +61,7 @@ public class IndexActivity extends FragmentActivity implements
 		myListView = (MyListView) findViewById(R.id.lv_list_item_cutom);
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
-		tvHeaderTitle.setText("Index");
+		tvHeaderTitle.setText("INDEX");
 		db = new DbAdapter(context);
 		
 //		tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
@@ -110,15 +112,51 @@ public class IndexActivity extends FragmentActivity implements
 	private ArrayList<Dog> getDataDogs() {
 		// TODO Auto-generated method stub
 		ArrayList<Dog> list = new ArrayList<Dog>();
-		for (int i = 0; i < 20; i++) {
-			Dog item = new Dog();
-			item.setName("a" + i);
-			item.setAvatar("" + R.drawable.ic_logo);
-			item.setDescription("des" + i);
-			item.setFavourite(false);
-			list.add(item);
+//		for (int i = 0; i < 20; i++) {
+//			Dog item = new Dog();
+//			item.setName("a" + i);
+//			item.setAvatar("" + R.drawable.ic_logo);
+//			item.setDescription("des" + i);
+//			item.setFavourite(false);
+//			list.add(item);
+//		}
+		setProgressBarVisibility(true);
+		db.open();
+		Cursor c = db.getDogList();
+		if(c.moveToNext()){
+			do {
+				try {
+					Dog item = new Dog();
+					item.setId(c.getString(c.getColumnIndex(DbAdapter.DOG_ID)));
+					item.setName(c.getString(c.getColumnIndex(DbAdapter.DOG_NAME)));
+					item.setDescription(c.getString(c.getColumnIndex(DbAdapter.DOG_DESC)));
+					item.setAvatar(c.getString(c.getColumnIndex(DbAdapter.DOG_AVATAR)));
+					item.setFavourite(c.getInt(c.getColumnIndex(DbAdapter.DOG_FAVOURITE))==1?true:false);
+					
+					list.add(item);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			} while (c.moveToNext());
+		}else{
+			ExelService exelService = new ExelService();
+			list = exelService.getFileContent(context, "contents.xls");
+			storeToDatabase(list);
 		}
+		
+		c.close();
+		db.close();
+		setProgressBarVisibility(false);
 		return list;
+	}
+
+	private void storeToDatabase(ArrayList<Dog> list) {
+		// TODO Auto-generated method stub
+		for(Dog item:list){
+			db.insertDog(item);
+			
+		}
 	}
 
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
@@ -214,7 +252,7 @@ public class IndexActivity extends FragmentActivity implements
 			db.close();
 			v.setBackgroundResource(item.isFavourite()?R.drawable.ic_favourite_unfc:R.drawable.ic_favourite_unfc);
 			v.requestLayout();
-			adapter.notifyDataSetChanged();
+//			adapter.notifyDataSetChanged();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

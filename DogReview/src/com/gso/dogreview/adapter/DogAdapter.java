@@ -57,6 +57,7 @@ public class DogAdapter extends BaseAdapter {
 		public ImageView imgAvatar;
 		public TextView tvName, tvAddress, tvDescription;
 		public ImageView imgFav;
+		public Dog data;
 
 		public ViewUserHolder() {
 
@@ -71,7 +72,7 @@ public class DogAdapter extends BaseAdapter {
 //		if(position > 6 )
 //			position = 0;
 		int position = position2;
-		Log.e("getView",position+"is postion on windows and position of listview "+position2);
+//		Log.e("getView",position+"is postion on windows and position of listview "+position2);
 		Dog item = list.get(position2);
 //		if (convertView == null) {
 			
@@ -81,14 +82,16 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.tvName = (TextView)view.findViewById(R.id.tvName);
 			viewHolder.tvDescription = (TextView)view.findViewById(R.id.tvDes);
 			viewHolder.imgFav = (ImageView)view.findViewById(R.id.imgFavourtie);
-			viewHolder.imgFav.setBackgroundResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
+			viewHolder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
 			
 			viewHolder.tvName.setText(item.getName());
 			viewHolder.tvDescription.setText(item.getDescription());
+			viewHolder.data = item;
 //			viewList.put(String.valueOf(position), view);
 			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
 			
-			viewHolder.imgFav.setTag(item);
+			viewHolder.imgFav.setTag(viewHolder);
+			
 //			if(position%2==0&&position%3==0){
 //				
 //				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
@@ -139,6 +142,16 @@ public class DogAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public void removeView(Dog data) {
+		// TODO Auto-generated method stub
+		for(Dog item:list){
+			if(item.getId().equals(data.getId())){
+				list.remove(item);
+			}
+		}
+		super.notifyDataSetChanged();
 	}
 
 }

@@ -23,5 +23,8 @@
     <string name="title">表題</string>
     <string name="illustation">イラストA</string>
     <string name="comment">コメントA</string>
+    
+    <string name="confirm_delete_favorite">Do you want remove all favorites?</string>
+    <string name="confirm_delete_favorite_title">Confirm Delete Favorites</string>
 
 </resources>

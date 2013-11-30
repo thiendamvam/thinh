@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/transparant"
-    android:padding="0dp" >
+    android:padding="6dp" >
 
     <ImageView
         android:id="@+id/imgeContent"
@@ -17,8 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="15dp"
-         android:layout_marginRight="10dp"
+        android:layout_marginTop="7dp"
+         android:layout_marginRight="7dp"
         android:layout_alignParentTop="true"
         android:background="@color/transparant"
         android:src="@drawable/btn_close" />

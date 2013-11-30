@@ -61,6 +61,7 @@ public class IndexActivity extends FragmentActivity implements
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		tvHeaderTitle.setText("INDEX");
 		db = new DbAdapter(context);
+		
 
 		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
 		// tglOptionLv.setOnCheckedChangeListener(new
@@ -270,5 +271,8 @@ public class IndexActivity extends FragmentActivity implements
 			}
 
 		}
+	}
+	public void onFacebookClicked(){
+//		FacebookHanlder fbHandler = new Faceboo
 	}
 }

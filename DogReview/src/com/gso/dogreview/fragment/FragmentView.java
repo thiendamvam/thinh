@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -21,7 +22,7 @@ public class FragmentView extends DialogFragment {
 		// TODO Auto-generated method stub
 		super.onResume();
 		
-//		getDialog().getWindow().setLayout(900, 600);
+		getDialog().getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 //		getDialog().getWindow().setBackgroundDrawableResource(R.drawable.bg_app_icon);
 	}
 	@Override
@@ -30,6 +31,7 @@ public class FragmentView extends DialogFragment {
 		super.onCreate(savedInstanceState);
 		setStyle(DialogFragment.STYLE_NO_TITLE, STYLE_NO_TITLE);
 		setStyle(DialogFragment.STYLE_NO_FRAME, DialogFragment.STYLE_NORMAL);
+		
 		
 	}
 	@Override
@@ -52,7 +54,7 @@ public class FragmentView extends DialogFragment {
 			imgContent.setBackgroundResource(R.drawable.bg_setting_row1);	
 			break;
 		case 2:
-			imgContent.setBackgroundResource(R.drawable.bg_app_icon);
+			imgContent.setBackgroundResource(R.drawable.bg_setting_row2);
 			break;
 
 		case 3:

@@ -9,17 +9,7 @@
         android:id="@+id/header"
         layout="@layout/navigationbar" />
 
-    <!--
-         <ToggleButton
-        android:id="@+id/tglOptionLv"
-        android:checked="false"
-        android:textOn="2dListview"
-        android:textOff="3dListview"
-        android:layout_below="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    -->
-
+ 
     <RelativeLayout
         android:id="@+id/rlListViewContent"
         android:layout_width="match_parent"
@@ -68,8 +58,9 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal" >
 
-        <include layout="@layout/footer" >
-        </include>
+        <fragment android:name="com.gso.dogreview.fragment.FooterFragment" 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
 </RelativeLayout>

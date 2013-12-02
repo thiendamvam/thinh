@@ -146,7 +146,7 @@ public class FavouriteActivity extends FragmentActivity implements
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
 		adapter = new DogAdapter(context, dogList, rlListViewContent, 2);
-		lvDogs2.setAdapter(adapter);
+//		lvDogs2.setAdapter(adapter);
 		myListView.setAdapter(adapter);
 		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
 	}

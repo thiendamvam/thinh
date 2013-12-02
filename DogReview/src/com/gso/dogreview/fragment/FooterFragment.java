@@ -73,7 +73,7 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 				.Instance().getApplicationContext(), getActivity(),
 				Config.FACEBOOK_APP_ID);
 		if(fbHandler.checkLoginFacebook()){
-			SharePopup fragment = new SharePopup();
+			com.gso.facebookframework.view.SharePopup fragment = new com.gso.facebookframework.view.SharePopup();
 			getFragmentManager().beginTransaction().add(fragment, "shareFrag").commit();
 		}else{
 			

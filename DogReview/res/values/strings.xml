@@ -6,7 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="welcome_screen_title">Welcome</string>
     <string name="welcome_screen_des">イヌのココロ</string>
-    <string name="welcome_screen_des2">～犬語でもっとイイ関係～</string>
+    <string name="welcome_screen_des2"><p>~犬語でもっとイイ関係~</p></string>
     <string name="welcome_screen_enter">Enter</string>
     <string name="splash_text">Welcome to my app</string>
     <string name="back">Back</string>

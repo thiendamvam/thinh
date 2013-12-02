@@ -4,14 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.gso.dogreview.R;
-import com.gso.dogreview.service.ExelService;
 
 public class WelcomeActivity extends FragmentActivity implements
 		OnClickListener {
@@ -31,6 +32,8 @@ public class WelcomeActivity extends FragmentActivity implements
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		btnEnter = (Button) findViewById(R.id.btnEnter);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
+		TextView wcDes2 = (TextView)findViewById(R.id.wc_des2);
+		wcDes2.setText(Html.fromHtml(getResources().getString(R.string.welcome_screen_des2)));
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnEnter.setOnClickListener(this);

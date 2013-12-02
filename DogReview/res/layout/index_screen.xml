@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:divider="@color/transparant"
             android:dividerHeight="5dp"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:indent_offset="32dp" />
 
         <com.gso.dogreview.view.MyListView
@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:divider="@color/setting_dilivery"
             android:dividerHeight="5dp"
-            android:visibility="invisible" >
+            android:visibility="visible" >
         </com.gso.dogreview.view.MyListView>
     </RelativeLayout>
 

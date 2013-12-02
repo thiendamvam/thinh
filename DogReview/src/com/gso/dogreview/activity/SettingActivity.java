@@ -120,7 +120,7 @@ public class SettingActivity extends FragmentActivity implements
 //		FragmentView fragment = new FragmentView();
 //		getSupportFragmentManager().beginTransaction().add(fragment, "fragment4").commit();
 
-		String title = getResources().getString(R.string.confirm_delete_favorite);
+		String title = getResources().getString(R.string.confirm_delete_favorite_title);
 		String message = getResources().getString(R.string.confirm_delete_favorite);
 		Util.showConfirmDialog(context,  title, message, SettingActivity.this );
 

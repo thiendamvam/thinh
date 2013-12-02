@@ -25,8 +25,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="7dp"
-            android:onClick="onIconFavouriteClicked"
             android:background="@color/transparant"
+            android:onClick="onIconFavouriteClicked"
             android:src="@drawable/ic_favourite_fc" />
 
         <TextView
@@ -37,7 +37,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/imgFavourtie"
-            android:layout_toRightOf="@+id/imgAvatar" />
+            android:layout_toRightOf="@+id/imgAvatar"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvDes"

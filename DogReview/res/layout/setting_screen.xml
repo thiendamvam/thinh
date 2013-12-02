@@ -18,10 +18,12 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/white_contener"
+        android:background="@drawable/bg_lv_container"
         android:orientation="vertical"
+        android:paddingBottom="2dp"
         android:paddingLeft="2dp"
-        android:paddingRight="2dp" >
+        android:paddingRight="2dp"
+        android:paddingTop="2dp" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,15 +45,15 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@color/transparant"
-                android:src="@drawable/ic_favourite" />
+                android:src="@drawable/ic_arrow_r" />
         </RelativeLayout>
 
         <View style="@style/setting_list_divider" />
 
         <RelativeLayout
-            android:onClick="row2Cliked"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="row2Cliked"
             android:padding="10dp" >
 
             <TextView
@@ -68,15 +70,15 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@color/transparant"
-                android:src="@drawable/ic_favourite" />
+                android:src="@drawable/ic_arrow_r" />
         </RelativeLayout>
 
         <View style="@style/setting_list_divider" />
 
         <RelativeLayout
-            android:onClick="row3Cliked"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="row3Cliked"
             android:padding="10dp" >
 
             <TextView
@@ -93,7 +95,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@color/transparant"
-                android:src="@drawable/ic_favourite" />
+                android:src="@drawable/ic_arrow_r" />
         </RelativeLayout>
 
         <View style="@style/setting_list_divider" />
@@ -118,7 +120,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@color/transparant"
-                android:src="@drawable/ic_favourite" />
+                android:src="@drawable/ic_arrow_r" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -139,14 +141,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/setting_content"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
         android:layout_marginTop="5dp" >
 
         <ImageView
             android:id="@+id/imgAvatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:background="@color/transparant"
             android:src="@drawable/logo_in_setting" />
 
@@ -154,16 +157,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/imgAvatar"
-            android:background="@drawable/bg_dev_info"
+            android:background="@color/transparant"
             android:padding="12dp" >
+
+            <ImageView
+                android:id="@+id/imgDevname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo_dev_name" />
 
             <TextView
                 android:id="@+id/tvNameDev"
                 style="@style/setting_text_dev_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/imgDevname"
                 android:layout_centerInParent="true"
                 android:ellipsize="end"
+                android:gravity="right"
                 android:text="@string/name_dev" />
 
             <TextView
@@ -173,8 +184,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvNameDev"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="3dp"
                 android:ellipsize="end"
+                android:gravity="right"
                 android:text="@string/email_dev" />
         </RelativeLayout>
     </RelativeLayout>
@@ -184,7 +196,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" >
 
-        <include layout="@layout/footer" />
+        <fragment
+            android:name="com.gso.dogreview.fragment.FooterFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
 </RelativeLayout>

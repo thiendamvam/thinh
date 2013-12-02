@@ -16,9 +16,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
+import com.gso.dogreview.activity.FavouriteActivity;
 import com.gso.dogreview.activity.IndexActivity;
 import com.gso.dogreview.model.Dog;
 
@@ -32,9 +34,11 @@ public class DogAdapter extends BaseAdapter {
 	float listviewWidth ;
 	float listviewHeight;
 	float density;
-	public DogAdapter(Context context, List<Dog> doglist, RelativeLayout listViewContent) {
+	private int type;
+	public DogAdapter(Context context, List<Dog> doglist, RelativeLayout listViewContent, int type) {
 		this.context = context;
 		this.list = doglist;
+		this.type = type;
 		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)listViewContent.getLayoutParams();
 		listviewWidth  = listViewContent.getWidth();
 		listviewHeight  = listViewContent.getHeight();
@@ -57,7 +61,7 @@ public class DogAdapter extends BaseAdapter {
 		public ImageView imgAvatar;
 		public TextView tvName, tvAddress, tvDescription;
 		public ImageView imgFav;
-		public Object data;
+		public Dog data;
 
 		public ViewUserHolder() {
 
@@ -68,10 +72,11 @@ public class DogAdapter extends BaseAdapter {
 	public View getView(int position2, View convertView, ViewGroup parent) {
 		View view = null;
 //		convertView = viewList.get("" + position);
-		int position = valueResetItemPosition!=1000?valueResetItemPosition:position2;
-		if(position > 6 )
-			position = 0;
-		Log.e("getView",position+"is postion on windows and position of listview "+position2);
+//		int position = valueResetItemPosition!=1000?valueResetItemPosition:position2;
+//		if(position > 6 )
+//			position = 0;
+		int position = position2;
+//		Log.e("getView",position+"is postion on windows and position of listview "+position2);
 		Dog item = list.get(position2);
 //		if (convertView == null) {
 			
@@ -82,14 +87,16 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.tvDescription = (TextView)view.findViewById(R.id.tvDes);
 			viewHolder.imgFav = (ImageView)view.findViewById(R.id.imgFavourtie);
 			viewHolder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
-			viewHolder.data = item;
+
 			
-			viewHolder.tvName.setText(item.getName()+context.getResources().getString(R.string.name_dev)+position);
+			viewHolder.tvName.setText(item.getName());
 			viewHolder.tvDescription.setText(item.getDescription());
+			viewHolder.data = item;
 //			viewList.put(String.valueOf(position), view);
 			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
 			
 			viewHolder.imgFav.setTag(viewHolder);
+
 //			if(position%2==0&&position%3==0){
 //				
 //				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
@@ -119,8 +126,21 @@ public class DogAdapter extends BaseAdapter {
 //		}
 //		view.requestLayout();
 //		view.invalidate();
-		view.setTag(position);
+		view.setTag(viewHolder);
 		valueResetItemPosition++;
+		
+		view.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(type == 1){
+					((IndexActivity)context).onItemClickListener(v);
+				}else if(type == 2){
+					((FavouriteActivity)context).onItemClickListener(v);
+				}
+			}
+		});
 		return view;
 	}
 
@@ -140,6 +160,17 @@ public class DogAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public void removeView(Dog data) {
+		// TODO Auto-generated method stub
+		for(Dog item:list){
+			if(item.getId().equals(data.getId())){
+				list.remove(item);
+				
+			}
+		}
+		super.notifyDataSetChanged();
 	}
 
 }

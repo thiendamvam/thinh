@@ -24,6 +24,7 @@ import android.widget.ToggleButton;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
+import com.gso.dogreview.adapter.DogAdapter.ViewUserHolder;
 import com.gso.dogreview.database.DbAdapter;
 import com.gso.dogreview.model.Dog;
 import com.gso.dogreview.util.SimpleDynamics;
@@ -60,7 +61,7 @@ public class FavouriteActivity extends FragmentActivity implements
 		myListView = (MyListView) findViewById(R.id.lv_list_item_cutom);
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
-		tvHeaderTitle.setText("Favourite");
+		tvHeaderTitle.setText("FAVO");
 		db = new DbAdapter(context);
 
 		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
@@ -121,7 +122,7 @@ public class FavouriteActivity extends FragmentActivity implements
 //			list.add(item);
 //		}
 		db.open();
-		Cursor c = db.getDogList();
+		Cursor c = db.getFavoriteDogList();
 		do {
 			try {
 				Dog item = new Dog();
@@ -144,7 +145,7 @@ public class FavouriteActivity extends FragmentActivity implements
 
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
-		adapter = new DogAdapter(context, dogList, rlListViewContent);
+		adapter = new DogAdapter(context, dogList, rlListViewContent, 2);
 		lvDogs2.setAdapter(adapter);
 		myListView.setAdapter(adapter);
 		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
@@ -222,20 +223,41 @@ public class FavouriteActivity extends FragmentActivity implements
 	}
 
 	public void onIconFavouriteClicked(View v) {
-		Dog item = (Dog) v.getTag();
-		try {
-			db.open();
-			if (item.isFavourite()) {
-				db.removeDog(item);
-			} else {
-				db.insertDog(item);
+		ViewUserHolder holder = (ViewUserHolder) v.getTag();
+		if (holder != null) {
+			Dog item = holder.data;
+			try {
+				db.open();
+				if (item.isFavourite()) {
+					item.setFavourite(false);
+					db.updateDog(item);
+					
+				} else {
+					item.setFavourite(true);
+					db.updateDog(item);
+					
+				}
+				db.close();
+				holder.imgFav
+						.setImageResource(item.isFavourite() ? R.drawable.ic_favourite_fc
+								: R.drawable.ic_favourite_unfc);
+				holder.imgFav.requestLayout();
+				adapter.removeView(holder.data);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
 			}
-			db.close();
-			v.setBackgroundResource(item.isFavourite() ? R.drawable.ic_favourite_unfc
-					: R.drawable.ic_favourite_fc);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+
 		}
 	}
+
+	public void onItemClickListener(View v) {
+		// TODO Auto-generated method stub
+		ViewUserHolder holder = (ViewUserHolder)v.getTag();
+		Dog item = holder.data;
+		Intent i = new Intent(FavouriteActivity.this, DogDetailActivity.class);
+		i.putExtra("data", item);
+		startActivity(i);
+	}
+
 }

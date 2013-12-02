@@ -12,10 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gso.dogreview.R;
+import com.gso.dogreview.database.DbAdapter;
 import com.gso.dogreview.fragment.FragmentView;
+import com.gso.dogreview.interfaces.IOkClicked;
+import com.gso.dogreview.util.Util;
 
 public class SettingActivity extends FragmentActivity implements
-		OnClickListener {
+		OnClickListener, IOkClicked {
 
 	private ImageButton imgBtnHome;
 	private ImageButton imgSeting;
@@ -38,7 +41,7 @@ public class SettingActivity extends FragmentActivity implements
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting);
 		imgBtnSetting.setVisibility(View.GONE);
 		tvHeaderTitle = (TextView)findViewById(R.id.tvHeaderTitle);
-		tvHeaderTitle.setText("Setting");
+		tvHeaderTitle.setText("SET UP");
 
 		imgBtnBack.setOnClickListener(this);
 		imgBtnHome.setOnClickListener(this);
@@ -94,18 +97,45 @@ public class SettingActivity extends FragmentActivity implements
 	
 	public void row1Cliked(View v){
 		FragmentView fragment = new FragmentView();
+		Bundle b = new Bundle();
+		b.putInt("data", 1);
+		fragment.setArguments(b);
 		getSupportFragmentManager().beginTransaction().add(fragment, "fragment1").commit();
 	}
 	public void row2Cliked(View v){
 		FragmentView fragment = new FragmentView();
+		Bundle b = new Bundle();
+		b.putInt("data", 2);
+		fragment.setArguments(b);
 		getSupportFragmentManager().beginTransaction().add(fragment, "fragment2").commit();
 	}
 	public void row3Cliked(View v){
 		FragmentView fragment = new FragmentView();
+		Bundle b = new Bundle();
+		b.putInt("data", 3);
+		fragment.setArguments(b);
 		getSupportFragmentManager().beginTransaction().add(fragment, "fragment3").commit();
 	}
 	public void row4Cliked(View v){
-		FragmentView fragment = new FragmentView();
-		getSupportFragmentManager().beginTransaction().add(fragment, "fragment4").commit();
+//		FragmentView fragment = new FragmentView();
+//		getSupportFragmentManager().beginTransaction().add(fragment, "fragment4").commit();
+
+		String title = getResources().getString(R.string.confirm_delete_favorite);
+		String message = getResources().getString(R.string.confirm_delete_favorite);
+		Util.showConfirmDialog(context,  title, message, SettingActivity.this );
+
+	
+		
+	}
+
+	@Override
+	public void onCompleted(boolean b) {
+		// TODO Auto-generated method stub
+		if(b){
+			DbAdapter db = new DbAdapter(context);
+			db.open();
+			db.removeFavorites();
+			db.close();
+		}
 	}
 }

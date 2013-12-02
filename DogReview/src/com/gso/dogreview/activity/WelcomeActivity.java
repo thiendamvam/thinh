@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import com.gso.dogreview.R;
+import com.gso.dogreview.service.ExelService;
 
 public class WelcomeActivity extends FragmentActivity implements
 		OnClickListener {
@@ -34,6 +35,9 @@ public class WelcomeActivity extends FragmentActivity implements
 		imgBtnSetting.setOnClickListener(this);
 		btnEnter.setOnClickListener(this);
 		context = this;
+		
+		
+		
 	}
 
 	@Override

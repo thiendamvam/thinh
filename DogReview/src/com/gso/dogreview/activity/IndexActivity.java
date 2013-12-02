@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -13,21 +14,19 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.adapter.DogAdapter.ViewUserHolder;
 import com.gso.dogreview.database.DbAdapter;
 import com.gso.dogreview.model.Dog;
+import com.gso.dogreview.service.ExelService;
 import com.gso.dogreview.util.SimpleDynamics;
-import com.gso.dogreview.view.CenterSymmetricListview;
 import com.gso.dogreview.view.MyListView;
 
 public class IndexActivity extends FragmentActivity implements
@@ -43,8 +42,20 @@ public class IndexActivity extends FragmentActivity implements
 	private Button btnBack;
 	private TextView tvHeaderTitle;
 	private MyListView myListView;
-//	private ToggleButton tglOptionLv;
+	// private ToggleButton tglOptionLv;
 	private DbAdapter db;
+
+	public OnItemClickListener onItemClickListener = new OnItemClickListener() {
+		public void onItemClick(android.widget.AdapterView<?> arg0, View arg1,
+				int arg2, long arg3) {
+			
+			ViewUserHolder holder = (ViewUserHolder)arg1.getTag();
+			Dog item = holder.data;
+			Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
+			i.putExtra("data", item);
+			startActivity(i);
+		};
+	};
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -60,30 +71,33 @@ public class IndexActivity extends FragmentActivity implements
 		myListView = (MyListView) findViewById(R.id.lv_list_item_cutom);
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
-		tvHeaderTitle.setText("Index");
+		tvHeaderTitle.setText("INDEX");
+//		lvDogs.setOnItemClickListener(onItemClicked);
 		db = new DbAdapter(context);
-		
-//		tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
-//		tglOptionLv.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//			
-//			@Override
-//			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//				// TODO Auto-generated method stub
-//				if(tglOptionLv.isChecked()){
-//					lvDogs.setVisibility(View.INVISIBLE);
-//					myListView.setVisibility(View.VISIBLE);
-//				}else{
-//					lvDogs.setVisibility(View.VISIBLE);
-//					myListView.setVisibility(View.INVISIBLE);
-//				}
-//			}
-//		});
-		
+
+		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
+		// tglOptionLv.setOnCheckedChangeListener(new
+		// CompoundButton.OnCheckedChangeListener() {
+		//
+		// @Override
+		// public void onCheckedChanged(CompoundButton buttonView, boolean
+		// isChecked) {
+		// // TODO Auto-generated method stub
+		// if(tglOptionLv.isChecked()){
+		// lvDogs.setVisibility(View.INVISIBLE);
+		// myListView.setVisibility(View.VISIBLE);
+		// }else{
+		// lvDogs.setVisibility(View.VISIBLE);
+		// myListView.setVisibility(View.INVISIBLE);
+		// }
+		// }
+		// });
+
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
-//		lvDogs.setOnScrollListener(this);
-		lvDogs.setOnItemClickListener(onItemClicked);//
+		// lvDogs.setOnScrollListener(this);
+		lvDogs.setOnItemClickListener(onItemClickListener);//
 
 	}
 
@@ -94,13 +108,13 @@ public class IndexActivity extends FragmentActivity implements
 		exeListDogs();
 	}
 
-	public OnItemClickListener onItemClicked = new OnItemClickListener() {
-		@Override
-		public void onItemClick(android.widget.AdapterView<?> arg0, View arg1,
-				int arg2, long arg3) {
-			Toast.makeText(context, "clicked", Toast.LENGTH_LONG).show();
-		};
-	};
+//	public OnItemClickListener onItemClicked = new OnItemClickListener() {
+//		@Override
+//		public void onItemClick(android.widget.AdapterView<?> arg0, View arg1,
+//				int arg2, long arg3) {
+//			Toast.makeText(context, "clicked", Toast.LENGTH_LONG).show();
+//		};
+//	};
 
 	private void exeListDogs() {
 		// TODO Auto-generated method stub
@@ -111,20 +125,61 @@ public class IndexActivity extends FragmentActivity implements
 	private ArrayList<Dog> getDataDogs() {
 		// TODO Auto-generated method stub
 		ArrayList<Dog> list = new ArrayList<Dog>();
-		for (int i = 0; i < 20; i++) {
-			Dog item = new Dog();
-			item.setName("a" + i);
-			item.setAvatar("" + R.drawable.ic_logo);
-			item.setDescription("des" + i);
-			item.setFavourite(false);
-			list.add(item);
+		// for (int i = 0; i < 20; i++) {
+		// Dog item = new Dog();
+		// item.setName("a" + i);
+		// item.setAvatar("" + R.drawable.ic_logo);
+		// item.setDescription("des" + i);
+		// item.setFavourite(false);
+		// list.add(item);
+		// }
+		setProgressBarVisibility(true);
+		db.open();
+		Cursor c = db.getDogList();
+		if (c.moveToNext()) {
+			do {
+				try {
+					Dog item = new Dog();
+					item.setId(c.getString(c.getColumnIndex(DbAdapter.DOG_ID)));
+					item.setName(c.getString(c
+							.getColumnIndex(DbAdapter.DOG_NAME)));
+					item.setDescription(c.getString(c
+							.getColumnIndex(DbAdapter.DOG_DESC)));
+					item.setAvatar(c.getString(c
+							.getColumnIndex(DbAdapter.DOG_AVATAR)));
+					item.setFavourite(c.getInt(c
+							.getColumnIndex(DbAdapter.DOG_FAVOURITE)) == 1 ? true
+							: false);
+
+					list.add(item);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			} while (c.moveToNext());
+		} else {
+			ExelService exelService = new ExelService();
+			list = exelService.getFileContent(context, "contents.xls");
+			storeToDatabase(list);
 		}
+
+		c.close();
+		db.close();
+		setProgressBarVisibility(false);
 		return list;
+	}
+
+	private void storeToDatabase(ArrayList<Dog> list) {
+		// TODO Auto-generated method stub
+		for (Dog item : list) {
+			db.insertDog(item);
+
+		}
 	}
 
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
-		adapter = new DogAdapter(context, dogList, rlListViewContent);
+		adapter = new DogAdapter(context, dogList, rlListViewContent,1);
 		lvDogs2.setAdapter(adapter);
 		myListView.setAdapter(adapter);
 		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
@@ -200,31 +255,48 @@ public class IndexActivity extends FragmentActivity implements
 			lvDogs.invalidateViews();
 		}
 	}
-	
-	public void onIconFavouriteClicked(View v){
-		ViewUserHolder holder = (ViewUserHolder)v.getTag();
-		try {
-			if(holder!=null){
-				Dog item = (Dog)holder.data;
-				if(item!=null){
-					db.open();
-					if(item.isFavourite()){
-						item.setFavourite(false);
-						db.updateDog(item);
-						
-					}else{
-						item.setFavourite(true);
-						db.updateDog(item);
-					}
-					db.close();
-					holder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
-					holder.imgFav.requestLayout();
+
+	public void onIconFavouriteClicked(View v) {
+		ViewUserHolder holder = (ViewUserHolder) v.getTag();
+		if (holder != null) {
+			Dog item = holder.data;
+			try {
+				db.open();
+				if (item.isFavourite()) {
+					item.setFavourite(false);
+					db.updateDog(item);
+
+				} else {
+					item.setFavourite(true);
+					db.updateDog(item);
+
 				}
+				db.close();
+				holder.imgFav
+						.setImageResource(item.isFavourite() ? R.drawable.ic_favourite_fc
+								: R.drawable.ic_favourite_unfc);
+				holder.imgFav.requestLayout();
+
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+
 			}
 
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+
 		}
+	}
+
+	public void onFacebookClicked() {
+		// FacebookHanlder fbHandler = new Faceboo
+	}
+
+	public void onItemClickListener(View v) {
+		// TODO Auto-generated method stub
+		ViewUserHolder holder = (ViewUserHolder)v.getTag();
+		Dog item = holder.data;
+		Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
+		i.putExtra("data", item);
+		startActivity(i);
 	}
 }

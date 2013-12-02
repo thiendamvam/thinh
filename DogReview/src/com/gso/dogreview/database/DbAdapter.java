@@ -114,7 +114,12 @@ public class DbAdapter {
 	/*
 	 * Get and inseart dog
 	 */
+	public Cursor getFavoriteDogList() {
 
+		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
+				DOG_AVATAR, DOG_FAVOURITE }, DOG_FAVOURITE+" MATCH ?", new String[]{"1"}, null, null, null);
+	}
+	
 	public Cursor getDogList() {
 
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
@@ -142,22 +147,38 @@ public class DbAdapter {
 		}
 
 	}
-
 	public boolean updateDog(Dog dog) throws SQLiteException {
-		
-		int fav = dog.isFavourite()?1:0;
-		String sqlite  = "insert or replace into "+DOG_TABLE+" ("+
-		DOG_FAVOURITE+") values ("+fav+")";
 		ContentValues insertedValue = new ContentValues();
 		insertedValue.put(DOG_ID, dog.getId());
 		insertedValue.put(DOG_NAME, dog.getName());
 		insertedValue.put(DOG_DESC, dog.getDescription());
 		insertedValue.put(DOG_AVATAR, dog.getAvatar());
 		insertedValue.put(DOG_FAVOURITE, dog.isFavourite()?1:0);
-		mDb.rawQuery(sqlite, null);
-		return true;
+//		Cursor c = mDb.rawQuery("select *	from " + DOG_TABLE + " where "
+//				+ DOG_ID + "='" + dog.getId() + "'", null);
+//		if (c.getCount() > 0) {
+			return mDb.update(DOG_TABLE, insertedValue, DOG_ID+" MATCH ?", new String[]{dog.getId()}) != -1;
+//		} else {
+//			return false;
+//		}
 
 	}
+
+//	public boolean updateDog(Dog dog) throws SQLiteException {
+//		
+//		int fav = dog.isFavourite()?1:0;
+//		String sqlite  = "insert or replace into "+DOG_TABLE+" ("+
+//		DOG_FAVOURITE+") values ("+fav+")";
+//		ContentValues insertedValue = new ContentValues();
+//		insertedValue.put(DOG_ID, dog.getId());
+//		insertedValue.put(DOG_NAME, dog.getName());
+//		insertedValue.put(DOG_DESC, dog.getDescription());
+//		insertedValue.put(DOG_AVATAR, dog.getAvatar());
+//		insertedValue.put(DOG_FAVOURITE, dog.isFavourite()?1:0);
+//		mDb.rawQuery(sqlite, null);
+//		return true;
+//
+//	}
 	
 	/*
 	 * get and insert comment
@@ -194,6 +215,19 @@ public class DbAdapter {
 			String quereClause = DOG_ID + "=?";
 	    	String[] args = { item.getId()};
 	    	return mDb.delete(DOG_TABLE, quereClause, args) > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean removeFavorites() {
+		// TODO Auto-generated method stub
+		try {
+			String whereClause = DOG_FAVOURITE+" MATCH ?";
+			String []whereArgs = {"1"};
+			return mDb.delete(DOG_TABLE, whereClause, whereArgs) != -1;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

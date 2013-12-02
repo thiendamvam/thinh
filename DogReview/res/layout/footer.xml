@@ -23,7 +23,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/transparant"
-            android:onClick="onTwitterClicked"
             android:src="@drawable/ic_twitter" />
 
         <ImageButton
@@ -33,7 +32,6 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/img_btn_twitter"
             android:background="@color/transparant"
-            android:onClick="onFacebookClicked"
             android:src="@drawable/ic_facebook" />
     </RelativeLayout>
 

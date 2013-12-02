@@ -23,6 +23,7 @@ import android.widget.ToggleButton;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
+import com.gso.dogreview.adapter.DogAdapter.ViewUserHolder;
 import com.gso.dogreview.database.DbAdapter;
 import com.gso.dogreview.model.Dog;
 import com.gso.dogreview.util.SimpleDynamics;
@@ -201,20 +202,26 @@ public class IndexActivity extends FragmentActivity implements
 	}
 	
 	public void onIconFavouriteClicked(View v){
-		Dog item = (Dog)v.getTag();
+		ViewUserHolder holder = (ViewUserHolder)v.getTag();
 		try {
-			db.open();
-			if(item.isFavourite()){
-				db.removeDog(item);
-				item.setFavourite(false);
-			}else{
-				db.insertDog(item);
-				item.setFavourite(true);
+			if(holder!=null){
+				Dog item = (Dog)holder.data;
+				if(item!=null){
+					db.open();
+					if(item.isFavourite()){
+						item.setFavourite(false);
+						db.updateDog(item);
+						
+					}else{
+						item.setFavourite(true);
+						db.updateDog(item);
+					}
+					db.close();
+					holder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
+					holder.imgFav.requestLayout();
+				}
 			}
-			db.close();
-			v.setBackgroundResource(item.isFavourite()?R.drawable.ic_favourite_unfc:R.drawable.ic_favourite_unfc);
-			v.requestLayout();
-			adapter.notifyDataSetChanged();
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

@@ -57,6 +57,7 @@ public class DogAdapter extends BaseAdapter {
 		public ImageView imgAvatar;
 		public TextView tvName, tvAddress, tvDescription;
 		public ImageView imgFav;
+		public Object data;
 
 		public ViewUserHolder() {
 
@@ -80,14 +81,15 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.tvName = (TextView)view.findViewById(R.id.tvName);
 			viewHolder.tvDescription = (TextView)view.findViewById(R.id.tvDes);
 			viewHolder.imgFav = (ImageView)view.findViewById(R.id.imgFavourtie);
-			viewHolder.imgFav.setBackgroundResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
+			viewHolder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
+			viewHolder.data = item;
 			
 			viewHolder.tvName.setText(item.getName()+context.getResources().getString(R.string.name_dev)+position);
 			viewHolder.tvDescription.setText(item.getDescription());
 //			viewList.put(String.valueOf(position), view);
 			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
 			
-			viewHolder.imgFav.setTag(item);
+			viewHolder.imgFav.setTag(viewHolder);
 //			if(position%2==0&&position%3==0){
 //				
 //				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));

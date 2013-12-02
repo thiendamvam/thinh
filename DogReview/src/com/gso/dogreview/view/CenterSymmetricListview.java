@@ -51,6 +51,7 @@ public class CenterSymmetricListview extends ListView {
 		canvas.restore();
 		return result;
 	}
+	
 }
 
 //public class CenterSymmetricListview extends ListView {

@@ -143,6 +143,22 @@ public class DbAdapter {
 
 	}
 
+	public boolean updateDog(Dog dog) throws SQLiteException {
+		
+		int fav = dog.isFavourite()?1:0;
+		String sqlite  = "insert or replace into "+DOG_TABLE+" ("+
+		DOG_FAVOURITE+") values ("+fav+")";
+		ContentValues insertedValue = new ContentValues();
+		insertedValue.put(DOG_ID, dog.getId());
+		insertedValue.put(DOG_NAME, dog.getName());
+		insertedValue.put(DOG_DESC, dog.getDescription());
+		insertedValue.put(DOG_AVATAR, dog.getAvatar());
+		insertedValue.put(DOG_FAVOURITE, dog.isFavourite()?1:0);
+		mDb.rawQuery(sqlite, null);
+		return true;
+
+	}
+	
 	/*
 	 * get and insert comment
 	 */

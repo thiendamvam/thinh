@@ -15,10 +15,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gso.dogreview.R;
+import com.gso.dogreview.adapter.ChatAdapter;
+import com.gso.dogreview.database.DbAdapter;
 import com.gso.dogreview.model.Dog;
 
 public class DogDetailActivity extends FragmentActivity implements OnClickListener{
@@ -35,6 +38,8 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 	private TextView tvHeaderTitle;
 	private Context context;
 	private ImageView imgTitle;
+	private ListView lvChats;
+	private DbAdapter db;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -42,13 +47,14 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 		super.onCreate(arg0);
 		setContentView(R.layout.dog_detail);
 		context = this;
+		db = new DbAdapter(context);
 		imgBtnHome = (ImageButton) findViewById(R.id.imgBtn_home);
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		btnBack = (Button) findViewById(R.id.img_btn_back);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		imgTitle = (ImageView)findViewById(R.id.imgTitle);
-		
+		lvChats = (ListView)findViewById(R.id.lv_chats);
 		tvHeaderTitle.setText("CONTENTS");
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
@@ -73,12 +79,27 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 			id = id.length() > 1?id:"0"+id;
 			setImage(id);
 			setImageTitle(id);
+			bindChatsList(id);
 		
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
+	private void bindChatsList(String id) {
+		// TODO Auto-generated method stub
+		try {
+			db.open();
+			Cursor c = db.getc
+			ChatAdapter adapter = new ChatAdapter(context, c);
+			lvChats.setAdapter(adapter);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
+
 	private void setImageTitle(String id) {
 		// TODO Auto-generated method stub
 		try {

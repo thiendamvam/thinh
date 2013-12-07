@@ -31,17 +31,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="7dp"
-                android:visibility="gone"
-                android:text="@string/welcome_screen_des" />
+                android:text="@string/welcome_screen_des"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/imgTitle"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="-30dp"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="-37dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/transparant" />
+
             <RelativeLayout
                 android:id="@+id/rlInfo"
                 android:layout_width="match_parent"
@@ -53,10 +54,10 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="0dp"
                     android:background="@android:color/transparent" >
 
                     <ImageView
@@ -103,6 +104,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rlInfo"
                 android:layout_margin="15dp" />
+
+            <include layout="@layout/chat_view" />
         </RelativeLayout>
     </ScrollView>
 

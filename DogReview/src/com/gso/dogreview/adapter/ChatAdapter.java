@@ -14,11 +14,11 @@ import android.widget.TextView;
 import com.gso.dogreview.R;
 import com.gso.dogreview.database.DbAdapter;
 
-public class CommentAdapter extends CursorAdapter {
+public class ChatAdapter extends CursorAdapter {
 
 	private Context context;
 
-	public CommentAdapter(Context context, Cursor c) {
+	public ChatAdapter(Context context, Cursor c) {
 		super(context, c);
 		// TODO Auto-generated constructor stub
 		this.context = context;

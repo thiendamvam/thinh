@@ -34,6 +34,7 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 	private Button btnBack;
 	private TextView tvHeaderTitle;
 	private Context context;
+	private ImageView imgTitle;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -46,6 +47,8 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		btnBack = (Button) findViewById(R.id.img_btn_back);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
+		imgTitle = (ImageView)findViewById(R.id.imgTitle);
+		
 		tvHeaderTitle.setText("CONTENTS");
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
@@ -68,17 +71,38 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 			tvDescription.setText(""+item.getDescription());
 			String id = item.getId();
 			id = id.length() > 1?id:"0"+id;
-			uri = "file:///android_asset/Dogs/C_"+item.getId()+".png";
-//			wvThumnail.loadUrl(uri);
-			Bitmap bm = getBitmapFromAssets("Dogs/C_"+id+".png");
-			if(bm!=null)
-				wvThumnail.setImageBitmap(bm);
+			setImage(id);
+			setImageTitle(id);
 		
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
+	private void setImageTitle(String id) {
+		// TODO Auto-generated method stub
+		try {
+			Bitmap bm = getBitmapFromAssets("title_11/t_"+id+".png");
+			if(bm!=null)
+				imgTitle.setImageBitmap(bm);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+	private void setImage(String id) {
+		// TODO Auto-generated method stub
+		try {
+			Bitmap bm = getBitmapFromAssets("Dogs/C_"+id+".png");
+			if(bm!=null)
+				wvThumnail.setImageBitmap(bm);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
 	public Bitmap getBitmapFromAssets(String fileName) {
 	    AssetManager assetManager = getAssets();
 

@@ -47,6 +47,10 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
+            android:name="com.gso.dogreview.activity.Page8Activity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
             android:name="com.gso.dogreview.activity.FavouriteActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>

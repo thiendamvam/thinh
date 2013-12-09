@@ -80,7 +80,7 @@ public class DogAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position2, View convertView, ViewGroup parent) {
+	public View getView(final int position2, View convertView, ViewGroup parent) {
 		View view = null;
 //		convertView = viewList.get("" + position);
 //		int position = valueResetItemPosition!=1000?valueResetItemPosition:position2;
@@ -146,7 +146,10 @@ public class DogAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(type == 1){
-					((IndexActivity)context).onItemClickListener(v);
+					if(position2!=0)
+						((IndexActivity)context).onItemClickListener(v);
+					else
+						((IndexActivity)context).gotoPage8();
 				}else if(type == 2){
 					((FavouriteActivity)context).onItemClickListener(v);
 				}

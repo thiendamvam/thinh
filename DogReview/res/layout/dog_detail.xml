@@ -105,12 +105,20 @@
                 android:layout_below="@+id/rlInfo"
                 android:layout_margin="15dp" />
 
+            <ImageView
+                android:id="@+id/img_illustation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvContentDescription"
+                android:background="@color/transparant"
+                android:src="@drawable/bg_illustration_41" />
+
             <ListView
                 android:id="@+id/lv_chats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/img_illustation"
                 android:divider="@color/transparant"
-                android:layout_below="@+id/tvContentDescription"
                 android:dividerHeight="0dp" >
             </ListView>
         </RelativeLayout>

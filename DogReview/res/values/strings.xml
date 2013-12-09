@@ -10,6 +10,7 @@
     <string name="welcome_screen_enter">Enter</string>
     <string name="splash_text">Welcome to my app</string>
     <string name="back">Back</string>
+    <string name="next">Next</string>
     <string name="setting_row1">このアプリについて</string>
     <string name="setting_row2">アイコンの説明</string>
     <string name="setting_row3">更新情報</string>

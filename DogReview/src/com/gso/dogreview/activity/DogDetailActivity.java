@@ -48,6 +48,8 @@ public class DogDetailActivity extends FragmentActivity implements
 	private ImageView imgTitle;
 	private ListView lvChats;
 	private DbAdapter db;
+	private Button btnNext;
+	private int count;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -60,6 +62,7 @@ public class DogDetailActivity extends FragmentActivity implements
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		btnBack = (Button) findViewById(R.id.img_btn_back);
+		btnNext = (Button) findViewById(R.id.img_btn_next);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		imgTitle = (ImageView) findViewById(R.id.imgTitle);
 		lvChats = (ListView) findViewById(R.id.lv_chats);
@@ -67,14 +70,71 @@ public class DogDetailActivity extends FragmentActivity implements
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
+		btnNext.setOnClickListener(this);
 
 		item = (Dog) getIntent().getSerializableExtra("data");
+		count = getIntent().getIntExtra("count", 0);
 		wvThumnail = (ImageView) findViewById(R.id.wvThumnail);
 		tvTitle = (TextView) findViewById(R.id.tvTitle);
 		tvDescription = (TextView) findViewById(R.id.tvContentDescription);
 
-		if (item != null)
+		if (item != null) {
 			bindData(item);
+		}
+	}
+
+	private void setBackNextButton(String id) {
+		// TODO Auto-generated method stub
+		try {
+
+			if (id != null) {
+				int index = Integer.parseInt(id);
+				if (index > 0 && index < count) {
+					btnBack.setVisibility(View.VISIBLE);
+					btnNext.setVisibility(View.VISIBLE);
+				} else if (index > 0 && index == count) {
+					btnBack.setVisibility(View.GONE);
+					btnNext.setVisibility(View.GONE);
+				} else if (index < count) {
+					btnBack.setVisibility(View.VISIBLE);
+					btnNext.setVisibility(View.VISIBLE);
+				} else {
+					btnBack.setVisibility(View.GONE);
+					btnNext.setVisibility(View.VISIBLE);
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
+	public void bindDataFromDogId(String id) {
+		
+		Log.d("bindDataFromDogId",count+" is count and id is "+id);
+		db.open();
+		Cursor c = db.getDogById(id);
+		if(c.getCount()>0){
+			do {
+				try {
+					item.setId((c.getString(c.getColumnIndex(DbAdapter.DOG_ID))));
+					item.setName((c.getString(c.getColumnIndex(DbAdapter.DOG_NAME))));
+					item.setAvatar((c.getString(c.getColumnIndex(DbAdapter.DOG_AVATAR))));
+					item.setDescription((c.getString(c.getColumnIndex(DbAdapter.DOG_DESC))));
+					item.setFavourite((c.getInt(c.getColumnIndex(DbAdapter.DOG_DESC)))==0?true:false);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+
+			} while (c.moveToNext());
+			if (item != null) {
+				bindData(item);
+				setBackNextButton(item.getId());
+			}
+		}
+		c.close();
+		db.close();
 	}
 
 	private void bindData(Dog item2) {
@@ -203,7 +263,32 @@ public class DogDetailActivity extends FragmentActivity implements
 		} else if (id == R.id.imgBtn_setting_menu) {
 			exeMenuClicked();
 		} else if (id == R.id.img_btn_back) {
-			finish();
+			gotoOtherDog(false);
+		} else if (id == R.id.img_btn_next) {
+			gotoOtherDog(true);
+		}
+	}
+
+	private void gotoOtherDog(boolean isNext) {
+		// TODO Auto-generated method stub
+		if (item != null) {
+			String newId = item.getId();
+			if (newId != null) {
+				int id = Integer.parseInt(newId);
+				if (isNext) {
+					if (id > 0) {
+						id++;
+						bindDataFromDogId("" + id);
+					}
+				} else {
+					if(id< count){
+						id--;
+						bindDataFromDogId("" + id);
+					}
+
+				}
+
+			}
 		}
 	}
 

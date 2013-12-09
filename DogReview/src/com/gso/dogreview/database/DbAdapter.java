@@ -232,4 +232,12 @@ public class DbAdapter {
 			return false;
 		}
 	}
+
+	public Cursor getDogById(String id) {
+		// TODO Auto-generated method stub
+		return mDb.query(DOG_TABLE, new String[] { DOG_ID,
+				DOG_NAME, DOG_AVATAR,  DOG_DESC, DOG_FAVOURITE },
+				DOG_ID + " MATCH ?",
+				new String[] { "*" + id + "*" }, null, null, null);
+	}
 }

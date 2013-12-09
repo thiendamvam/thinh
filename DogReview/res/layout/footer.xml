@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="5dp"
-    android:paddingLeft="3dp" >
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp" >
 
     <Button
         android:id="@+id/img_btn_back"
@@ -12,6 +13,15 @@
         android:layout_height="wrap_content"
         android:background="@drawable/btn_back"
         android:text="@string/back" />
+
+    <Button
+        android:id="@+id/img_btn_next"
+        style="@style/normal_text_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_back"
+        android:text="@string/next" />
 
     <RelativeLayout
         android:layout_width="wrap_content"

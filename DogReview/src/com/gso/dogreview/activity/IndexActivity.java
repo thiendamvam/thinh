@@ -317,6 +317,13 @@ public class IndexActivity extends FragmentActivity implements
 		Dog item = holder.data;
 		Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
 		i.putExtra("data", item);
+		i.putExtra("count",myListView.getAdapter().getCount() );
+		startActivity(i);
+	}
+
+	public void gotoPage8() {
+		// TODO Auto-generated method stub
+		Intent i = new Intent(context, Page8Activity.class);
 		startActivity(i);
 	}
 }

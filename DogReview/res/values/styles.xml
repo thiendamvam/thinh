@@ -34,7 +34,7 @@
 
     <style name="normal_text">
         <item name="android:textColor">@color/welcome_title</item>
-        <item name="android:textSize">@dimen/welcome_title</item>
+        <item name="android:textSize">@dimen/normal_text</item>
     </style>
 
     <style name="setting_text">

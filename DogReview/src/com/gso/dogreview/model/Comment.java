@@ -1,35 +1,15 @@
 package com.gso.dogreview.model;
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable{
 
 	private String id;
 	private String dogId;
-	private String userAvatar;
-	private String description;
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	/**
-	 * @return the userAvatar
-	 */
-	public String getUserAvatar() {
-		return userAvatar;
-	}
-	/**
-	 * @param userAvatar the userAvatar to set
-	 */
-	public void setUserAvatar(String userAvatar) {
-		this.userAvatar = userAvatar;
-	}
+	private String avatar;
+	private String comment;
+
+	
 	/**
 	 * @return the dogId
 	 */
@@ -54,4 +34,32 @@ public class Comment {
 	public void setId(String id) {
 		this.id = id;
 	}
+	/**
+	 * @return the dogAvatar
+	 */
+	/**
+	 * @return the avatar
+	 */
+	public String getAvatar() {
+		return avatar;
+	}
+	/**
+	 * @param avatar the avatar to set
+	 */
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	/**
+	 * @return the comment
+	 */
+	public String getComment() {
+		return comment;
+	}
+	/**
+	 * @param comment the comment to set
+	 */
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
 }

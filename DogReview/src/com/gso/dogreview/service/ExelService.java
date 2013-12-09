@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import jxl.Cell;
@@ -17,15 +19,16 @@ import android.content.res.AssetManager;
 import android.util.Log;
 
 import com.gso.dogreview.R;
+import com.gso.dogreview.model.Comment;
 import com.gso.dogreview.model.Dog;
 
 public class ExelService {
 
 
-	public ArrayList<Dog> getFileContent(Context context, String inputFile) {
+	public HashMap<String,Object> getFileContent(Context context, String inputFile) {
 		AssetManager am = context.getAssets();
 		InputStream inputStream;
-		ArrayList<Dog> result = new ArrayList<Dog>();
+		HashMap<String, Object> result = new HashMap<String, Object>();
 		try {
 			inputStream = am.open(inputFile);
 			try {
@@ -43,10 +46,12 @@ public class ExelService {
 		return result;
 	}
 
-	public ArrayList<Dog> read(InputStream inputStream)
+	public HashMap<String,Object> read(InputStream inputStream)
 			throws IOException {
 		List<String> resultSet = new ArrayList<String>();
-		ArrayList<Dog> result = new ArrayList<Dog>();
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		ArrayList<Dog> dogList = new ArrayList<Dog>(); 
+		ArrayList<Comment> commentList = new ArrayList<Comment>();
 		if (inputStream != null) {
 			Workbook w;
 			try {
@@ -58,17 +63,84 @@ public class ExelService {
 					// Loop over column and lines
 					
 					List<String> idList = getDataColumb(sheet, 0);
-					List<String> titleList = getDataColumb(sheet, 1);
-					List<String> detailList = getDataColumb(sheet, 2);
-						int size = idList.size();
-						for (int i2 = 0; i2 < size; i2++) {
+					List<String> dogImageIdList = getDataColumb(sheet, 1);
+					List<String> titleImageList = getDataColumb(sheet, 2);
+					List<String> titleList = getDataColumb(sheet, 3);
+					List<String> detailList = getDataColumb(sheet, 4);
+					List<String> commentAvatarNaList = getDataColumb(sheet, 5);
+					List<String> commentContenNatList = getDataColumb(sheet, 6);
+					List<String> commentAvatarDogList = getDataColumb(sheet, 7);
+					List<String> commentContentDogList = getDataColumb(sheet, 8);
+					List<String> commentAvatarNaList2 = getDataColumb(sheet, 9);
+					List<String> commentContentNaList2 = getDataColumb(sheet, 10);
+					List<String> commentAvatarDogList2 = getDataColumb(sheet, 11);
+					List<String> commentContentDogList2 = getDataColumb(sheet, 12);
+					
+					int size = idList.size();
+					for (int i2 = 0; i2 < size; i2++) {
+						try {
 							Dog item = new Dog();
 							item.setId(idList.get(i2));
 							item.setName(titleList.get(i2));
 							item.setDescription(detailList.get(i2));
 							item.setFavourite(false);
-							result.add(item);
+							dogList.add(item);
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
 						}
+						
+						try {
+							Comment item = new Comment();
+							item.setDogId(idList.get(i2));
+							item.setComment(commentContenNatList.get(i2));
+							item.setAvatar(commentAvatarNaList.get(i2));
+							
+							commentList.add(item);
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}
+						
+						try {
+							Comment item = new Comment();
+							item.setDogId(idList.get(i2));
+							item.setComment(commentContentDogList.get(i2));
+							item.setAvatar(commentAvatarDogList.get(i2));
+							
+							commentList.add(item);
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}		
+						
+						try {
+							Comment item = new Comment();
+							item.setDogId(idList.get(i2));
+							item.setComment(commentContentNaList2.get(i2));
+							item.setAvatar(commentAvatarNaList2.get(i2));
+							
+							commentList.add(item);
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}	
+						
+						try {
+							Comment item = new Comment();
+							item.setDogId(idList.get(i2));
+							item.setComment(commentContentDogList2.get(i2));
+							item.setAvatar(commentAvatarDogList2.get(i2));
+							
+							commentList.add(item);
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}	
+					}
+					
+					result.put("dog_list", dogList);
+					result.put("comment_list", commentList);
 				}
 
 			} catch (BiffException e) {

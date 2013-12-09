@@ -6,10 +6,12 @@ import java.io.InputStream;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,6 +25,7 @@ import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.ChatAdapter;
 import com.gso.dogreview.database.DbAdapter;
 import com.gso.dogreview.model.Dog;
+import com.gso.dogreview.util.Util;
 
 public class DogDetailActivity extends FragmentActivity implements OnClickListener{
 
@@ -66,7 +69,8 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 		tvTitle = (TextView)findViewById(R.id.tvTitle);
 		tvDescription = (TextView)findViewById(R.id.tvContentDescription);
 		
-		bindData(item);
+		if(item!=null)
+			bindData(item);
 	}
 
 	private void bindData(Dog item2) {
@@ -79,7 +83,7 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 			id = id.length() > 1?id:"0"+id;
 			setImage(id);
 			setImageTitle(id);
-			bindChatsList(id);
+			bindChatsList(item.getId());
 		
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -89,10 +93,17 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 	private void bindChatsList(String id) {
 		// TODO Auto-generated method stub
 		try {
+			Log.d("bindChatsList","bindChatsList "+id);
 			db.open();
-			Cursor c = db.getc
+			Cursor c = db.getComment(id);
+			Log.d("bindChatsList","bindChatsList count "+c.getCount());
 			ChatAdapter adapter = new ChatAdapter(context, c);
 			lvChats.setAdapter(adapter);
+			adapter.notifyDataSetChanged();
+			Util.setListViewHeightBasedOnChildren(lvChats);
+			lvChats.requestLayout();
+			c.close();
+			db.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

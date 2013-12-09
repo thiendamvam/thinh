@@ -1,6 +1,7 @@
 package com.gso.dogreview.activity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,12 +19,12 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.adapter.DogAdapter.ViewUserHolder;
 import com.gso.dogreview.database.DbAdapter;
+import com.gso.dogreview.model.Comment;
 import com.gso.dogreview.model.Dog;
 import com.gso.dogreview.service.ExelService;
 import com.gso.dogreview.util.SimpleDynamics;
@@ -159,8 +160,18 @@ public class IndexActivity extends FragmentActivity implements
 			} while (c.moveToNext());
 		} else {
 			ExelService exelService = new ExelService();
-			list = exelService.getFileContent(context, "contents.xls");
-			storeToDatabase(list);
+			HashMap<String, Object> result = new HashMap<String, Object>();
+			result = exelService.getFileContent(context, "contents.xls");
+			if(result.containsKey("dog_list")){
+				list = (ArrayList<Dog>)result.get("dog_list");
+				storeDogsToDatabase(list);
+			}
+			if(result.containsKey("comment_list")){
+				ArrayList<Comment> commentList = (ArrayList<Comment>)result.get("comment_list");
+				storeCommentToDatabase(commentList);
+			}
+			
+			
 		}
 
 		c.close();
@@ -169,13 +180,22 @@ public class IndexActivity extends FragmentActivity implements
 		return list;
 	}
 
-	private void storeToDatabase(ArrayList<Dog> list) {
+	private void storeDogsToDatabase(ArrayList<Dog> list) {
 		// TODO Auto-generated method stub
 		for (Dog item : list) {
 			db.insertDog(item);
 
 		}
 	}
+	
+	private void storeCommentToDatabase(ArrayList<Comment> list) {
+		// TODO Auto-generated method stub
+		for (Comment item : list) {
+			db.insertComment(item);
+
+		}
+	}
+
 
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub

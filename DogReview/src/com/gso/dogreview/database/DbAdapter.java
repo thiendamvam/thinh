@@ -28,11 +28,11 @@ public class DbAdapter {
 	 */
 
 	public static final String COMMENT_TABLE = "COMMENT_TABLE";
-	public static final String COMMENT_ID = "COMMENT_ID";
+	public static final String COMMENT_ID = "_id";
 	public static final String COMMENT_DOG_ID = "COMMENT_DOG_ID";
-	public static final String COMMENT_USER_AVATAR = "COMMENT_USER_AVATAR";
-	public static final String COMMENT_DESC = "COMMENT_DESC";
-
+	public static final String COMMENT_AVATAR = "COMMENT_AVATAR";
+	public static final String COMMENT_COMMENT = "COMMENT_COMMENT";
+	
 	private DatabaseHelper mDbHelper;
 	private SQLiteDatabase mDb;
 
@@ -53,14 +53,11 @@ public class DbAdapter {
 	 */
 
 	private static final String DATABASE_COMMENT_CREATE = "create virtual table "
-			+ COMMENT_TABLE
-			+ " USING FTS3("
-			+ COMMENT_ID
-			+ " text not null primary key,"
-			+ COMMENT_DOG_ID
-			+ " text,"
-			+ COMMENT_USER_AVATAR + " text," + COMMENT_DESC + " text" +
-
+			+ COMMENT_TABLE+ " USING FTS3("
+			+ COMMENT_ID+ " INTEGER AUTOINCREMENT,"
+			+ COMMENT_DOG_ID+ " text not null primary key,"
+			+ COMMENT_AVATAR + " text," 
+			+ COMMENT_COMMENT + " text"+
 			");";
 
 	public static class DatabaseHelper extends SQLiteOpenHelper {
@@ -186,7 +183,7 @@ public class DbAdapter {
 
 	public Cursor getComment(String query) {
 		return mDb.query(COMMENT_TABLE, new String[] { COMMENT_ID,
-				COMMENT_DOG_ID, COMMENT_USER_AVATAR, COMMENT_DESC },
+				COMMENT_DOG_ID, COMMENT_AVATAR,  COMMENT_COMMENT },
 				COMMENT_DOG_ID + " MATCH ?",
 				new String[] { "*" + query + "*" }, null, null, null);
 
@@ -196,8 +193,9 @@ public class DbAdapter {
 		ContentValues insertedValue = new ContentValues();
 		insertedValue.put(COMMENT_ID, comment.getId());
 		insertedValue.put(COMMENT_DOG_ID, comment.getDogId());
-		insertedValue.put(COMMENT_USER_AVATAR, comment.getUserAvatar());
-		insertedValue.put(COMMENT_DESC, comment.getDescription());
+		insertedValue.put(COMMENT_AVATAR, comment.getAvatar());
+		insertedValue.put(COMMENT_COMMENT, comment.getComment());
+		
 
 		Cursor c = mDb.rawQuery("select *	from " + COMMENT_TABLE + " where "
 				+ COMMENT_ID + "='" + comment.getId() + "'", null);

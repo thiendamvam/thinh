@@ -39,9 +39,20 @@ public class DogAdapter extends BaseAdapter {
 		this.context = context;
 		this.list = doglist;
 		this.type = type;
-		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)listViewContent.getLayoutParams();
+//		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)listViewContent.getLayoutParams();
 		listviewWidth  = listViewContent.getWidth();
 		listviewHeight  = listViewContent.getHeight();
+		Log.e("DogAdapter",listviewWidth+" and height "+listviewHeight);
+		density =DogReviewApplication.Instance().getDensity();
+		valueResetItemPosition = 0;
+	}
+
+	public DogAdapter(Context context, ArrayList<Dog> list, int type) {
+		// TODO Auto-generated constructor stub
+		this.context = context;
+		this.list = list;
+		this.type = type;
+//		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)listViewContent.getLayoutParams();
 		Log.e("DogAdapter",listviewWidth+" and height "+listviewHeight);
 		density =DogReviewApplication.Instance().getDensity();
 		valueResetItemPosition = 0;

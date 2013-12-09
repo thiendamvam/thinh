@@ -104,14 +104,15 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rlInfo"
                 android:layout_margin="15dp" />
-			<ListView 
-			    android:id="@+id/lv_chats"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:layout_below="@+id/tvContentDescription"
-			    >
-			</ListView>
-            
+
+            <ListView
+                android:id="@+id/lv_chats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@color/transparant"
+                android:layout_below="@+id/tvContentDescription"
+                android:dividerHeight="0dp" >
+            </ListView>
         </RelativeLayout>
     </ScrollView>
 

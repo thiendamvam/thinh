@@ -46,20 +46,18 @@ public class ChatAdapter extends CursorAdapter {
 				.getColumnIndex(DbAdapter.COMMENT_COMMENT));
 		
 		Log.d("bindView","bindView"+commentContent);
-		if (commentAvatar != null) {
-//			holder.userAvatar.setBackgroundDrawable(Drawable
-//					.createFromPath(commentAvatar));
-			try {
-				commentAvatar = commentAvatar.replace(" ", "");
-				Util util = new Util();
-				Bitmap bm = util.getBitmapFromAssets(context,"comment_avatar/"+commentAvatar+".png");
-				if(bm!=null)
-					holder.userAvatar.setImageBitmap(bm);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-		}
+//		if (commentAvatar != null) {
+//			try {
+//				commentAvatar = commentAvatar.replace(" ", "");
+//				Util util = new Util();
+//				Bitmap bm = util.getBitmapFromAssets(context,"comment_avatar/"+commentAvatar+".png");
+//				if(bm!=null)
+//					holder.userAvatar.setImageBitmap(bm);
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//				e.printStackTrace();
+//			}
+//		}
 		if (commentContent != null) {
 			holder.tvDescription.setText(commentContent);
 		}

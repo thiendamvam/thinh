@@ -2,6 +2,7 @@ package com.gso.dogreview.activity;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,11 +24,15 @@ import android.widget.TextView;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.ChatAdapter;
+import com.gso.dogreview.adapter.ChatBaseAdapter;
+import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.database.DbAdapter;
+import com.gso.dogreview.model.Comment;
 import com.gso.dogreview.model.Dog;
 import com.gso.dogreview.util.Util;
 
-public class DogDetailActivity extends FragmentActivity implements OnClickListener{
+public class DogDetailActivity extends FragmentActivity implements
+		OnClickListener {
 
 	private ImageView wvThumnail;
 	private TextView tvTitle;
@@ -56,20 +61,19 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		btnBack = (Button) findViewById(R.id.img_btn_back);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
-		imgTitle = (ImageView)findViewById(R.id.imgTitle);
-		lvChats = (ListView)findViewById(R.id.lv_chats);
+		imgTitle = (ImageView) findViewById(R.id.imgTitle);
+		lvChats = (ListView) findViewById(R.id.lv_chats);
 		tvHeaderTitle.setText("CONTENTS");
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
-	
-		
-		item = (Dog)getIntent().getSerializableExtra("data");
-		wvThumnail = (ImageView)findViewById(R.id.wvThumnail);
-		tvTitle = (TextView)findViewById(R.id.tvTitle);
-		tvDescription = (TextView)findViewById(R.id.tvContentDescription);
-		
-		if(item!=null)
+
+		item = (Dog) getIntent().getSerializableExtra("data");
+		wvThumnail = (ImageView) findViewById(R.id.wvThumnail);
+		tvTitle = (TextView) findViewById(R.id.tvTitle);
+		tvDescription = (TextView) findViewById(R.id.tvContentDescription);
+
+		if (item != null)
 			bindData(item);
 	}
 
@@ -77,45 +81,83 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 		try {
 
 			// TODO Auto-generated method stub
-			tvTitle.setText(""+item.getName());
-			tvDescription.setText(""+item.getDescription());
+			tvTitle.setText("" + item.getName());
+			tvDescription.setText("" + item.getDescription());
 			String id = item.getId();
-			id = id.length() > 1?id:"0"+id;
+			id = id.length() > 1 ? id : "0" + id;
 			setImage(id);
 			setImageTitle(id);
 			bindChatsList(item.getId());
-		
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
+
 	private void bindChatsList(String id) {
 		// TODO Auto-generated method stub
 		try {
-			Log.d("bindChatsList","bindChatsList "+id);
+			Log.d("bindChatsList", "bindChatsList " + id);
 			db.open();
 			Cursor c = db.getComment(id);
-			Log.d("bindChatsList","bindChatsList count "+c.getCount());
-			ChatAdapter adapter = new ChatAdapter(context, c);
+			Log.d("bindChatsList", "bindChatsList count " + c.getCount());
+			// ChatAdapter adapter = new ChatAdapter(context, c);
+			ArrayList<Comment> list = getListFromCursor(c);
+			ChatBaseAdapter adapter = new ChatBaseAdapter(context, list);
 			lvChats.setAdapter(adapter);
-			adapter.notifyDataSetChanged();
 			Util.setListViewHeightBasedOnChildren(lvChats);
-			lvChats.requestLayout();
 			c.close();
 			db.close();
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+
+	}
+
+	private ArrayList<Comment> getListFromCursor(Cursor cursor) {
+		// TODO Auto-generated method stub
+		ArrayList<Comment> list = new ArrayList<Comment>();
+		do {
+			try {
+
+				Comment item = new Comment();
+				item.setDogId(cursor.getString(cursor
+						.getColumnIndex(DbAdapter.COMMENT_DOG_ID)));
+				item.setAvatar(cursor.getString(cursor
+						.getColumnIndex(DbAdapter.COMMENT_AVATAR)));
+				item.setComment(cursor.getString(cursor
+						.getColumnIndex(DbAdapter.COMMENT_COMMENT)));
+				list.add(item);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		} while (cursor.moveToNext());
+		return list;
+	}
+
+	private ArrayList<Dog> getDataDogs() {
+		// TODO Auto-generated method stub
+		ArrayList<Dog> list = new ArrayList<Dog>();
+		for (int i = 0; i < 20; i++) {
+			Dog item = new Dog();
+			item.setName("a" + i);
+			item.setAvatar("" + R.drawable.ic_logo);
+			item.setDescription("des" + i);
+			item.setFavourite(false);
+			list.add(item);
+		}
+		return list;
 	}
 
 	private void setImageTitle(String id) {
 		// TODO Auto-generated method stub
 		try {
-			Bitmap bm = getBitmapFromAssets("title_11/t_"+id+".png");
-			if(bm!=null)
+			Bitmap bm = getBitmapFromAssets("title_11/t_" + id + ".png");
+			if (bm != null)
 				imgTitle.setImageBitmap(bm);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -126,19 +168,19 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 	private void setImage(String id) {
 		// TODO Auto-generated method stub
 		try {
-			Bitmap bm = getBitmapFromAssets("Dogs/C_"+id+".png");
-			if(bm!=null)
+			Bitmap bm = getBitmapFromAssets("Dogs/C_" + id + ".png");
+			if (bm != null)
 				wvThumnail.setImageBitmap(bm);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
-	
-	public Bitmap getBitmapFromAssets(String fileName) {
-	    AssetManager assetManager = getAssets();
 
-	    InputStream istr;
+	public Bitmap getBitmapFromAssets(String fileName) {
+		AssetManager assetManager = getAssets();
+
+		InputStream istr;
 		try {
 			istr = assetManager.open(fileName);
 			Bitmap bitmap = BitmapFactory.decodeStream(istr);
@@ -148,9 +190,7 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 			e.printStackTrace();
 			return null;
 		}
-	    
 
-	    
 	}
 
 	@Override
@@ -165,7 +205,7 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 			finish();
 		}
 	}
-	
+
 	private void exeHomeClicked() {
 		// TODO Auto-generated method stub
 		finish();
@@ -179,11 +219,12 @@ public class DogDetailActivity extends FragmentActivity implements OnClickListen
 			setViewVisibility(true);
 		}
 	}
+
 	private void setViewVisibility(boolean b) {
 		// TODO Auto-generated method stub
 		rlSettingMenu.setVisibility(b ? View.VISIBLE : View.GONE);
 	}
-	
+
 	public void onSettingClicked(View v) {
 		Intent i = new Intent(context, SettingActivity.class);
 		startActivity(i);

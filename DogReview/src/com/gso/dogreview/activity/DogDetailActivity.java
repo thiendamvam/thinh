@@ -106,6 +106,7 @@ public class DogDetailActivity extends FragmentActivity implements
 			ArrayList<Comment> list = getListFromCursor(c);
 			ChatBaseAdapter adapter = new ChatBaseAdapter(context, list);
 			lvChats.setAdapter(adapter);
+			adapter.notifyDataSetChanged();
 			Util.setListViewHeightBasedOnChildren(lvChats);
 			c.close();
 			db.close();

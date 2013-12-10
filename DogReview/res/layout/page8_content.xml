@@ -15,7 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:onClick="onArrowLeftClicked" />
+        android:background="@color/transparant"
+        android:onClick="onArrowLeftClicked"
+        android:src="@drawable/ic_arrow_back_big" />
 
     <ImageButton
         android:id="@+id/btn_arrow_r"
@@ -24,6 +26,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:onClick="onArrowRightClicked" />
+        android:background="@color/transparant"
+        android:onClick="onArrowRightClicked"
+        android:src="@drawable/ic_arrow_back_big" />
 
 </RelativeLayout>

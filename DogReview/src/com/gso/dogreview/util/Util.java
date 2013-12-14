@@ -2,12 +2,20 @@ package com.gso.dogreview.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -79,5 +87,29 @@ public class Util {
 		params.height = totalHeight
 				+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 		listView.setLayoutParams(params);
+	}
+
+	public static void getKeyHash(Context context) {
+		// TODO Auto-generated method stub
+		PackageInfo packageInfo;
+		try {
+			packageInfo = context.getPackageManager().getPackageInfo("com.gso.dogreview",
+					PackageManager.GET_SIGNATURES);
+			for (Signature signature : packageInfo.signatures) {
+				MessageDigest md = MessageDigest.getInstance("SHA");
+				md.update(signature.toByteArray());
+				String key = new String(Base64.encode(md.digest(), 0));
+				// String key = new String(Base64.encodeBytes(md.digest()));
+				Log.e("Hash key", "key hash"+key);
+			}
+		} catch (NameNotFoundException e1) {
+			Log.e("Name not found", e1.toString());
+		}
+
+		catch (NoSuchAlgorithmException e) {
+			Log.e("No such an algorithm", e.toString());
+		} catch (Exception e) {
+			Log.e("Exception", e.toString());
+		}
 	}
 }

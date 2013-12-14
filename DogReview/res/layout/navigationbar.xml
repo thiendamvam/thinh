@@ -17,7 +17,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:background="@color/transparant"
-            android:src="@drawable/icon_home_test"
+            android:src="@drawable/ic_btn_home"
             android:visibility="visible" >
         </ImageButton>
 
@@ -39,7 +39,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
             android:background="@color/transparant"
-            android:src="@drawable/ic_setting_menu"
+            android:src="@drawable/ic_btn_setting_menu"
             android:visibility="visible" >
         </ImageButton>
     </RelativeLayout>

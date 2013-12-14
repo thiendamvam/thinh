@@ -75,7 +75,7 @@ public class IndexActivity extends FragmentActivity implements
 		tvHeaderTitle.setText("INDEX");
 //		lvDogs.setOnItemClickListener(onItemClicked);
 		db = new DbAdapter(context);
-
+		hideView(findViewById(R.id.rlShare));
 		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
 		// tglOptionLv.setOnCheckedChangeListener(new
 		// CompoundButton.OnCheckedChangeListener() {
@@ -100,6 +100,11 @@ public class IndexActivity extends FragmentActivity implements
 		// lvDogs.setOnScrollListener(this);
 		lvDogs.setOnItemClickListener(onItemClickListener);//
 
+	}
+
+	private void hideView(View v) {
+		// TODO Auto-generated method stub
+		v.setVisibility(View.GONE);
 	}
 
 	@Override

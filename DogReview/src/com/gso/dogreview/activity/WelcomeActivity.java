@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gso.dogreview.R;
+import com.gso.dogreview.util.Util;
 
 public class WelcomeActivity extends FragmentActivity implements
 		OnClickListener {
@@ -38,7 +39,7 @@ public class WelcomeActivity extends FragmentActivity implements
 		imgBtnSetting.setOnClickListener(this);
 		btnEnter.setOnClickListener(this);
 		context = this;
-		
+		Util.getKeyHash(context);
 		
 		
 	}

@@ -77,10 +77,14 @@ public class DogDetailActivity extends FragmentActivity implements
 		wvThumnail = (ImageView) findViewById(R.id.wvThumnail);
 		tvTitle = (TextView) findViewById(R.id.tvTitle);
 		tvDescription = (TextView) findViewById(R.id.tvContentDescription);
-
+		hideView(findViewById(R.id.rlInfo));
 		if (item != null) {
 			bindData(item);
 		}
+	}
+	private void hideView(View v) {
+		// TODO Auto-generated method stub
+		v.setVisibility(View.GONE);
 	}
 
 	private void setBackNextButton(String id) {

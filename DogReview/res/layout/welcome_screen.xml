@@ -58,9 +58,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/wc_des2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/btn_enter"
-        android:text="@string/welcome_screen_enter" />
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_btn_enter" />
+
+    <Button
+        android:id="@+id/btnInfo"
+        style="@style/header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnEnter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_btn_info_wc" />
 
     <com.devsmart.android.ui.HorizontalListView
         android:id="@+id/gallery3"

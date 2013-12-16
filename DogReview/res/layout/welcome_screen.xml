@@ -4,23 +4,23 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_welcome" >
 
-    <include
-        android:id="@+id/header"
-        layout="@layout/navigationbar" />
-
     <RelativeLayout
         android:id="@+id/rlMenu_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/header"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="-20dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="-10dp"
         android:visibility="gone" >
 
         <include layout="@layout/menu_setting" >
         </include>
     </RelativeLayout>
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/navigationbar" />
 
     <ImageView
         android:id="@+id/wc_logo"

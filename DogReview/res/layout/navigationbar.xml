@@ -17,7 +17,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:background="@color/transparant"
-            android:src="@drawable/bg_setting"
+            android:src="@drawable/ic_btn_home"
             android:visibility="visible" >
         </ImageButton>
 

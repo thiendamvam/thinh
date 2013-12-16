@@ -11,6 +11,9 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView.OnItemClickListener;
@@ -233,14 +236,23 @@ public class IndexActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		if (rlSettingMenu.getVisibility() == View.VISIBLE) {
 			setViewVisibility(false);
+			changeResourceSettingMenu(false);
 		} else {
 			setViewVisibility(true);
+			changeResourceSettingMenu(true);
 		}
 	}
-
+	public void changeResourceSettingMenu(final boolean isDown){
+		Log.d("changeResourceSettingMenu","isDown "+isDown);
+		Animation  anim = (Animation)AnimationUtils.loadAnimation(context, isDown?R.anim.rotate_90_down:R.anim.rotate_90_up);
+		imgBtnSetting.setAnimation(anim);
+		imgBtnSetting.startAnimation(anim);
+	}
 	private void setViewVisibility(boolean b) {
 		// TODO Auto-generated method stub
 		rlSettingMenu.setVisibility(b ? View.VISIBLE : View.GONE);
+		Animation  anim = AnimationUtils.loadAnimation(context, b?R.anim.show_down:R.anim.hide_up);
+		rlSettingMenu.startAnimation(anim);
 	}
 
 	public void onSettingClicked(View v) {

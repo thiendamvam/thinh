@@ -5,11 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_index" >
 
-    <include
-        android:id="@+id/header"
-        layout="@layout/navigationbar" />
-
- 
     <RelativeLayout
         android:id="@+id/rlListViewContent"
         android:layout_width="match_parent"
@@ -51,6 +46,10 @@
         </include>
     </RelativeLayout>
 
+    <include
+        android:id="@+id/header"
+        layout="@layout/navigationbar" />
+
     <RelativeLayout
         android:id="@+id/rlFooter"
         android:layout_width="match_parent"
@@ -58,9 +57,10 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal" >
 
-        <fragment android:name="com.gso.dogreview.fragment.FooterFragment" 
+        <fragment
+            android:name="com.gso.dogreview.fragment.FooterFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
 </RelativeLayout>

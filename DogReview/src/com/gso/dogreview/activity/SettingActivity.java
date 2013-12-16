@@ -4,8 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -72,16 +76,28 @@ public class SettingActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		setViewVisibility(rlSettingMenu.getVisibility() == View.VISIBLE ? false
 				: true);
+		if (rlSettingMenu.getVisibility() == View.VISIBLE) {
+			changeResourceSettingMenu(false);
+		} else {
+			changeResourceSettingMenu(true);
+		}
 	}
 
 	private void exeBackClicked() {
 		// TODO Auto-generated method stub
 		finish();
 	}
-
+	public void changeResourceSettingMenu(final boolean isDown){
+		Log.d("changeResourceSettingMenu","isDown "+isDown);
+		Animation  anim = (Animation)AnimationUtils.loadAnimation(context, isDown?R.anim.rotate_90_down:R.anim.rotate_90_up);
+		imgBtnSetting.setAnimation(anim);
+		imgBtnSetting.startAnimation(anim);
+	}
 	private void setViewVisibility(boolean b) {
 		// TODO Auto-generated method stub
 		rlSettingMenu.setVisibility(b ? View.VISIBLE : View.GONE);
+		Animation  anim = AnimationUtils.loadAnimation(context, b?R.anim.show_down:R.anim.hide_up);
+		rlSettingMenu.startAnimation(anim);
 	}
 
 	public void onSettingClicked(View v) {

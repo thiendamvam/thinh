@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -71,7 +74,11 @@ public class HeaderFragment extends Fragment implements OnClickListener {
 		// TODO Auto-generated method stub
 		if (rlSettingMenu.getVisibility() == View.VISIBLE) {
 			setViewVisibility(false);
+			RotateAnimation  anim = (RotateAnimation)AnimationUtils.loadAnimation(context, R.anim.rotate_90_up);
+			imgBtnSettingMenu.setAnimation(anim);
 		} else {
+			RotateAnimation  anim = (RotateAnimation)AnimationUtils.loadAnimation(context, R.anim.rotate_90_down);
+			imgBtnSetting.setAnimation(anim);
 			setViewVisibility(true);
 		}
 	}

@@ -529,7 +529,7 @@ public class MyListView extends AdapterView<Adapter> {
 			highlightIntensity = MAX_INTENSITY;
 		}
 
-		final int light = Color.rgb(intensity, intensity, intensity);
+		final int light = Color.rgb(intensity+250, intensity+250, intensity+250);
 		final int highlight = Color.rgb(highlightIntensity, highlightIntensity,
 				highlightIntensity);
 

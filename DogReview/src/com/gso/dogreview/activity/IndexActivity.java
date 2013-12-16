@@ -76,6 +76,7 @@ public class IndexActivity extends FragmentActivity implements
 //		lvDogs.setOnItemClickListener(onItemClicked);
 		db = new DbAdapter(context);
 		hideView(findViewById(R.id.rlShare));
+		hideView(findViewById(R.id.img_btn_next));
 		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
 		// tglOptionLv.setOnCheckedChangeListener(new
 		// CompoundButton.OnCheckedChangeListener() {

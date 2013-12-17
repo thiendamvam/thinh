@@ -63,14 +63,14 @@ public class DogDetailActivity extends FragmentActivity implements
 		imgBtnHome = (ImageButton) findViewById(R.id.imgBtn_home);
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
-		srContent = (ScrollView)findViewById(R.id.srContent);
+		srContent = (ScrollView) findViewById(R.id.srContent);
 		btnBack = (Button) findViewById(R.id.img_btn_back);
 		btnNext = (Button) findViewById(R.id.img_btn_next);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		imgTitle = (ImageView) findViewById(R.id.imgTitle);
 		lvChats = (ListView) findViewById(R.id.lv_chats);
 		tvHeaderTitle.setText("CONTENTS");
-//		imgBtnHome.setOnClickListener(this);
+		// imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
 		btnNext.setOnClickListener(this);
@@ -85,6 +85,7 @@ public class DogDetailActivity extends FragmentActivity implements
 			bindData(item);
 		}
 	}
+
 	private void hideView(View v) {
 		// TODO Auto-generated method stub
 		v.setVisibility(View.GONE);
@@ -117,18 +118,23 @@ public class DogDetailActivity extends FragmentActivity implements
 	}
 
 	public void bindDataFromDogId(String id) {
-		
-		Log.d("bindDataFromDogId",count+" is count and id is "+id);
+
+		Log.d("bindDataFromDogId", count + " is count and id is " + id);
 		db.open();
 		Cursor c = db.getDogById(id);
-		if(c.getCount()>0){
+		if (c.getCount() > 0) {
 			do {
 				try {
 					item.setId((c.getString(c.getColumnIndex(DbAdapter.DOG_ID))));
-					item.setName((c.getString(c.getColumnIndex(DbAdapter.DOG_NAME))));
-					item.setAvatar((c.getString(c.getColumnIndex(DbAdapter.DOG_AVATAR))));
-					item.setDescription((c.getString(c.getColumnIndex(DbAdapter.DOG_DESC))));
-					item.setFavourite((c.getInt(c.getColumnIndex(DbAdapter.DOG_DESC)))==0?true:false);
+					item.setName((c.getString(c
+							.getColumnIndex(DbAdapter.DOG_NAME))));
+					item.setAvatar((c.getString(c
+							.getColumnIndex(DbAdapter.DOG_AVATAR))));
+					item.setDescription((c.getString(c
+							.getColumnIndex(DbAdapter.DOG_DESC))));
+					item.setFavourite((c.getInt(c
+							.getColumnIndex(DbAdapter.DOG_DESC))) == 0 ? true
+							: false);
 				} catch (Exception e) {
 					// TODO: handle exception
 					e.printStackTrace();
@@ -155,15 +161,16 @@ public class DogDetailActivity extends FragmentActivity implements
 			setImage(id);
 			setImageTitle(id);
 			bindChatsList(item.getId());
-			
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		srContent.setFillViewport(false);
-		srContent.scrollTo(-100, -100);
-		srContent.requestLayout();
+		srContent.post(new Runnable() {
+			public void run() {
+				srContent.scrollTo(0, 0);
+			}
+		});
 	}
 
 	private void bindChatsList(String id) {
@@ -240,7 +247,7 @@ public class DogDetailActivity extends FragmentActivity implements
 	private void setImage(String id) {
 		// TODO Auto-generated method stub
 		try {
-			Log.d("setImage","id = "+id);
+			Log.d("setImage", "id = " + id);
 			Bitmap bm = getBitmapFromAssets("Dogs/C_" + id + ".png");
 			if (bm != null)
 				wvThumnail.setImageBitmap(bm);
@@ -291,7 +298,7 @@ public class DogDetailActivity extends FragmentActivity implements
 						bindDataFromDogId("" + id);
 					}
 				} else {
-					if(id< count){
+					if (id < count) {
 						id--;
 						bindDataFromDogId("" + id);
 					}
@@ -302,10 +309,10 @@ public class DogDetailActivity extends FragmentActivity implements
 		}
 	}
 
-//	private void exeHomeClicked() {
-//		// TODO Auto-generated method stub
-//		finish();
-//	}
+	// private void exeHomeClicked() {
+	// // TODO Auto-generated method stub
+	// finish();
+	// }
 
 	private void exeMenuClicked() {
 		// TODO Auto-generated method stub
@@ -317,16 +324,20 @@ public class DogDetailActivity extends FragmentActivity implements
 			setViewVisibility(true);
 		}
 	}
-	public void changeResourceSettingMenu(final boolean isDown){
-		Log.d("changeResourceSettingMenu","isDown "+isDown);
-		Animation  anim = (Animation)AnimationUtils.loadAnimation(context, isDown?R.anim.rotate_90_down:R.anim.rotate_90_up);
+
+	public void changeResourceSettingMenu(final boolean isDown) {
+		Log.d("changeResourceSettingMenu", "isDown " + isDown);
+		Animation anim = (Animation) AnimationUtils.loadAnimation(context,
+				isDown ? R.anim.rotate_90_down : R.anim.rotate_90_up);
 		imgBtnSetting.setAnimation(anim);
 		imgBtnSetting.startAnimation(anim);
 	}
+
 	private void setViewVisibility(boolean b) {
 		// TODO Auto-generated method stub
 		rlSettingMenu.setVisibility(b ? View.VISIBLE : View.GONE);
-		Animation  anim = AnimationUtils.loadAnimation(context, b?R.anim.show_down:R.anim.hide_up);
+		Animation anim = AnimationUtils.loadAnimation(context,
+				b ? R.anim.show_down : R.anim.hide_up);
 		rlSettingMenu.startAnimation(anim);
 	}
 

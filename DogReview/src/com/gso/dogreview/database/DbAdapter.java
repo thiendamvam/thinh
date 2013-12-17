@@ -22,7 +22,7 @@ public class DbAdapter {
 	public static final String DOG_DESC = "DOG_DESC";
 	public static final String DOG_AVATAR = "DOG_AVATAR";
 	public static final String DOG_FAVOURITE = "DOG_FAVOURITE";
-
+	public static final String DOG_READ = "DOG_READ";
 	/*
 	 * Comment table
 	 */
@@ -44,7 +44,8 @@ public class DbAdapter {
 	private static final String DATABASE_DOG_CREATE = "create virtual table "
 			+ DOG_TABLE + " USING FTS3(" + DOG_ID
 			+ " text not null primary key," + DOG_NAME + " text," + DOG_DESC
-			+ " text," + DOG_AVATAR + " text," +DOG_FAVOURITE + " integer" +
+			+ " text," + DOG_AVATAR + " text," +DOG_FAVOURITE + " integer," +
+			DOG_READ + " integer"+
 
 			");";
 
@@ -114,18 +115,18 @@ public class DbAdapter {
 	public Cursor getFavoriteDogList() {
 
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
-				DOG_AVATAR, DOG_FAVOURITE }, DOG_FAVOURITE+" MATCH ?", new String[]{"1"}, null, null, null);
+				DOG_AVATAR, DOG_FAVOURITE, DOG_READ }, DOG_FAVOURITE+" MATCH ?", new String[]{"1"}, null, null, null);
 	}
 	
 	public Cursor getDogList() {
 
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
-				DOG_AVATAR, DOG_FAVOURITE }, null, null, null, null, null);
+				DOG_AVATAR, DOG_FAVOURITE, DOG_READ }, null, null, null, null, null);
 	}
 	public Cursor getDogListByName(String query) {
 
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
-				DOG_AVATAR, DOG_FAVOURITE }, DOG_NAME + " MATCH ?", new String[] { "*" + query
+				DOG_AVATAR, DOG_FAVOURITE, DOG_READ }, DOG_NAME + " MATCH ?", new String[] { "*" + query
 				+ "*" }, null, null, null);
 	}
 	public boolean insertDog(Dog dog) throws SQLiteException {
@@ -135,6 +136,7 @@ public class DbAdapter {
 		insertedValue.put(DOG_DESC, dog.getDescription());
 		insertedValue.put(DOG_AVATAR, dog.getAvatar());
 		insertedValue.put(DOG_FAVOURITE, dog.isFavourite()?1:0);
+		insertedValue.put(DOG_READ, dog.isRead()?1:0);
 		Cursor c = mDb.rawQuery("select *	from " + DOG_TABLE + " where "
 				+ DOG_ID + "='" + dog.getId() + "'", null);
 		if (c.getCount() < 1) {
@@ -151,6 +153,7 @@ public class DbAdapter {
 		insertedValue.put(DOG_DESC, dog.getDescription());
 		insertedValue.put(DOG_AVATAR, dog.getAvatar());
 		insertedValue.put(DOG_FAVOURITE, dog.isFavourite()?1:0);
+		insertedValue.put(DOG_READ, dog.isRead()?1:0);
 //		Cursor c = mDb.rawQuery("select *	from " + DOG_TABLE + " where "
 //				+ DOG_ID + "='" + dog.getId() + "'", null);
 //		if (c.getCount() > 0) {
@@ -233,10 +236,22 @@ public class DbAdapter {
 		}
 	}
 
+	public boolean removeReadDogList() {
+		// TODO Auto-generated method stub
+		try {
+			String whereClause = DOG_READ+" MATCH ?";
+			String []whereArgs = {"1"};
+			return mDb.delete(DOG_TABLE, whereClause, whereArgs) != -1;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
 	public Cursor getDogById(String id) {
 		// TODO Auto-generated method stub
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID,
-				DOG_NAME, DOG_AVATAR,  DOG_DESC, DOG_FAVOURITE },
+				DOG_NAME, DOG_AVATAR,  DOG_DESC, DOG_FAVOURITE, DOG_READ },
 				DOG_ID + " MATCH ?",
 				new String[] { "*" + id + "*" }, null, null, null);
 	}

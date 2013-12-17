@@ -10,5 +10,8 @@
     <color name="bg_item_listview_index">#fbf0e4</color>
     <color name="bg_item_listview_index_pressed">#d9ccb9</color>
     <color name="transparant">@android:color/transparent</color>
+    <color name="bg_page8">#2c1a13</color>
+    <color name="read_dog_equa">#6799ff</color>
+    <color name="read_dog_not_equa">#ff678a</color>
 
 </resources>

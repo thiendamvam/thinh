@@ -52,7 +52,7 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 		int id = v.getId();
 		switch (id) {
 		case R.id.img_btn_back:
-
+			onBackClicked();
 			break;
 		case R.id.img_btn_twitter:
 			onTwitterClicked();
@@ -64,6 +64,11 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 		default:
 			break;
 		}
+	}
+
+	private void onBackClicked() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void onFbClicked() {

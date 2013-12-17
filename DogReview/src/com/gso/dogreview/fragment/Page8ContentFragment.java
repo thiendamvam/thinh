@@ -18,11 +18,9 @@ public class Page8ContentFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.page8_content, container, false);
-//		imgContent = (ImageView) v.findViewById(R.id.img_cotent);
+
 		return v;
 	}
 
-	public void changeSrc(String url) {
-		imgContent.setImageResource(R.drawable.bg_noimage);
-	}
+
 }

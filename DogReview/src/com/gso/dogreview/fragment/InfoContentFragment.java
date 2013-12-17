@@ -1,5 +1,6 @@
 package com.gso.dogreview.fragment;
 
+import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
 
 import android.location.Address;
@@ -22,7 +23,7 @@ public class InfoContentFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View v = inflater.from(container.getContext()).inflate(R.layout.info_content, container, false);
+		View v = inflater.from(DogReviewApplication.instance.getApplicationContext()).inflate(R.layout.info_content, container, false);
 		return v;
 		
 	}

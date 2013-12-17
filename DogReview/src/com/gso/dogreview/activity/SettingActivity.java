@@ -50,7 +50,6 @@ public class SettingActivity extends FragmentActivity implements
 		tvHeaderTitle.setText("SET UP");
 
 		imgBtnBack.setOnClickListener(this);
-		imgBtnHome.setOnClickListener(this);
 		imgSeting.setOnClickListener(this);
 
 	}
@@ -158,7 +157,7 @@ public class SettingActivity extends FragmentActivity implements
 			if(requestDilog==DELETE_FAVOURITE){
 				db.removeFavorites();	
 			}else{
-				db.removeFavorites();
+				db.removeReadDogList();
 			}
 			db.close();
 		}

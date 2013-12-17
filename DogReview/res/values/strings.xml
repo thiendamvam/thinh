@@ -4,7 +4,7 @@
     <string name="app_name">DogBook</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="welcome_screen_title">Welcome</string>
+    <string name="welcome_screen_title">WELCOME</string>
     <string name="welcome_screen_des">イヌのココロ</string>
     <string name="welcome_screen_des2"><p>~犬語でもっとイイ関係~</p></string>
     <string name="welcome_screen_enter">Enter</string>
@@ -28,5 +28,17 @@
     <string name="confirm_delete_favorite_title">""</string>
     <string name="confirm_delete_dog_read">お気に入りをすべて消去しますか？</string>
     <string name="confirm_delete_dog_read_title">""</string>
+    <string name="info_text">※黒板の中にチョークで描かれた隠れちょもが「5匹」いるぞ。見つけられるかな</string>
+    <string name="des_811">大学生のナズナはカフェでアルバイトをしています。ある日、お姉ちゃんのミズナがお店にやってきました。どうやら飼っているペットについて相談があるようです。</string>
+    <string name="des_821">ミズナ「子犬の頃はカワイイ、カワイイでいいけど、ナズナはしつけとかどうしてる？」ナズナ「どーしたの？お姉ちゃん。あの”ちくわ”お手くらいはできるようになった？」</string>
+    <string name="des_822">ミズナ「それが全然。最近、しつけの本を読んでるんだけど、もし私が逆の立場だったら複雑だな～と思って」ナズナ「えー！犬の立場になって考えたの？」</string>
+    <string name="des_831">ナズナ「う～ん、たしかにそうだね～」ミズナ「犬がもっと何を考えてるかわかればいいのに…ナズナのトコはどうしてるの？”ちょも”あいかわらず元気？」</string>
+    <string name="des_832">ナズナ「え？　うん！元気だよ！　ウチは…その…普通にしてるから問題ない…かな～」</string>
+    <string name="des_841">ナズナ「はぁ～　犬の立場かぁ～。あ、そうだ！そもそも普通の犬同士ってどうやってコミュニケーションとってるんだろう…」ちょも「どうしたのだナズナ、ちょもが普通じゃないような目で見るでないぞ！」</string>
+    <string name="des_842">ナズナ「だって普通、犬は人間の言葉しゃべらないじゃない…」</string>
+    <string name="des_843">ちょも「ふむぅ～、それは謎だがしかたないではないかナズナ。でも犬には犬なりの犬語があるぞ！」ナズナ「え？犬語？？」</string>
+    <string name="des_844">ちょも「そうだぞ、犬は犬同士、犬語でコミュニケーションをとっているのである！」ナズナ「ねぇ、ちょも それちょっと教えて！」</string>
+    <string name="des_851">ちょも「わかったぞナズナ！ちょもが犬語を教えてあげるぞ！」ナズナ「やったー！覚えてお姉ちゃんに教えてあげよ～」</string>
+    <string name="des_852">ちょも「任せろだぞ！」</string>
 
 </resources>

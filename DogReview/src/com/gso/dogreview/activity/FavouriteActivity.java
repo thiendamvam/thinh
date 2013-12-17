@@ -49,6 +49,8 @@ public class FavouriteActivity extends FragmentActivity implements
 	private MyListView myListView;
 	// private ToggleButton tglOptionLv;
 	private DbAdapter db;
+	private ImageButton imgBtnFavorite;
+	private RelativeLayout rlShare;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -59,36 +61,23 @@ public class FavouriteActivity extends FragmentActivity implements
 		imgBtnHome = (ImageButton) findViewById(R.id.imgBtn_home);
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
+		
 		btnBack = (Button) findViewById(R.id.img_btn_back);
 		lvDogs = (ListView) findViewById(R.id.lv_list_item);
 		myListView = (MyListView) findViewById(R.id.lv_list_item_cutom);
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
+		rlShare = (RelativeLayout)findViewById(R.id.rlShare);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		tvHeaderTitle.setText("FAVO");
 		db = new DbAdapter(context);
 
-		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
-		// tglOptionLv.setOnCheckedChangeListener(new
-		// CompoundButton.OnCheckedChangeListener() {
-		//
-		// @Override
-		// public void onCheckedChanged(CompoundButton buttonView, boolean
-		// isChecked) {
-		// // TODO Auto-generated method stub
-		// if(tglOptionLv.isChecked()){
-		// lvDogs.setVisibility(View.INVISIBLE);
-		// myListView.setVisibility(View.VISIBLE);
-		// }else{
-		// lvDogs.setVisibility(View.VISIBLE);
-		// myListView.setVisibility(View.INVISIBLE);
-		// }
-		// }
-		// });
+		imgBtnFavorite = (ImageButton) findViewById(R.id.imgBtn_favourite);
+		imgBtnFavorite.setVisibility(View.GONE);
+		
+		rlShare.setVisibility(View.GONE);
 
-		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
-		// lvDogs.setOnScrollListener(this);
 		lvDogs.setOnItemClickListener(onItemClicked);//
 
 	}
@@ -117,13 +106,13 @@ public class FavouriteActivity extends FragmentActivity implements
 	private ArrayList<Dog> getDataDogs() {
 		// TODO Auto-generated method stub
 		ArrayList<Dog> list = new ArrayList<Dog>();
-//		for (int i = 0; i < 20; i++) {
-//			Dog item = new Dog();
-//			item.setName("a" + i);
-//			item.setAvatar("" + R.drawable.ic_logo);
-//			item.setDescription("des" + i);
-//			list.add(item);
-//		}
+		// for (int i = 0; i < 20; i++) {
+		// Dog item = new Dog();
+		// item.setName("a" + i);
+		// item.setAvatar("" + R.drawable.ic_logo);
+		// item.setDescription("des" + i);
+		// list.add(item);
+		// }
 		db.open();
 		Cursor c = db.getFavoriteDogList();
 		do {
@@ -131,10 +120,14 @@ public class FavouriteActivity extends FragmentActivity implements
 				Dog item = new Dog();
 				item.setId(c.getString(c.getColumnIndex(DbAdapter.DOG_ID)));
 				item.setName(c.getString(c.getColumnIndex(DbAdapter.DOG_NAME)));
-				item.setDescription(c.getString(c.getColumnIndex(DbAdapter.DOG_DESC)));
-				item.setAvatar(c.getString(c.getColumnIndex(DbAdapter.DOG_AVATAR)));
-				item.setFavourite(c.getInt(c.getColumnIndex(DbAdapter.DOG_FAVOURITE))==1?true:false);
-				
+				item.setDescription(c.getString(c
+						.getColumnIndex(DbAdapter.DOG_DESC)));
+				item.setAvatar(c.getString(c
+						.getColumnIndex(DbAdapter.DOG_AVATAR)));
+				item.setFavourite(c.getInt(c
+						.getColumnIndex(DbAdapter.DOG_FAVOURITE)) == 1 ? true
+						: false);
+
 				list.add(item);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -149,7 +142,7 @@ public class FavouriteActivity extends FragmentActivity implements
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
 		adapter = new DogAdapter(context, dogList, rlListViewContent, 2);
-//		lvDogs2.setAdapter(adapter);
+		// lvDogs2.setAdapter(adapter);
 		myListView.setAdapter(adapter);
 		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
 	}
@@ -182,16 +175,20 @@ public class FavouriteActivity extends FragmentActivity implements
 			changeResourceSettingMenu(true);
 		}
 	}
-	public void changeResourceSettingMenu(final boolean isDown){
-		Log.d("changeResourceSettingMenu","isDown "+isDown);
-		Animation  anim = (Animation)AnimationUtils.loadAnimation(context, isDown?R.anim.rotate_90_down:R.anim.rotate_90_up);
+
+	public void changeResourceSettingMenu(final boolean isDown) {
+		Log.d("changeResourceSettingMenu", "isDown " + isDown);
+		Animation anim = (Animation) AnimationUtils.loadAnimation(context,
+				isDown ? R.anim.rotate_90_down : R.anim.rotate_90_up);
 		imgBtnSetting.setAnimation(anim);
 		imgBtnSetting.startAnimation(anim);
 	}
+
 	private void setViewVisibility(boolean b) {
 		// TODO Auto-generated method stub
 		rlSettingMenu.setVisibility(b ? View.VISIBLE : View.GONE);
-		Animation  anim = AnimationUtils.loadAnimation(context, b?R.anim.show_down:R.anim.hide_up);
+		Animation anim = AnimationUtils.loadAnimation(context,
+				b ? R.anim.show_down : R.anim.hide_up);
 		rlSettingMenu.startAnimation(anim);
 	}
 
@@ -243,11 +240,11 @@ public class FavouriteActivity extends FragmentActivity implements
 				if (item.isFavourite()) {
 					item.setFavourite(false);
 					db.updateDog(item);
-					
+
 				} else {
 					item.setFavourite(true);
 					db.updateDog(item);
-					
+
 				}
 				db.close();
 				holder.imgFav
@@ -265,7 +262,7 @@ public class FavouriteActivity extends FragmentActivity implements
 
 	public void onItemClickListener(View v) {
 		// TODO Auto-generated method stub
-		ViewUserHolder holder = (ViewUserHolder)v.getTag();
+		ViewUserHolder holder = (ViewUserHolder) v.getTag();
 		Dog item = holder.data;
 		Intent i = new Intent(FavouriteActivity.this, DogDetailActivity.class);
 		i.putExtra("data", item);

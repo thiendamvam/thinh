@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,6 +19,7 @@ import android.widget.RelativeLayout;
 import com.gso.dogreview.R;
 import com.gso.dogreview.activity.FavouriteActivity;
 import com.gso.dogreview.activity.SettingActivity;
+import com.gso.dogreview.activity.WelcomeActivity;
 
 public class HeaderFragment extends Fragment implements OnClickListener {
 
@@ -67,25 +69,31 @@ public class HeaderFragment extends Fragment implements OnClickListener {
 
 	public void exeHomeClicked() {
 		// TODO Auto-generated method stub
-		
+		Intent i = new Intent(context, WelcomeActivity.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivity(i);
 	}
 
 	private void exeMenuClicked() {
 		// TODO Auto-generated method stub
 		if (rlSettingMenu.getVisibility() == View.VISIBLE) {
 			setViewVisibility(false);
-			RotateAnimation  anim = (RotateAnimation)AnimationUtils.loadAnimation(context, R.anim.rotate_90_up);
-			imgBtnSettingMenu.setAnimation(anim);
+			changeResourceSettingMenu(false);
 		} else {
-			RotateAnimation  anim = (RotateAnimation)AnimationUtils.loadAnimation(context, R.anim.rotate_90_down);
-			imgBtnSetting.setAnimation(anim);
+			changeResourceSettingMenu(true);
 			setViewVisibility(true);
 		}
 	}
-
+	public void changeResourceSettingMenu(final boolean isDown){
+		Log.d("changeResourceSettingMenu","isDown "+isDown);
+		Animation  anim = (Animation)AnimationUtils.loadAnimation(context, isDown?R.anim.rotate_90_down:R.anim.rotate_90_up);
+		imgBtnSetting.startAnimation(anim);
+	}
 	private void setViewVisibility(boolean b) {
 		// TODO Auto-generated method stub
 		rlSettingMenu.setVisibility(b ? View.VISIBLE : View.GONE);
+		Animation  anim = AnimationUtils.loadAnimation(context, b?R.anim.show_down:R.anim.hide_up);
+		rlSettingMenu.startAnimation(anim);
 	}
 
 	public void onSettingClicked(View v) {

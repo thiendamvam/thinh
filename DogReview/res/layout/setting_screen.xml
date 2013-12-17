@@ -131,10 +131,16 @@
         <include layout="@layout/menu_setting" />
     </RelativeLayout>
 
-    <include
+    <RelativeLayout
         android:id="@+id/header"
-        layout="@layout/navigationbar" >
-    </include>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <fragment
+            android:name="com.gso.dogreview.fragment.HeaderFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -154,17 +160,19 @@
             android:src="@drawable/logo_in_setting" />
 
         <RelativeLayout
+            android:layout_marginTop="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/imgAvatar"
-            android:background="@color/transparant"
-            android:padding="12dp" >
+            android:background="@drawable/bg_dev_info"
+            android:padding="0dp" >
 
             <ImageView
                 android:id="@+id/imgDevname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/logo_dev_name" />
+                android:src="@drawable/logo_dev_name"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvNameDev"
@@ -175,7 +183,8 @@
                 android:layout_centerInParent="true"
                 android:ellipsize="end"
                 android:gravity="right"
-                android:text="@string/name_dev" />
+                android:text="@string/name_dev"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tvEmailDev"
@@ -187,7 +196,8 @@
                 android:layout_marginTop="3dp"
                 android:ellipsize="end"
                 android:gravity="right"
-                android:text="@string/email_dev" />
+                android:text="@string/email_dev"
+                android:visibility="gone" />
         </RelativeLayout>
     </RelativeLayout>
 

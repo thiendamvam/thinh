@@ -132,10 +132,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <include
+        <fragment
+            android:name="com.gso.dogreview.fragment.HeaderFragment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            layout="@layout/navigationbar" />
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
     <RelativeLayout

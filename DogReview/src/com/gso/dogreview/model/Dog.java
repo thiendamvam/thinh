@@ -9,6 +9,7 @@ public class Dog implements Serializable{
 	private String description;
 	private String avatar;
 	private boolean isFavourite;
+	private boolean isRead;
 
 	/**
 	 * @return the avatar
@@ -81,6 +82,20 @@ public class Dog implements Serializable{
 	 */
 	public void setFavourite(boolean isFavourite) {
 		this.isFavourite = isFavourite;
+	}
+
+	/**
+	 * @return the isRead
+	 */
+	public boolean isRead() {
+		return isRead;
+	}
+
+	/**
+	 * @param isRead the isRead to set
+	 */
+	public void setRead(boolean isRead) {
+		this.isRead = isRead;
 	}
 
 }

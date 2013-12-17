@@ -1,55 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content" >
 
-    <RelativeLayout
-        android:id="@+id/rlInfo1"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <ImageView
-            android:id="@+id/imgImage1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-    <RelativeLayout
-        android:id="@+id/rlInfo2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rlInfo1" >
+            <RelativeLayout
+                android:id="@+id/rlInfo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bg_inf_part1" >
+            </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/imgImageText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlInfo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlInfo1"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp" >
 
-    <LinearLayout
-        android:id="@+id/lnInfo2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rlInfo2"
-        android:gravity="center"
-        android:orientation="horizontal" >
+                <TextView
+                    android:id="@+id/imgImageText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_inf_text" />
+            </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/imgPeaple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:id="@+id/lnInfo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlInfo2"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bg_info_part3"
+                android:gravity="center"
+                android:orientation="vertical" >
 
-        <ImageButton
-            android:id="@+id/img_btn_info_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_info_p3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_info_text_p3" />
 
-        <ImageView
-            android:id="@+id/imgDog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+                <ImageButton
+                    android:id="@+id/img_btn_info_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_info_p3"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/transparant"
+                    android:src="@drawable/ic_info_btn_ok" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

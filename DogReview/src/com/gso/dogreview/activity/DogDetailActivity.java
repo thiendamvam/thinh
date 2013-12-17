@@ -70,7 +70,7 @@ public class DogDetailActivity extends FragmentActivity implements
 		imgTitle = (ImageView) findViewById(R.id.imgTitle);
 		lvChats = (ListView) findViewById(R.id.lv_chats);
 		tvHeaderTitle.setText("CONTENTS");
-		imgBtnHome.setOnClickListener(this);
+//		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
 		btnNext.setOnClickListener(this);
@@ -265,9 +265,7 @@ public class DogDetailActivity extends FragmentActivity implements
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		int id = v.getId();
-		if (id == R.id.imgBtn_home) {
-			exeHomeClicked();
-		} else if (id == R.id.imgBtn_setting_menu) {
+		if (id == R.id.imgBtn_setting_menu) {
 			exeMenuClicked();
 		} else if (id == R.id.img_btn_back) {
 			gotoOtherDog(false);
@@ -299,10 +297,10 @@ public class DogDetailActivity extends FragmentActivity implements
 		}
 	}
 
-	private void exeHomeClicked() {
-		// TODO Auto-generated method stub
-		finish();
-	}
+//	private void exeHomeClicked() {
+//		// TODO Auto-generated method stub
+//		finish();
+//	}
 
 	private void exeMenuClicked() {
 		// TODO Auto-generated method stub

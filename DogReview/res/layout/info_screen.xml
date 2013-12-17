@@ -1,35 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/com.gso.dogreview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_index" >
+    android:background="@drawable/bg_info" >
 
     <RelativeLayout
-        android:id="@+id/rlListViewContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rlFooter"
-        android:layout_below="@+id/header"
-        android:layout_marginTop="-2dp" >
+        android:layout_marginTop="50dp" >
 
-        <com.gso.dogreview.view.CenterSymmetricListview
-            android:id="@+id/lv_list_item"
+        <fragment
+            android:name="com.gso.dogreview.fragment.InfoContentFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@color/transparant"
-            android:dividerHeight="5dp"
-            android:visibility="invisible"
-            app:indent_offset="32dp" />
-
-        <com.gso.dogreview.view.MyListView
-            android:id="@+id/lv_list_item_cutom"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@color/setting_dilivery"
-            android:dividerHeight="5dp"
-            android:visibility="visible" >
-        </com.gso.dogreview.view.MyListView>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-40dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -39,7 +24,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/header"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="-20dp"
+        android:layout_marginTop="-17dp"
         android:visibility="gone" >
 
         <include layout="@layout/menu_setting" >
@@ -61,8 +46,7 @@
         android:id="@+id/rlFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal" >
+        android:layout_alignParentBottom="true" >
 
         <fragment
             android:name="com.gso.dogreview.fragment.FooterFragment"

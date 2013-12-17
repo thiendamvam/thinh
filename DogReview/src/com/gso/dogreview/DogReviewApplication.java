@@ -8,6 +8,7 @@ import android.view.WindowManager;
 public class DogReviewApplication extends Application {
 
 	public static DogReviewApplication instance;
+	private boolean isPay;
 
 	public DogReviewApplication() {
 		// TODO Auto-generated constructor stub
@@ -15,7 +16,7 @@ public class DogReviewApplication extends Application {
 		instance = this;
 	}
 
-	public static  DogReviewApplication Instance() {
+	public static DogReviewApplication Instance() {
 		return instance;
 	}
 
@@ -27,5 +28,13 @@ public class DogReviewApplication extends Application {
 		Display display = ((WindowManager) Instance().getApplicationContext()
 				.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 		return display;
+	}
+
+	public void setPay(boolean isPay) {
+		this.isPay = isPay;
+	}
+
+	public boolean isPay() {
+		return isPay;
 	}
 }

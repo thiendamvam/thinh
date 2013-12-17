@@ -98,7 +98,6 @@ public class IndexActivity extends FragmentActivity implements
 		// }
 		// });
 
-		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
 		// lvDogs.setOnScrollListener(this);
@@ -106,6 +105,13 @@ public class IndexActivity extends FragmentActivity implements
 
 	}
 
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		exeListDogs();
+	}
+	
 	private void hideView(View v) {
 		// TODO Auto-generated method stub
 		v.setVisibility(View.GONE);
@@ -115,7 +121,7 @@ public class IndexActivity extends FragmentActivity implements
 	public void onWindowFocusChanged(boolean hasFocus) {
 		// TODO Auto-generated method stub
 		super.onWindowFocusChanged(hasFocus);
-		exeListDogs();
+//		exeListDogs();
 	}
 
 //	public OnItemClickListener onItemClicked = new OnItemClickListener() {
@@ -160,7 +166,9 @@ public class IndexActivity extends FragmentActivity implements
 					item.setFavourite(c.getInt(c
 							.getColumnIndex(DbAdapter.DOG_FAVOURITE)) == 1 ? true
 							: false);
-
+					item.setRead(c.getInt(c
+							.getColumnIndex(DbAdapter.DOG_READ)) == 1 ? true
+							: false);
 					list.add(item);
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -333,6 +341,11 @@ public class IndexActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		ViewUserHolder holder = (ViewUserHolder)v.getTag();
 		Dog item = holder.data;
+		item.setRead(true);
+		db.open();
+		db.updateDog(item);
+		db.close();
+		
 		Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
 		i.putExtra("data", item);
 		i.putExtra("count",myListView.getAdapter().getCount() );
@@ -342,6 +355,12 @@ public class IndexActivity extends FragmentActivity implements
 	public void gotoPage8() {
 		// TODO Auto-generated method stub
 		Intent i = new Intent(context, Page8Activity.class);
+		startActivity(i);
+	}
+	
+	public void exeInfoClicked(View v){
+		Log.d("exeInfoClicked","exeInfoClicked");
+		Intent i = new Intent(context, InfoActivity.class);
 		startActivity(i);
 	}
 }

@@ -3,11 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <View
-        android:id="@+id/img_cotent"
+    <RelativeLayout
+        android:id="@+id/rlCotent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY" />
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY" >
+
+        <ImageView
+            android:id="@+id/imgContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@color/transparant" />
+
+        <TextView
+            android:id="@+id/tvDes"
+            style="@style/normal_text_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgContent"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:padding="20dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="7dp" >
+
+            <TextView
+                android:id="@+id/tvNumberPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" />
+
+            <ImageView
+                android:id="@+id/imgIconPageCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/tvNumberPage" />
+        </RelativeLayout>
+    </RelativeLayout>
 
     <ImageButton
         android:id="@+id/btn_arrow_l"
@@ -28,6 +68,6 @@
         android:layout_marginRight="10dp"
         android:background="@color/transparant"
         android:onClick="onArrowRightClicked"
-        android:src="@drawable/ic_arrow_back_big" />
+        android:src="@drawable/ic_arrow_next_big" />
 
 </RelativeLayout>

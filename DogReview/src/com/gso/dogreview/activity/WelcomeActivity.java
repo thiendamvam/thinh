@@ -16,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.devsmart.android.ui.HorizontalListView;
+import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
 import com.gso.dogreview.util.Util;
 
@@ -27,6 +29,7 @@ public class WelcomeActivity extends FragmentActivity implements
 	private RelativeLayout rlSettingMenu;
 	private Context context;
 	private Button btnEnter;
+	private HorizontalListView gallery;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -39,13 +42,25 @@ public class WelcomeActivity extends FragmentActivity implements
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		TextView wcDes2 = (TextView)findViewById(R.id.wc_des2);
 		wcDes2.setText(Html.fromHtml(getResources().getString(R.string.welcome_screen_des2)));
+		gallery = (HorizontalListView) findViewById(R.id.gallaryWelcome);
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnEnter.setOnClickListener(this);
+		
 		context = this;
+		
 		Util.getKeyHash(context);
+		setResourceForVersion();
 		
-		
+	}
+
+	private void setResourceForVersion() {
+		// TODO Auto-generated method stub
+		if(DogReviewApplication.instance.isPay()){
+			gallery.setVisibility(View.VISIBLE);
+		}else{
+			gallery.setVisibility(View.GONE);
+		}
 	}
 
 	@Override
@@ -69,7 +84,7 @@ public class WelcomeActivity extends FragmentActivity implements
 
 	private void exeHomeClicked() {
 		// TODO Auto-generated method stub
-
+		finish();
 	}
 
 	private void exeMenuClicked() {
@@ -103,6 +118,12 @@ public class WelcomeActivity extends FragmentActivity implements
 
 	public void onFavouriteClicked(View v) {
 		Intent i = new Intent(context, FavouriteActivity.class);
+		startActivity(i);
+	}
+	
+	public void exeInfoClicked(View v){
+		Log.d("exeInfoClicked","exeInfoClicked");
+		Intent i = new Intent(context, InfoActivity.class);
 		startActivity(i);
 	}
 }

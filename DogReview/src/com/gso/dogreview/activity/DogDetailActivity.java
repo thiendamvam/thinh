@@ -17,18 +17,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.gso.dogreview.R;
-import com.gso.dogreview.adapter.ChatAdapter;
 import com.gso.dogreview.adapter.ChatBaseAdapter;
-import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.database.DbAdapter;
 import com.gso.dogreview.model.Comment;
 import com.gso.dogreview.model.Dog;
@@ -53,6 +51,7 @@ public class DogDetailActivity extends FragmentActivity implements
 	private DbAdapter db;
 	private Button btnNext;
 	private int count;
+	private ScrollView srContent;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -64,6 +63,7 @@ public class DogDetailActivity extends FragmentActivity implements
 		imgBtnHome = (ImageButton) findViewById(R.id.imgBtn_home);
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
+		srContent = (ScrollView)findViewById(R.id.srContent);
 		btnBack = (Button) findViewById(R.id.img_btn_back);
 		btnNext = (Button) findViewById(R.id.img_btn_next);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
@@ -155,11 +155,14 @@ public class DogDetailActivity extends FragmentActivity implements
 			setImage(id);
 			setImageTitle(id);
 			bindChatsList(item.getId());
+			
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		srContent.setFillViewport(false);
+		srContent.scrollTo(0, 0);
 	}
 
 	private void bindChatsList(String id) {
@@ -172,8 +175,8 @@ public class DogDetailActivity extends FragmentActivity implements
 			// ChatAdapter adapter = new ChatAdapter(context, c);
 			ArrayList<Comment> list = getListFromCursor(c);
 			ChatBaseAdapter adapter = new ChatBaseAdapter(context, list);
-			lvChats.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
+			lvChats.setAdapter(adapter);
 			Util.setListViewHeightBasedOnChildren(lvChats);
 			c.close();
 			db.close();
@@ -236,6 +239,7 @@ public class DogDetailActivity extends FragmentActivity implements
 	private void setImage(String id) {
 		// TODO Auto-generated method stub
 		try {
+			Log.d("setImage","id = "+id);
 			Bitmap bm = getBitmapFromAssets("Dogs/C_" + id + ".png");
 			if (bm != null)
 				wvThumnail.setImageBitmap(bm);

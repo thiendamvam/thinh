@@ -105,7 +105,7 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.data = item;
 //			viewList.put(String.valueOf(position), view);
 			if(item.isRead()){
-				viewHolder.imgAvatar.setImageResource(position%2==0?R.color.read_dog_equa:R.color.read_dog_not_equa);
+				viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_blue_no:R.drawable.ic_red_no);
 			}else{
 				viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
 			}

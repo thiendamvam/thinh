@@ -49,6 +49,7 @@ public class FavouriteActivity extends FragmentActivity implements
 	private MyListView myListView;
 	// private ToggleButton tglOptionLv;
 	private DbAdapter db;
+	private ImageButton imgBtnFavorite;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -67,28 +68,12 @@ public class FavouriteActivity extends FragmentActivity implements
 		tvHeaderTitle.setText("FAVO");
 		db = new DbAdapter(context);
 
-		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
-		// tglOptionLv.setOnCheckedChangeListener(new
-		// CompoundButton.OnCheckedChangeListener() {
-		//
-		// @Override
-		// public void onCheckedChanged(CompoundButton buttonView, boolean
-		// isChecked) {
-		// // TODO Auto-generated method stub
-		// if(tglOptionLv.isChecked()){
-		// lvDogs.setVisibility(View.INVISIBLE);
-		// myListView.setVisibility(View.VISIBLE);
-		// }else{
-		// lvDogs.setVisibility(View.VISIBLE);
-		// myListView.setVisibility(View.INVISIBLE);
-		// }
-		// }
-		// });
+		imgBtnFavorite = (ImageButton) findViewById(R.id.imgBtn_favourite);
+		imgBtnFavorite.setVisibility(View.GONE);
 
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
-		// lvDogs.setOnScrollListener(this);
 		lvDogs.setOnItemClickListener(onItemClicked);//
 
 	}

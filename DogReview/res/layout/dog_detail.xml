@@ -4,17 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_content" >
 
-    <RelativeLayout
-        android:id="@+id/rlHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <include
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            layout="@layout/navigationbar" />
-    </RelativeLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -136,6 +125,17 @@
 
         <include layout="@layout/menu_setting" >
         </include>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/navigationbar" />
     </RelativeLayout>
 
     <RelativeLayout

@@ -11,7 +11,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/header"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="-10dp"
+        android:layout_marginTop="-20dp"
         android:visibility="gone" >
 
         <include layout="@layout/menu_setting" >

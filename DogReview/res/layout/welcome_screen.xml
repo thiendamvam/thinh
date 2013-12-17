@@ -40,12 +40,23 @@
                 android:src="@drawable/ic_logo" />
 
             <ImageView
+                android:id="@+id/imgHalf"
+                android:layout_marginTop="-80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/wc_logo"
+                android:layout_marginRight="5dp"
+                android:background="@color/transparant"
+                android:src="@drawable/bg_half_ever" />
+
+            <ImageView
                 android:id="@+id/wc_des1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/wc_logo"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="-35dp"
+                android:layout_marginTop="-75dp"
                 android:src="@drawable/ic_welcome_des" />
 
             <TextView

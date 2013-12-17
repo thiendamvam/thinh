@@ -341,11 +341,13 @@ public class IndexActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		ViewUserHolder holder = (ViewUserHolder)v.getTag();
 		Dog item = holder.data;
-		item.setRead(true);
-		db.open();
-		db.updateDog(item);
-		db.close();
-		
+		if(!item.isRead()){
+			item.setRead(true);
+			db.open();
+			db.updateDog(item);
+			db.close();
+
+		}
 		Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
 		i.putExtra("data", item);
 		i.putExtra("count",myListView.getAdapter().getCount() );

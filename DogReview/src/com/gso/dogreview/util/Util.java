@@ -26,7 +26,7 @@ import com.gso.dogreview.interfaces.IOkClicked;
 public class Util {
 
 	public static void showConfirmDialog(Context context, String title,
-			String message, final IOkClicked lisener) {
+			String message, final IOkClicked lisener, final int requestDialog) {
 		// TODO Auto-generated method stub
 
 		android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(
@@ -34,17 +34,17 @@ public class Util {
 		builder.setTitle(title);
 		builder.setMessage(message);
 		final android.app.AlertDialog alertError = builder.create();
-		alertError.setButton("OK", new DialogInterface.OnClickListener() {
+		alertError.setButton("YES", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 
-				lisener.onCompleted(true);
+				lisener.onCompleted(true, requestDialog);
 			}
 		});
-		alertError.setButton2("Cancel", new DialogInterface.OnClickListener() {
+		alertError.setButton2("NO", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				lisener.onCompleted(false);
+				lisener.onCompleted(false, requestDialog);
 				alertError.dismiss();
 
 			}

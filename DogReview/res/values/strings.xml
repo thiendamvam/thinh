@@ -24,7 +24,9 @@
     <string name="title">表題</string>
     <string name="illustation">イラストA</string>
     <string name="comment">コメントA</string>
-    <string name="confirm_delete_favorite">Do you want remove all favorites?</string>
-    <string name="confirm_delete_favorite_title">Confirm Delete Favorites</string>
+    <string name="confirm_delete_favorite">既読を全て未読にしますか？</string>
+    <string name="confirm_delete_favorite_title">""</string>
+    <string name="confirm_delete_dog_read">お気に入りをすべて消去しますか？</string>
+    <string name="confirm_delete_dog_read_title">""</string>
 
 </resources>

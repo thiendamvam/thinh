@@ -24,6 +24,8 @@ import com.gso.dogreview.util.Util;
 public class SettingActivity extends FragmentActivity implements
 		OnClickListener, IOkClicked {
 
+	private static final int DELETE_FAVOURITE = 1;
+	private static final int DELETE_READ_DOG = 2;
 	private ImageButton imgBtnHome;
 	private ImageButton imgSeting;
 	private Button imgBtnBack;
@@ -126,11 +128,14 @@ public class SettingActivity extends FragmentActivity implements
 		getSupportFragmentManager().beginTransaction().add(fragment, "fragment2").commit();
 	}
 	public void row3Cliked(View v){
-		FragmentView fragment = new FragmentView();
-		Bundle b = new Bundle();
-		b.putInt("data", 3);
-		fragment.setArguments(b);
-		getSupportFragmentManager().beginTransaction().add(fragment, "fragment3").commit();
+//		FragmentView fragment = new FragmentView();
+//		Bundle b = new Bundle();
+//		b.putInt("data", 3);
+//		fragment.setArguments(b);
+//		getSupportFragmentManager().beginTransaction().add(fragment, "fragment3").commit();
+		String title = getResources().getString(R.string.confirm_delete_favorite_title);
+		String message = getResources().getString(R.string.confirm_delete_favorite);
+		Util.showConfirmDialog(context,  title, message, SettingActivity.this, DELETE_READ_DOG );
 	}
 	public void row4Cliked(View v){
 //		FragmentView fragment = new FragmentView();
@@ -138,19 +143,23 @@ public class SettingActivity extends FragmentActivity implements
 
 		String title = getResources().getString(R.string.confirm_delete_favorite_title);
 		String message = getResources().getString(R.string.confirm_delete_favorite);
-		Util.showConfirmDialog(context,  title, message, SettingActivity.this );
+		Util.showConfirmDialog(context,  title, message, SettingActivity.this, DELETE_FAVOURITE );
 
 	
 		
 	}
 
 	@Override
-	public void onCompleted(boolean b) {
+	public void onCompleted(boolean b, int requestDilog) {
 		// TODO Auto-generated method stub
 		if(b){
 			DbAdapter db = new DbAdapter(context);
 			db.open();
-			db.removeFavorites();
+			if(requestDilog==DELETE_FAVOURITE){
+				db.removeFavorites();	
+			}else{
+				db.removeFavorites();
+			}
 			db.close();
 		}
 	}

@@ -162,7 +162,8 @@ public class DogDetailActivity extends FragmentActivity implements
 			e.printStackTrace();
 		}
 		srContent.setFillViewport(false);
-		srContent.scrollTo(0, 0);
+		srContent.scrollTo(-100, -100);
+		srContent.requestLayout();
 	}
 
 	private void bindChatsList(String id) {

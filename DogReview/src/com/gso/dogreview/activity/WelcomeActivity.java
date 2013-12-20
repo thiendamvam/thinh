@@ -43,6 +43,7 @@ public class WelcomeActivity extends FragmentActivity implements
 		TextView wcDes2 = (TextView)findViewById(R.id.wc_des2);
 		wcDes2.setText(Html.fromHtml(getResources().getString(R.string.welcome_screen_des2)));
 		gallery = (HorizontalListView) findViewById(R.id.gallaryWelcome);
+		findViewById(R.id.imgBtn_home).setVisibility(View.INVISIBLE);
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnEnter.setOnClickListener(this);

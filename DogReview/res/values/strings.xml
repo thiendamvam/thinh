@@ -17,6 +17,9 @@
     <string name="setting_row4">お気に入りの全消去</string>
     <string name="name_dev">C Daydream</string>
     <string name="email_dev">inunokimochi_app@gmail.com</string>
+    <string name="wc_row1">イントロ / キャラ紹介 / ⽝犬の⼗十戒</string>
+    
+    
 
     <!-- Exel file detail -->
     <string name="detail">詳細</string>

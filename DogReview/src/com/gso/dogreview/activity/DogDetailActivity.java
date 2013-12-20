@@ -280,7 +280,8 @@ public class DogDetailActivity extends FragmentActivity implements
 		if (id == R.id.imgBtn_setting_menu) {
 			exeMenuClicked();
 		} else if (id == R.id.img_btn_back) {
-			gotoOtherDog(false);
+//			gotoOtherDog(false);
+			finish();
 		} else if (id == R.id.img_btn_next) {
 			gotoOtherDog(true);
 		}

@@ -99,8 +99,12 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.imgFav = (ImageView)view.findViewById(R.id.imgFavourtie);
 			viewHolder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
 
+			if(position == 0){
+				viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row1));
+			}else{
+				viewHolder.tvName.setText(item.getName());	
+			}
 			
-			viewHolder.tvName.setText(item.getName());
 			viewHolder.tvDescription.setText(item.getDescription());
 			viewHolder.data = item;
 //			viewList.put(String.valueOf(position), view);

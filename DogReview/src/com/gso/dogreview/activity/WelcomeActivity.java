@@ -9,13 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ad_stir.interstitial.AdstirInterstitial;
 import com.devsmart.android.ui.HorizontalListView;
 import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
@@ -52,7 +52,6 @@ public class WelcomeActivity extends FragmentActivity implements
 		
 		Util.getKeyHash(context);
 		setResourceForVersion();
-		
 	}
 
 	private void setResourceForVersion() {

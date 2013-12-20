@@ -41,12 +41,12 @@
 
             <ImageView
                 android:id="@+id/imgHalf"
-                android:layout_marginTop="-80dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/wc_logo"
                 android:layout_marginRight="5dp"
+                android:layout_marginTop="-80dp"
                 android:background="@color/transparant"
                 android:src="@drawable/bg_half_ever" />
 
@@ -106,5 +106,13 @@
         android:scrollbars=""
         android:spacing="10dp"
         android:visibility="visible" />
+
+    <!--
+         <com.ad_stir.AdstirView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        media="MEDIA-41f303ed"
+        spot="1" />
+    -->
 
 </RelativeLayout>

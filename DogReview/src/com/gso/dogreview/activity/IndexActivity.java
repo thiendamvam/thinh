@@ -60,6 +60,7 @@ public class IndexActivity extends FragmentActivity implements
 			startActivity(i);
 		};
 	};
+	private ImageButton btnInfo;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -76,6 +77,7 @@ public class IndexActivity extends FragmentActivity implements
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		tvHeaderTitle.setText("INDEX");
+		btnInfo = (ImageButton) findViewById(R.id.btnInfo);
 //		lvDogs.setOnItemClickListener(onItemClicked);
 		db = new DbAdapter(context);
 		hideView(findViewById(R.id.rlShare));
@@ -100,6 +102,7 @@ public class IndexActivity extends FragmentActivity implements
 
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
+		btnInfo.setOnClickListener(this);
 		// lvDogs.setOnScrollListener(this);
 		lvDogs.setOnItemClickListener(onItemClickListener);//
 
@@ -232,6 +235,8 @@ public class IndexActivity extends FragmentActivity implements
 			exeMenuClicked();
 		} else if (id == R.id.img_btn_back) {
 			finish();
+		}else if(id==R.id.btnInfo){
+			exeInfoClicked(v);
 		}
 	}
 

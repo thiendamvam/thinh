@@ -69,6 +69,7 @@ public class DogDetailActivity extends FragmentActivity implements
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
 		imgTitle = (ImageView) findViewById(R.id.imgTitle);
 		lvChats = (ListView) findViewById(R.id.lv_chats);
+		hideView(findViewById(R.id.rlInfo));
 		tvHeaderTitle.setText("CONTENTS");
 		// imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
@@ -81,6 +82,7 @@ public class DogDetailActivity extends FragmentActivity implements
 		tvTitle = (TextView) findViewById(R.id.tvTitle);
 		tvDescription = (TextView) findViewById(R.id.tvContentDescription);
 		hideView(findViewById(R.id.rlInfo));
+		hideView(findViewById(R.id.btnInfo));
 		if (item != null) {
 			bindData(item);
 		}

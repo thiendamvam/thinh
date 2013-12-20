@@ -3,11 +3,15 @@ package com.gso.dogreview.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gso.dogreview.R;
+import com.gso.dogreview.fragment.FragmentView;
+import com.gso.dogreview.fragment.Page8ContentFragment;
 
 public class Page8Activity extends FragmentActivity {
 
@@ -17,6 +21,7 @@ public class Page8Activity extends FragmentActivity {
 	private int countPage = 1;
 	private int currentPage = 1;
 	private int max = 11;
+	private RelativeLayout content;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -27,11 +32,39 @@ public class Page8Activity extends FragmentActivity {
 		tvDes = (TextView) findViewById(R.id.tvDes);
 		tvnumberPage = (TextView) findViewById(R.id.tvNumberPage);
 		TextView header = (TextView)findViewById(R.id.tvHeaderTitle);
+		content = (RelativeLayout)findViewById(R.id.pageContent);
 		header.setText("CONTENTS");
 		setContentAndDes(true,true);
 //		hideView(findViewById(R.id.rlShare));
 		hideView(findViewById(R.id.img_btn_next));
 		hideView(findViewById(R.id.btnInfo));
+		
+		contentTouched(true);
+		content.setOnTouchListener(new View.OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				contentTouched(false);
+				return false;
+			}
+		});
+	}
+
+	protected void contentTouched(boolean isInit) {
+		// TODO Auto-generated method stub
+		if(isInit){
+			showView(findViewById(R.id.btn_arrow_l));
+		}
+		if(findViewById(R.id.btn_arrow_l).getVisibility()==View.VISIBLE){
+			hideView(findViewById(R.id.btn_arrow_l));
+			hideView(findViewById(R.id.btn_arrow_r));
+		}else{
+//			showView(findViewById(R.id.btn_arrow_l));
+//			showView(findViewById(R.id.btn_arrow_r));
+			setLeftRightVisibility();
+		}
+		
 	}
 
 	public void setSrcContent(int img) {
@@ -147,7 +180,9 @@ public class Page8Activity extends FragmentActivity {
 		// TODO Auto-generated method stub
 		if(countPage == 1){
 			hideView(findViewById(R.id.btn_arrow_l));
+			showView(findViewById(R.id.btn_arrow_r));
 		}else if(countPage >= max){
+			showView(findViewById(R.id.btn_arrow_l));
 			hideView(findViewById(R.id.btn_arrow_r));
 		}else if( max == 1){
 			hideView(findViewById(R.id.btn_arrow_l));
@@ -219,4 +254,6 @@ public class Page8Activity extends FragmentActivity {
 		Log.d("getNewPage","result "+result+" countpage "+countPage);
 		return result;
 	}
+	
+
 }

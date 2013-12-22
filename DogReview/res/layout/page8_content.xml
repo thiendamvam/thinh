@@ -25,6 +25,7 @@
             android:layout_below="@+id/imgContent"
             android:layout_centerHorizontal="true"
             android:ellipsize="end"
+            android:textColor="#dcdddd"
             android:gravity="center_horizontal"
             android:padding="20dp" />
 

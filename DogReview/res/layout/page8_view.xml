@@ -13,10 +13,10 @@
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="wrap_content"
-        android:gravity="center"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/bg_footer_8"
-        android:layout_alignParentBottom="true" >
+        android:gravity="center" >
 
         <fragment
             android:name="com.gso.dogreview.fragment.FooterFragment"
@@ -32,12 +32,18 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/footer" />
 
-    <fragment
-        android:id="@+id/page8_content"
-        android:name="com.gso.dogreview.fragment.Page8ContentFragment"
+    <RelativeLayout
+        android:id="@+id/pageContent"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_above="@+id/page8_footer"
-        android:layout_below="@+id/header" />
+        android:layout_below="@+id/header" >
+
+        <fragment
+            android:id="@+id/page8_content"
+            android:name="com.gso.dogreview.fragment.Page8ContentFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 
 </RelativeLayout>

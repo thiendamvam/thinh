@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
 
 public class FooterPage8Fragement extends Fragment implements OnClickListener {
@@ -33,9 +34,23 @@ public class FooterPage8Fragement extends Fragment implements OnClickListener {
 		// TODO Auto-generated method stub
 		int id = v.getId();
 		if (id == R.id.btn_footer_page8_left) {
-
+			btnLeftCliked(v);
 		} else if (id == R.id.btn_footer_page8_right) {
-
+			btnRightCliked(v);
 		}
+	}
+	public void btnLeftCliked(View v){
+		FragmentView fragment = new FragmentView();
+		Bundle b = new Bundle();
+		b.putInt("data", 1);
+		fragment.setArguments(b);
+		getFragmentManager().beginTransaction().add(fragment, "fragment1").commit();
+	}
+	public void btnRightCliked(View v){
+		FragmentView fragment = new FragmentView();
+		Bundle b = new Bundle();
+		b.putInt("data", 2);
+		fragment.setArguments(b);
+		getFragmentManager().beginTransaction().add(fragment, "fragment2").commit();
 	}
 }

@@ -26,15 +26,15 @@ import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.interfaces.IOkClicked;
 
 public class Util {
-	public static Typeface typeFaceRegular = Typeface.createFromAsset(
-			DogReviewApplication.Instance().getAssets(),
-			"font/fnb/FNB Sans-Regular.otf");
+//	public static Typeface typeFaceRegular = Typeface.createFromAsset(
+//			DogReviewApplication.Instance().getAssets(),
+//			"font/fnb/FNB Sans-Regular.otf");
 	public static Typeface typeFaceBold = Typeface.createFromAsset(
 			DogReviewApplication.Instance().getAssets(),
 			"font/meiryo.ttf");
-	public static Typeface typeFaceThin = Typeface.createFromAsset(
-			DogReviewApplication.Instance().getAssets(),
-			"font/fnb/FNB Sans-Thin.otf");
+//	public static Typeface typeFaceThin = Typeface.createFromAsset(
+//			DogReviewApplication.Instance().getAssets(),
+//			"font/fnb/FNB Sans-Thin.otf");
 	public static void showConfirmDialog(Context context, String title,
 			String message, final IOkClicked lisener, final int requestDialog) {
 		// TODO Auto-generated method stub

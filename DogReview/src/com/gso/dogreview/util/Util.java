@@ -14,6 +14,7 @@ import android.content.pm.Signature;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -21,10 +22,19 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.interfaces.IOkClicked;
 
 public class Util {
-
+	public static Typeface typeFaceRegular = Typeface.createFromAsset(
+			DogReviewApplication.Instance().getAssets(),
+			"font/fnb/FNB Sans-Regular.otf");
+	public static Typeface typeFaceBold = Typeface.createFromAsset(
+			DogReviewApplication.Instance().getAssets(),
+			"font/meiryo.ttf");
+	public static Typeface typeFaceThin = Typeface.createFromAsset(
+			DogReviewApplication.Instance().getAssets(),
+			"font/fnb/FNB Sans-Thin.otf");
 	public static void showConfirmDialog(Context context, String title,
 			String message, final IOkClicked lisener, final int requestDialog) {
 		// TODO Auto-generated method stub

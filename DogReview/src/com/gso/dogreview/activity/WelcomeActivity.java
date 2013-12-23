@@ -36,6 +36,7 @@ public class WelcomeActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		super.onCreate(arg0);
 		setContentView(R.layout.welcome_screen);
+		context = this;
 		imgBtnHome = (ImageButton) findViewById(R.id.imgBtn_home);
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		btnEnter = (Button) findViewById(R.id.btnEnter);
@@ -43,15 +44,25 @@ public class WelcomeActivity extends FragmentActivity implements
 		TextView wcDes2 = (TextView)findViewById(R.id.wc_des2);
 		wcDes2.setText(Html.fromHtml(getResources().getString(R.string.welcome_screen_des2)));
 		gallery = (HorizontalListView) findViewById(R.id.gallaryWelcome);
+		TextView header = (TextView)findViewById(R.id.tvHeaderTitle);
+		header.setTypeface(Util.typeFaceBold);
 		findViewById(R.id.imgBtn_home).setVisibility(View.INVISIBLE);
 		imgBtnHome.setOnClickListener(this);
 		imgBtnSetting.setOnClickListener(this);
 		btnEnter.setOnClickListener(this);
-		
-		context = this;
+		initUIwithAppType();
 		
 		Util.getKeyHash(context);
 		setResourceForVersion();
+	}
+
+	private void initUIwithAppType() {
+		// TODO Auto-generated method stub
+		if(DogReviewApplication.Instance().isPay()){
+			
+		}else{
+			
+		}
 	}
 
 	private void setResourceForVersion() {

@@ -170,7 +170,13 @@ public class DogAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return list.size();
+		int size = list.size();
+		if(DogReviewApplication.Instance().isPay()){
+			return size;	
+		}else{
+			return size <= 25?size:25;
+		}
+		
 	}
 
 	@Override

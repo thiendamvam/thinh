@@ -16,6 +16,7 @@ public class Config {
 	public static final String	OAUTH_CALLBACK_URL		=  "perm://twitter";
 	public static final String APP = "android";
 	public static final String APP_NAME = "whyq";
+	
 
 	public static final String FACEBOOK_APP_ID = "429233960446986";
 }

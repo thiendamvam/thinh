@@ -15,6 +15,8 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		exeGotoWelcomeScreen();
+		boolean isPay = getIntent().getBooleanExtra("is_pay", false);
+		DogReviewApplication.Instance().setPay(isPay);
 	}
 
 	@Override

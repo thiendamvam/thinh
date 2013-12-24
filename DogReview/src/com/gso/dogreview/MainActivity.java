@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.Menu;
 
 import com.gso.dogreview.activity.WelcomeActivity;
+import com.gso.dogreview.R;
 
 public class MainActivity extends Activity {
 

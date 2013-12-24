@@ -50,20 +50,17 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		int id = v.getId();
-		switch (id) {
-		case R.id.img_btn_back:
+		if(id== R.id.img_btn_back){
 			onBackClicked();
-			break;
-		case R.id.img_btn_twitter:
-			onTwitterClicked();
-			break;
-		case R.id.img_btn_facebook:
-			onFbClicked();
-			break;
-
-		default:
-			break;
 		}
+		else if(id== R.id.img_btn_back){
+			onTwitterClicked();
+
+		}
+		else if(id== R.id.img_btn_back){
+			onFbClicked();
+		}
+
 	}
 
 	private void onBackClicked() {

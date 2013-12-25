@@ -1,97 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_welcome" >
+    android:layout_height="match_parent" >
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <RelativeLayout
+            android:id="@+id/rlMenu_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/header"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="-20dp"
+            android:visibility="gone" >
+
+            <include layout="@layout/menu_setting" >
+            </include>
+        </RelativeLayout>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="match_parent"
+            android:layout_below="@+id/header"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/bg_welcome" >
 
             <RelativeLayout
-                android:id="@+id/rlMenu_setting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/header"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="-20dp"
-                android:visibility="gone" >
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-                <include layout="@layout/menu_setting" >
-                </include>
+                <ImageView
+                    android:id="@+id/wc_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/ic_logo" />
+
+                <ImageView
+                    android:id="@+id/imgHalf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/wc_des1"
+                    android:layout_below="@+id/wc_logo"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="-80dp"
+                    android:background="@color/transparant"
+                    android:src="@drawable/bg_half_ever" />
+
+                <ImageView
+                    android:id="@+id/wc_des1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/wc_logo"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="-75dp"
+                    android:src="@drawable/ic_welcome_des" />
+
+                <TextView
+                    android:id="@+id/wc_des2"
+                    style="@style/big_text_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/wc_des1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/welcome_screen_des2" />
+
+                <Button
+                    android:id="@+id/btnEnter"
+                    style="@style/header_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/wc_des2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ic_btn_enter" />
+
+                <Button
+                    android:id="@+id/btnInfo"
+                    style="@style/header_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnEnter"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/ic_btn_info_wc"
+                    android:onClick="exeInfoClicked" />
             </RelativeLayout>
+        </ScrollView>
 
-            <include
-                android:id="@+id/header"
-                layout="@layout/navigationbar" />
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparant" >
 
-            <ImageView
-                android:id="@+id/wc_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/header"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
-                android:src="@drawable/ic_logo" />
-
-            <ImageView
-                android:id="@+id/imgHalf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/wc_logo"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="-80dp"
-                android:background="@color/transparant"
-                android:src="@drawable/bg_half_ever" />
-
-            <ImageView
-                android:id="@+id/wc_des1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/wc_logo"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="-75dp"
-                android:src="@drawable/ic_welcome_des" />
-
-            <TextView
-                android:id="@+id/wc_des2"
-                style="@style/big_text_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/wc_des1"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:gravity="center_horizontal"
-                android:text="@string/welcome_screen_des2" />
-
-            <Button
-                android:id="@+id/btnEnter"
-                style="@style/header_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/wc_des2"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/ic_btn_enter" />
-
-            <Button
-                android:id="@+id/btnInfo"
-                style="@style/header_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btnEnter"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/ic_btn_info_wc"
-                android:onClick="exeInfoClicked" />
+            <include layout="@layout/navigationbar" />
         </RelativeLayout>
-    </ScrollView>
+    </RelativeLayout>
 
     <com.devsmart.android.ui.HorizontalListView
         android:id="@+id/gallaryWelcome"
@@ -108,11 +120,11 @@
         android:visibility="visible" />
 
     <!--
-         <com.ad_stir.AdstirView
+        <com.ad_stir.AdstirView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         media="MEDIA-41f303ed"
-        spot="1" />
+		spot="1"
     -->
 
 </RelativeLayout>

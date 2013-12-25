@@ -4,117 +4,126 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_content" >
 
-    <ScrollView
-        android:id="@+id/srContent"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rlAds"
         android:layout_below="@+id/rlHeader" >
 
-        <RelativeLayout
+        <ScrollView
+            android:id="@+id/srContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="100dp" >
-
-            <TextView
-                android:id="@+id/tvTitle"
-                style="@style/big_text_bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="7dp"
-                android:text="@string/welcome_screen_des"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/imgTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="18dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/transparant" />
+            android:layout_height="wrap_content" >
 
             <RelativeLayout
-                android:id="@+id/rlInfo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/imgTitle" >
+                android:layout_height="wrap_content"
+                android:paddingBottom="100dp" >
 
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/tvTitle"
+                    style="@style/big_text_bold"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="0dp"
-                    android:background="@android:color/transparent" >
-
-                    <ImageView
-                        android:id="@+id/wvThumnail"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="0dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/dog" />
-                </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="7dp"
+                    android:text="@string/welcome_screen_des"
+                    android:visibility="gone" />
 
                 <ImageView
-                    android:id="@+id/imgIconIncontetn"
+                    android:id="@+id/imgTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/ic_content_11_bupbe" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/transparant" />
 
                 <RelativeLayout
-                    android:id="@+id/rlDes"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/rlDetailInfo"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/bg_content_info" >
+                    android:layout_below="@+id/imgTitle" >
+
+                    <RelativeLayout
+                        android:id="@+id/rlThumbnail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@android:color/transparent" >
+
+                        <ImageView
+                            android:id="@+id/wvThumnail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/dog" />
+                    </RelativeLayout>
 
                     <ImageView
-                        android:id="@+id/imgInfoIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/tvInfo"
+                        android:id="@+id/imgIconIncontetn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/imgInfoIcon" />
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:visibility="invisible"
+                        android:background="@drawable/ic_content_11_bupbe" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlDes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/bg_setting_ads_logo" >
+
+                        <ImageView
+                            android:id="@+id/imgInfoIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/tvInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="invisible"
+                            android:layout_toRightOf="@+id/imgInfoIcon" />
+                    </RelativeLayout>
                 </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvContentDescription"
+                    style="@style/normal_text_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlDetailInfo"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp" />
+
+                <ImageView
+                    android:id="@+id/img_illustation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvContentDescription"
+                    android:background="@color/transparant"
+                    android:src="@drawable/bg_illustration_41" />
+
+                <ListView
+                    android:id="@+id/lv_chats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_illustation"
+                    android:divider="@color/transparant"
+                    android:dividerHeight="0dp" >
+                </ListView>
             </RelativeLayout>
-
-            <TextView
-                android:id="@+id/tvContentDescription"
-                style="@style/normal_text_bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rlInfo"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="15dp" />
-
-            <ImageView
-                android:id="@+id/img_illustation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvContentDescription"
-                android:background="@color/transparant"
-                android:src="@drawable/bg_illustration_41" />
-
-            <ListView
-                android:id="@+id/lv_chats"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/img_illustation"
-                android:divider="@color/transparant"
-                android:dividerHeight="0dp" >
-            </ListView>
-        </RelativeLayout>
-    </ScrollView>
+        </ScrollView>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rlMenu_setting"

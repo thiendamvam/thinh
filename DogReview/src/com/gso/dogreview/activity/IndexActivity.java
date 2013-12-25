@@ -220,9 +220,9 @@ public class IndexActivity extends FragmentActivity implements
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
 		adapter = new DogAdapter(context, dogList, rlListViewContent,1);
-//		lvDogs2.setAdapter(adapter);
-		myListView.setAdapter(adapter);
-		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
+		lvDogs2.setAdapter(adapter);
+//		myListView.setAdapter(adapter);
+//		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
 	}
 
 	@Override
@@ -355,7 +355,7 @@ public class IndexActivity extends FragmentActivity implements
 		}
 		Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
 		i.putExtra("data", item);
-		i.putExtra("count",myListView.getAdapter().getCount() );
+		i.putExtra("count",lvDogs.getAdapter().getCount() );
 		startActivity(i);
 	}
 

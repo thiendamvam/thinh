@@ -188,7 +188,7 @@ public class DbAdapter {
 		return mDb.query(COMMENT_TABLE, new String[] { COMMENT_ID,
 				COMMENT_DOG_ID, COMMENT_AVATAR,  COMMENT_COMMENT },
 				COMMENT_DOG_ID + " MATCH ?",
-				new String[] { "*" + query + "*" }, null, null, null);
+				new String[] {  query }, null, null, null);
 
 	}
 

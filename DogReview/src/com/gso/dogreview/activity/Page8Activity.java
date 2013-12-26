@@ -1,19 +1,25 @@
 package com.gso.dogreview.activity;
 
+import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.WindowManager.LayoutParams;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gso.dogreview.R;
-import com.gso.dogreview.fragment.FragmentView;
-import com.gso.dogreview.fragment.Page8ContentFragment;
 
-public class Page8Activity extends FragmentActivity {
+public class Page8Activity extends FragmentActivity implements OnClickListener{
 
 	private ImageView imgContent;
 	private TextView tvDes;
@@ -22,23 +28,28 @@ public class Page8Activity extends FragmentActivity {
 	private int currentPage = 1;
 	private int max = 11;
 	private RelativeLayout content;
+	private RelativeLayout rlSettingMenu;
+	private ImageButton imgBtnSetting;
+	private Context context;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
 		super.onCreate(arg0);
 		setContentView(R.layout.page8_view);
+		context = this;
 		imgContent = (ImageView) findViewById(R.id.imgContent);
 		tvDes = (TextView) findViewById(R.id.tvDes);
 		tvnumberPage = (TextView) findViewById(R.id.tvNumberPage);
 		TextView header = (TextView)findViewById(R.id.tvHeaderTitle);
 		content = (RelativeLayout)findViewById(R.id.pageContent);
+		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		header.setText("CONTENTS");
 		setContentAndDes(true,true);
+		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 //		hideView(findViewById(R.id.rlShare));
 		hideView(findViewById(R.id.img_btn_next));
 		hideView(findViewById(R.id.btnInfo));
-		
 		contentTouched(true);
 		content.setOnTouchListener(new View.OnTouchListener() {
 			
@@ -49,6 +60,54 @@ public class Page8Activity extends FragmentActivity {
 				return false;
 			}
 		});
+		imgBtnSetting.setOnClickListener(this);
+	}
+	private void exeMenuClicked() {
+		// TODO Auto-generated method stub
+		if (rlSettingMenu.getVisibility() == View.VISIBLE) {
+			setSettingGroupViewVisibility(false);
+			changeResourceSettingMenu(false);
+		} else {
+			setSettingGroupViewVisibility(true);
+			changeResourceSettingMenu(true);
+		}
+	}
+	public void changeResourceSettingMenu(final boolean isDown){
+		Log.d("changeResourceSettingMenu","isDown "+isDown);
+		Animation  anim = (Animation)AnimationUtils.loadAnimation(context, isDown?R.anim.rotate_90_down:R.anim.rotate_90_up);
+		imgBtnSetting.setAnimation(anim);
+		imgBtnSetting.startAnimation(anim);
+	}
+	private void setSettingGroupViewVisibility(boolean b) {
+		// TODO Auto-generated method stub
+		rlSettingMenu.setVisibility(b ? View.VISIBLE : View.GONE);
+		Animation  anim = AnimationUtils.loadAnimation(context, b?R.anim.show_down:R.anim.hide_up);
+		rlSettingMenu.startAnimation(anim);
+	}
+	
+	@Override
+	public void onAttachFragment(Fragment fragment) {
+		// TODO Auto-generated method stub
+		super.onAttachFragment(fragment);
+		if(getFragmentManager().findFragmentById(R.id.fr_header)!=null){
+			setContenParams();
+		}
+	}
+	
+	@Override
+	public void onWindowAttributesChanged(LayoutParams params) {
+		// TODO Auto-generated method stub
+		super.onWindowAttributesChanged(params);
+		setContenParams();
+	}
+	
+	private void setContenParams() {
+		// TODO Auto-generated method stub
+		if(getFragmentManager().findFragmentById(R.id.fr_header)!=null){
+			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)content.getLayoutParams();
+			params.addRule(RelativeLayout.BELOW, getFragmentManager().findFragmentById(R.id.fr_header).getView().findViewById(R.id.header).getId());
+			content.setLayoutParams(params);
+		}
 	}
 
 	protected void contentTouched(boolean isInit) {
@@ -56,7 +115,7 @@ public class Page8Activity extends FragmentActivity {
 		if(isInit){
 			showView(findViewById(R.id.btn_arrow_l));
 		}
-		if(findViewById(R.id.btn_arrow_l).getVisibility()==View.VISIBLE){
+		if((findViewById(R.id.btn_arrow_l).getVisibility()==View.VISIBLE)||(findViewById(R.id.btn_arrow_r).getVisibility()==View.VISIBLE)){
 			hideView(findViewById(R.id.btn_arrow_l));
 			hideView(findViewById(R.id.btn_arrow_r));
 		}else{
@@ -93,7 +152,7 @@ public class Page8Activity extends FragmentActivity {
 		setDes(des);
 		if(!isInit)
 			currentPage = getNewPage(currentPage, isLeft);
-		setPageCount(currentPage);
+		setPageCount(countPage);
 		int resourceContent = getResourceContent();
 		setSrcContent(resourceContent);
 		setLeftRightVisibility();
@@ -254,6 +313,27 @@ public class Page8Activity extends FragmentActivity {
 		Log.d("getNewPage","result "+result+" countpage "+countPage);
 		return result;
 	}
+	@Override
+	public void onClick(View v) {
+
+		// TODO Auto-generated method stub
+		int id = v.getId();
+		if (id == R.id.imgBtn_setting_menu) {
+			exeMenuClicked();
+		} else if (id == R.id.img_btn_back) {
+			finish();
+		}else if(id==R.id.btnInfo){
+		}
 	
+	}
+	public void onSettingClicked(View v) {
+		Intent i = new Intent(context, SettingActivity.class);
+		startActivity(i);
+	}
+
+	public void onFavouriteClicked(View v) {
+		Intent i = new Intent(context, FavouriteActivity.class);
+		startActivity(i);
+	}
 
 }

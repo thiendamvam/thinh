@@ -17,8 +17,12 @@
         </include>
     </RelativeLayout>
 
-    <include
+    <RelativeLayout
         android:id="@+id/header"
-        layout="@layout/navigationbar" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/navigationbar" />
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -4,11 +4,26 @@
     android:layout_height="match_parent"
     android:background="@color/bg_page8" >
 
+    <RelativeLayout
+        android:id="@+id/rlMenu_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/fr_header"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="-20dp"
+        android:visibility="gone" >
+
+        <include layout="@layout/menu_setting" >
+        </include>
+    </RelativeLayout>
+
     <fragment
-        android:id="@+id/header"
+        android:id="@+id/fr_header"
         android:name="com.gso.dogreview.fragment.HeaderFragment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:tag="header" />
 
     <LinearLayout
         android:id="@+id/footer"
@@ -37,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_above="@+id/page8_footer"
-        android:layout_below="@+id/header" >
+        android:layout_below="@+id/fr_header" >
 
         <fragment
             android:id="@+id/page8_content"

@@ -20,7 +20,7 @@
             android:divider="@color/transparant"
             android:dividerHeight="5dp"
             android:visibility="visible"
-            app:indent_offset="32dp"
+            app:indent_offset="22dp"
             /><!--   -->
 
         <com.gso.dogreview.view.MyListView

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -22,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
@@ -112,9 +114,16 @@ public class IndexActivity extends FragmentActivity implements
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		exeListDogs();
+//		exeListDogs();
+		setViewVisibility(findViewById(R.id.progressBar), true);
+		new asynLoadData().execute(null,null);
 	}
 	
+	private void setViewVisibility(View v, boolean b) {
+		// TODO Auto-generated method stub
+		v.setVisibility(b?View.VISIBLE:View.INVISIBLE);
+	}
+
 	private void hideView(View v) {
 		// TODO Auto-generated method stub
 		v.setVisibility(View.GONE);
@@ -135,11 +144,42 @@ public class IndexActivity extends FragmentActivity implements
 //		};
 //	};
 
-	private void exeListDogs() {
+	class asynLoadData extends AsyncTask<Void, Boolean, Boolean>{
+
+		private ArrayList<Dog> dogList;
+		
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			try {
+				dogList = getDataDogs();
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+		}
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
 		// TODO Auto-generated method stub
-		ArrayList<Dog> dogList = getDataDogs();
-		bindDataToListView(dogList, lvDogs);
+			super.onPostExecute(result);
+			setViewVisibility(findViewById(R.id.progressBar), false);
+			if(result){
+				bindDataToListView(dogList, lvDogs);
+			}else{
+				Toast.makeText(context, "Can not get data for now", Toast.LENGTH_LONG).show();
+			}
+		}
 	}
+	
+//	private void exeListDogs() {
+//		// TODO Auto-generated method stub
+//		ArrayList<Dog> dogList = getDataDogs();
+//		bindDataToListView(dogList, lvDogs);
+//	}
 
 	private ArrayList<Dog> getDataDogs() {
 		// TODO Auto-generated method stub
@@ -248,10 +288,10 @@ public class IndexActivity extends FragmentActivity implements
 	private void exeMenuClicked() {
 		// TODO Auto-generated method stub
 		if (rlSettingMenu.getVisibility() == View.VISIBLE) {
-			setViewVisibility(false);
+			setSettingGroupViewVisibility(false);
 			changeResourceSettingMenu(false);
 		} else {
-			setViewVisibility(true);
+			setSettingGroupViewVisibility(true);
 			changeResourceSettingMenu(true);
 		}
 	}
@@ -261,7 +301,7 @@ public class IndexActivity extends FragmentActivity implements
 		imgBtnSetting.setAnimation(anim);
 		imgBtnSetting.startAnimation(anim);
 	}
-	private void setViewVisibility(boolean b) {
+	private void setSettingGroupViewVisibility(boolean b) {
 		// TODO Auto-generated method stub
 		rlSettingMenu.setVisibility(b ? View.VISIBLE : View.GONE);
 		Animation  anim = AnimationUtils.loadAnimation(context, b?R.anim.show_down:R.anim.hide_up);
@@ -346,19 +386,53 @@ public class IndexActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		ViewUserHolder holder = (ViewUserHolder)v.getTag();
 		Dog item = holder.data;
-		if(!item.isRead()){
-			item.setRead(true);
-			db.open();
-			db.updateDog(item);
-			db.close();
-
-		}
-		Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
-		i.putExtra("data", item);
-		i.putExtra("count",lvDogs.getAdapter().getCount() );
-		startActivity(i);
+		setViewVisibility(findViewById(R.id.progressBar), true);
+		new asynGotoDetail(item).execute(null,null);
 	}
 
+	class asynGotoDetail extends AsyncTask<Void, Boolean, Boolean>{
+
+		private Dog item;
+		public asynGotoDetail(Dog item) {
+			// TODO Auto-generated constructor stub
+			this.item = item;
+		}
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			try {
+				if(!item.isRead()){
+					item.setRead(true);
+					db.open();
+					db.updateDog(item);
+					db.close();
+					return true;
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return false;
+			}
+			
+			return true;
+		}
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			setViewVisibility(findViewById(R.id.progressBar),false);
+			super.onPostExecute(result);
+			if(result){
+				
+			}else{
+				Toast.makeText(context, "Can not save dog state for now", Toast.LENGTH_LONG).show();
+			}
+			Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
+			i.putExtra("data", item);
+			i.putExtra("count",lvDogs.getAdapter().getCount() );
+			startActivity(i);
+		}
+	}
+	
 	public void gotoPage8() {
 		// TODO Auto-generated method stub
 		Intent i = new Intent(context, Page8Activity.class);

@@ -70,7 +70,7 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 
 	private void onFbClicked() {
 		// TODO Auto-generated method stub
-		Log.d("onTwitterClicked", "onTwitterClicked");
+		Log.d("onFbClicked", "onFbClicked");
 		FacebookHandler fbHandler = new FacebookHandler(DogReviewApplication
 				.Instance().getApplicationContext(), getActivity(),
 				Config.FACEBOOK_APP_ID);
@@ -85,6 +85,7 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 
 	private void onTwitterClicked() {
 		// TODO Auto-generated method stub
+		Log.d("onTwitterClicked", "onTwitterClicked");
 		TwitterHandler twHandler = new TwitterHandler(DogReviewApplication.Instance().getApplicationContext(), Config.CONSUMER_KEY, Config.CONSUMER_SECRET);
 		if(twHandler.checkTwitterLogin()){
 			SharePopup fragment = new SharePopup();

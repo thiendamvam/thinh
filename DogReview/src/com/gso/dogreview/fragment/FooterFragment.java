@@ -53,11 +53,11 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 		if(id== R.id.img_btn_back){
 			onBackClicked();
 		}
-		else if(id== R.id.img_btn_back){
+		else if(id== R.id.img_btn_twitter){
 			onTwitterClicked();
 
 		}
-		else if(id== R.id.img_btn_back){
+		else if(id== R.id.img_btn_facebook){
 			onFbClicked();
 		}
 

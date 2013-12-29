@@ -5,6 +5,20 @@
     android:background="@color/bg_page8" >
 
     <RelativeLayout
+        android:id="@+id/pageContent"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/page8_footer"
+        android:layout_below="@+id/fr_header" >
+
+        <fragment
+            android:id="@+id/page8_content"
+            android:name="com.gso.dogreview.fragment.Page8ContentFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/rlMenu_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,19 +60,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/footer" />
-
-    <RelativeLayout
-        android:id="@+id/pageContent"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/page8_footer"
-        android:layout_below="@+id/fr_header" >
-
-        <fragment
-            android:id="@+id/page8_content"
-            android:name="com.gso.dogreview.fragment.Page8ContentFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
 
 </RelativeLayout>

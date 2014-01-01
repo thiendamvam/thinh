@@ -79,7 +79,7 @@ public class FavouriteActivity extends FragmentActivity implements
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
 		lvDogs.setOnItemClickListener(onItemClicked);//
-
+		findViewById(R.id.img_btn_next).setVisibility(View.INVISIBLE);
 	}
 
 	@Override

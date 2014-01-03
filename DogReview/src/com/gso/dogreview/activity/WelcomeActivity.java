@@ -67,7 +67,7 @@ public class WelcomeActivity extends FragmentActivity implements
 
 	private void setResourceForVersion() {
 		// TODO Auto-generated method stub
-		if(DogReviewApplication.instance.isPay()){
+		if(DogReviewApplication.Instance().isPay()){
 			gallery.setVisibility(View.VISIBLE);
 		}else{
 			gallery.setVisibility(View.GONE);

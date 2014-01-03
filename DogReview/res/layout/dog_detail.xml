@@ -71,8 +71,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
-                        android:visibility="invisible"
-                        android:background="@drawable/ic_content_11_bupbe" />
+                        android:background="@drawable/ic_content_11_bupbe"
+                        android:visibility="invisible" />
 
                     <RelativeLayout
                         android:id="@+id/rlDes"
@@ -90,8 +90,8 @@
                             android:id="@+id/tvInfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:visibility="invisible"
-                            android:layout_toRightOf="@+id/imgInfoIcon" />
+                            android:layout_toRightOf="@+id/imgInfoIcon"
+                            android:visibility="invisible" />
                     </RelativeLayout>
                 </RelativeLayout>
 
@@ -167,6 +167,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/rlFooter"
-        android:background="@drawable/bg_ads" />
+        android:background="@drawable/bg_ads" >
+
+        <fragment
+            android:id="@+id/nend_ads"
+            android:name="com.gso.dogreview.ads.NendAds"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </RelativeLayout>
 
 </RelativeLayout>

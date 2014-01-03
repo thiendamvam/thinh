@@ -7,7 +7,7 @@ import android.view.WindowManager;
 
 public class DogReviewApplication extends Application {
 
-	public static DogReviewApplication instance;
+	private static DogReviewApplication instance;
 	private boolean isPay;
 
 	public DogReviewApplication() {

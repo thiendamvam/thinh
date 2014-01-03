@@ -39,6 +39,7 @@
                     android:background="@color/transparant" />
 
                 <RelativeLayout
+                    android:background="@drawable/bg_dog_detail_info"
                     android:id="@+id/rlDetailInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,6 +62,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="0dp"
+                            android:layout_centerHorizontal="true"
                             android:scaleType="fitXY"
                             android:src="@drawable/dog" />
                     </RelativeLayout>

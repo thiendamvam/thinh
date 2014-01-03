@@ -56,7 +56,7 @@ public class NendAds extends Fragment {
 				"9ff87fed7564e8d17190c17149ed2f69655f5e2c");
 		nendAdView.setLayoutParams(new ViewGroup.LayoutParams((int)(320*mDensity),(int)( 50*mDensity)));
 		linearLayout.addView(nendAdView);
-		nendAdView.se tBackgroundColor(Color.YELLOW);
+		nendAdView.setBackgroundColor(Color.YELLOW);
 		nendAdView.loadAd();
 		Log.d("ads onCreateView","ads onCreateView end");
 		return linearLayout;

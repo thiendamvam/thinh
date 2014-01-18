@@ -1,5 +1,7 @@
 package com.gso.dogreview.fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.ImageButton;
 import com.gso.dogreview.Config;
 import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
+import com.gso.dogreview.activity.Page8Activity;
 import com.gso.facebookframework.FacebookHandler;
 import com.gso.twitterframework.TwitterHandler;
 import com.gso.twitterframework.interfaces.ITwitterLoginListener;
@@ -23,6 +26,7 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 	private Button btnBack;
 	private ImageButton imgBtnTwitter;
 	private ImageButton imgBtnFb;
+	private Context context;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,13 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 
 	}
 
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		context = (Context)activity;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -65,7 +76,7 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 
 	private void onBackClicked() {
 		// TODO Auto-generated method stub
-		
+		((Page8Activity)context).onBackPressed();
 	}
 
 	private void onFbClicked() {

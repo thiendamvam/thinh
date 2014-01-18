@@ -15,7 +15,6 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ad_stir.interstitial.AdstirInterstitial;
 import com.devsmart.android.ui.HorizontalListView;
 import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;

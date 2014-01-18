@@ -384,6 +384,7 @@ public class IndexActivity extends FragmentActivity implements
 
 	public void onItemClickListener(View v) {
 		// TODO Auto-generated method stub
+		v.setPressed(!v.isPressed());
 		ViewUserHolder holder = (ViewUserHolder)v.getTag();
 		Dog item = holder.data;
 		setViewVisibility(findViewById(R.id.progressBar), true);

@@ -27,6 +27,7 @@
             android:layout_marginRight="7dp"
             android:background="@color/transparant"
             android:onClick="onIconFavouriteClicked"
+            android:padding="15dp"
             android:src="@drawable/ic_favourite_fc" />
 
         <TextView
@@ -38,6 +39,9 @@
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/imgFavourtie"
             android:layout_toRightOf="@+id/imgAvatar"
+            android:shadowColor="#330019"
+            android:shadowRadius="1"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <TextView

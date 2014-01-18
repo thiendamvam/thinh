@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:myapp="http://schemas.android.com/apk/res/com.gso.dogreview.paid"
+    xmlns:myapp="http://schemas.android.com/apk/res/com.gso.dogreview"
     package="com.gso.dogreview"
     android:versionCode="1"
     android:versionName="1.0" >

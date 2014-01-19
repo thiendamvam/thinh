@@ -39,8 +39,6 @@
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/imgFavourtie"
             android:layout_toRightOf="@+id/imgAvatar"
-            android:shadowColor="#330019"
-            android:shadowRadius="1"
             android:textColor="@color/black"
             android:textStyle="bold" />
 

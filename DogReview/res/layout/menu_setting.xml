@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/transparant"
         android:onClick="onSettingClicked"
-        android:src="@drawable/ic_setting_new" />
+        android:src="@drawable/bg_btn_setting" />
 
     <ImageButton
         android:id="@+id/imgBtn_favourite"
@@ -21,6 +21,6 @@
         android:layout_marginTop="4dp"
         android:background="@color/transparant"
         android:onClick="onFavouriteClicked"
-        android:src="@drawable/ic_favourite" />
+        android:src="@drawable/bg_btn_favorite" />
 
 </LinearLayout>

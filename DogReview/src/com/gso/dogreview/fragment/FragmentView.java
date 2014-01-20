@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.gso.dogreview.R;
 
@@ -16,6 +18,7 @@ public class FragmentView extends DialogFragment {
 	private ImageView imgContent;
 	private ImageButton imgBtnClose;
 	private int pageNumber;
+	private LinearLayout lnContent;
 
 	@Override
 	public void onResume() {
@@ -49,6 +52,7 @@ public class FragmentView extends DialogFragment {
 		View v = inflater.inflate(R.layout.image_popup_screen, container, false);
 		imgContent = (ImageView)v.findViewById(R.id.imgeContent);
 		imgBtnClose = (ImageButton)v.findViewById(R.id.img_btn_close);
+		lnContent = (LinearLayout)v.findViewById(R.id.lnContent);
 		switch (pageNumber) {
 		case 1:
 			imgContent.setBackgroundResource(R.drawable.bg_setting_row1);	
@@ -59,6 +63,15 @@ public class FragmentView extends DialogFragment {
 
 		case 3:
 			imgContent.setBackgroundResource(R.drawable.bg_setting_row3);			
+			break;
+		case 9:
+			View v9 = inflater.inflate(R.layout.page09, container, false);
+			lnContent.addView(v9);
+			imgContent.setVisibility(View.GONE);
+			break;
+		case 10:
+			lnContent.setBackgroundResource(R.drawable.bg_page09);
+			imgContent.setBackgroundResource(R.drawable.bg_page10);
 			break;
 		default:
 			break;

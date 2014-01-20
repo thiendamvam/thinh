@@ -42,14 +42,14 @@ public class FooterPage8Fragement extends Fragment implements OnClickListener {
 	public void btnLeftCliked(View v){
 		FragmentView fragment = new FragmentView();
 		Bundle b = new Bundle();
-		b.putInt("data", 1);
+		b.putInt("data", 9);
 		fragment.setArguments(b);
 		getFragmentManager().beginTransaction().add(fragment, "fragment1").commit();
 	}
 	public void btnRightCliked(View v){
 		FragmentView fragment = new FragmentView();
 		Bundle b = new Bundle();
-		b.putInt("data", 2);
+		b.putInt("data", 10);
 		fragment.setArguments(b);
 		getFragmentManager().beginTransaction().add(fragment, "fragment2").commit();
 	}

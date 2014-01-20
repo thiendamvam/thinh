@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -29,15 +30,17 @@ public class WelcomeActivity extends FragmentActivity implements
 	private Context context;
 	private Button btnEnter;
 	private HorizontalListView gallery;
+	private ImageView imgLogo;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
 		super.onCreate(arg0);
-		setContentView(R.layout.welcome_screen);
+		setContentView(R.layout.welcome_screen_new);
 		context = this;
 		imgBtnHome = (ImageButton) findViewById(R.id.imgBtn_home);
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
+		imgLogo = (ImageView)findViewById(R.id.imgLogoNew);
 		btnEnter = (Button) findViewById(R.id.btnEnter);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		TextView wcDes2 = (TextView)findViewById(R.id.wc_des2);
@@ -58,9 +61,9 @@ public class WelcomeActivity extends FragmentActivity implements
 	private void initUIwithAppType() {
 		// TODO Auto-generated method stub
 		if(DogReviewApplication.Instance().isPay()){
-			
+			imgLogo.setImageResource(R.drawable.welcome_pay);
 		}else{
-			
+			imgLogo.setImageResource(R.drawable.welcome_free);
 		}
 	}
 

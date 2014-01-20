@@ -26,7 +26,7 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 	private TextView tvnumberPage;
 	private int countPage = 1;
 	private int currentPage = 1;
-	private int max = 11;
+	private int max = 12;
 	private RelativeLayout content;
 	private RelativeLayout rlSettingMenu;
 	private ImageButton imgBtnSetting;
@@ -177,7 +177,9 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 		case 5:
 			result = R.drawable.bg_85;
 			break;
-
+		case 6:
+			result = R.drawable.bg_86;
+			break;
 		default:
 			break;
 		}
@@ -221,7 +223,9 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 		case 11:
 			result = getResources().getString(R.string.des_852);
 			break;
-
+		case 12:
+			result = "";
+			break;
 		default:
 			break;
 		}

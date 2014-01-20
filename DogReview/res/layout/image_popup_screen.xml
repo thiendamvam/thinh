@@ -6,15 +6,23 @@
     android:padding="6dp" >
 
     <ScrollView
+        android:id="@+id/srContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <ImageView
-            android:id="@+id/imgeContent"
+        <LinearLayout
+            android:id="@+id/lnContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparant"
-            android:scaleType="fitXY" />
+            android:layout_height="wrap_content" 
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgeContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparant"
+                android:scaleType="fitXY" />
+        </LinearLayout>
     </ScrollView>
 
     <ImageButton

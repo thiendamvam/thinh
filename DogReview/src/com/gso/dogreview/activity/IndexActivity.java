@@ -118,7 +118,8 @@ public class IndexActivity extends FragmentActivity implements
 		btnInfo.setOnClickListener(this);
 		// lvDogs.setOnScrollListener(this);
 		lvDogs.setOnItemClickListener(onItemClickListener);//
-
+		setViewVisibility(findViewById(R.id.progressBar), true);
+		new asynLoadData().execute(null,null);
 	}
 
 	@Override
@@ -126,8 +127,8 @@ public class IndexActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		super.onResume();
 //		exeListDogs();
-		setViewVisibility(findViewById(R.id.progressBar), true);
-		new asynLoadData().execute(null,null);
+//		setViewVisibility(findViewById(R.id.progressBar), true);
+//		new asynLoadData().execute(null,null);
 	}
 	
 	private void setViewVisibility(View v, boolean b) {

@@ -206,25 +206,28 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 			result = getResources().getString(R.string.des_832);
 			break;
 		case 6:
-			result = getResources().getString(R.string.des_841);
+			result = getResources().getString(R.string.des_833);
 			break;
 		case 7:
-			result = getResources().getString(R.string.des_842);
+			result = getResources().getString(R.string.des_841);
 			break;
 		case 8:
-			result = getResources().getString(R.string.des_843);
+			result = getResources().getString(R.string.des_842);
 			break;
 		case 9:
-			result = getResources().getString(R.string.des_844);
+			result = getResources().getString(R.string.des_843);
 			break;
 		case 10:
-			result = getResources().getString(R.string.des_851);
+			result = getResources().getString(R.string.des_844);
 			break;
 		case 11:
-			result = getResources().getString(R.string.des_852);
+			result = getResources().getString(R.string.des_851);
 			break;
 		case 12:
-			result = "";
+			result = getResources().getString(R.string.des_852);
+			break;
+		case 13:
+			result = getResources().getString(R.string.des_852);;
 			break;
 		default:
 			break;
@@ -279,7 +282,7 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 				}
 				break;
 			case 2:
-				if(temp < 2){
+				if(temp < 3){
 					
 				}else {
 					result = page+1;

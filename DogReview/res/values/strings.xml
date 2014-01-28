@@ -13,7 +13,7 @@
     <string name="next">Next</string>
     <string name="setting_row1">このアプリについて</string>
     <string name="setting_row2">アイコンの説明</string>
-    <string name="setting_row3">更新情報</string>
+    <string name="setting_row3">既読を全て未読にする</string>
     <string name="setting_row4">お気に入りの全消去</string>
     <string name="name_dev">C Daydream</string>
     <string name="email_dev">inunokimochi_app@gmail.com</string>
@@ -27,7 +27,7 @@
     <string name="title">表題</string>
     <string name="illustation">イラストA</string>
     <string name="comment">コメントA</string>
-    <string name="confirm_delete_favorite">お気になりをすべて消去しますか？</string>
+    <string name="confirm_delete_favorite">お気に入りをすべて消去しますか？</string>
     <string name="confirm_delete_favorite_title">""</string>
     <string name="confirm_delete_dog_read">お気に入りをすべて消去しますか？</string>
     <string name="confirm_delete_dog_read_title">""</string>
@@ -35,8 +35,9 @@
     <string name="des_811">大学生のナズナはカフェでアルバイトをしています。ある日、お姉ちゃんのミズナがお店にやってきました。どうやら飼っているペットについて相談があるようです。</string>
     <string name="des_821">ミズナ「子犬の頃はカワイイ、カワイイでいいけど、ナズナはしつけとかどうしてる？」ナズナ「どーしたの？お姉ちゃん。あの”ちくわ”お手くらいはできるようになった？」</string>
     <string name="des_822">ミズナ「それが全然。最近、しつけの本を読んでるんだけど、もし私が逆の立場だったら複雑だな～と思って」ナズナ「えー！犬の立場になって考えたの？」</string>
-    <string name="des_831">ナズナ「う～ん、たしかにそうだね～」ミズナ「犬がもっと何を考えてるかわかればいいのに…ナズナのトコはどうしてるの？”ちょも”あいかわらず元気？」</string>
-    <string name="des_832">ナズナ「え？　うん！元気だよ！　ウチは…その…普通にしてるから問題ない…かな～」</string>
+    <string name="des_831">ミズナ「うん、まぁそこまでじゃないんだけど、ペットも家族じゃない？もし、自分の子供だったら言葉で意志がわかったり、赤ちゃんならどうしたの？ってあの手この手であやすけど、ペットにはどうして しつけ だけなんだろう？」</string>
+    <string name="des_832">ナズナ「う～ん、たしかにそうだね～」ミズナ「犬がもっと何を考えてるかわかればいいのに…ナズナのトコはどうしてるの？”ちょも”あいかわらず元気？」</string>
+    <string name="des_833">ナズナ「え？　うん！元気だよ！　ウチは…その…普通にしてるから問題ない…かな～」</string>
     <string name="des_841">ナズナ「はぁ～　犬の立場かぁ～。あ、そうだ！そもそも普通の犬同士ってどうやってコミュニケーションとってるんだろう…」ちょも「どうしたのだナズナ、ちょもが普通じゃないような目で見るでないぞ！」</string>
     <string name="des_842">ナズナ「だって普通、犬は人間の言葉しゃべらないじゃない…」</string>
     <string name="des_843">ちょも「ふむぅ～、それは謎だがしかたないではないかナズナ。でも犬には犬なりの犬語があるぞ！」ナズナ「え？犬語？？」</string>

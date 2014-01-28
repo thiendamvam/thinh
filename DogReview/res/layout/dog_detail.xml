@@ -169,7 +169,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/rlFooter"
-        android:background="@drawable/bg_ads" >
+        android:background="@color/transparant" >
 
         <fragment
             android:id="@+id/nend_ads"

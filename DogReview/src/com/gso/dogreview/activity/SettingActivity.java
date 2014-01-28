@@ -46,6 +46,7 @@ public class SettingActivity extends FragmentActivity implements
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rl_setting_menu);
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting);
 		imgBtnSetting.setVisibility(View.GONE);
+		findViewById(R.id.img_btn_next).setVisibility(View.INVISIBLE);
 		tvHeaderTitle = (TextView)findViewById(R.id.tvHeaderTitle);
 		tvHeaderTitle.setText("SET UP");
 

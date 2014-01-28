@@ -6,6 +6,7 @@ import java.util.HashMap;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -54,7 +55,8 @@ public class IndexActivity extends FragmentActivity implements
 	public OnItemClickListener onItemClickListener = new OnItemClickListener() {
 		public void onItemClick(android.widget.AdapterView<?> arg0, View arg1,
 				int arg2, long arg3) {
-			
+			arg1.setBackgroundColor(Color.RED);
+			arg1.requestLayout();
 			ViewUserHolder holder = (ViewUserHolder)arg1.getTag();
 			Dog item = holder.data;
 			Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);

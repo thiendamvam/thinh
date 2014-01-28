@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:background="@color/transparant"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_page8_footer_l" />
+            android:src="@drawable/ic_page8_footer_r" />
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:background="@color/transparant"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_page8_footer_r" />
+            android:src="@drawable/ic_page8_footer_l" />
     </LinearLayout>
 
 </LinearLayout>

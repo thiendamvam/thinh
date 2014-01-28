@@ -81,6 +81,8 @@ public class DogDetailActivity extends FragmentActivity implements
 		wvThumnail = (ImageView) findViewById(R.id.wvThumnail);
 		tvTitle = (TextView) findViewById(R.id.tvTitle);
 		tvDescription = (TextView) findViewById(R.id.tvContentDescription);
+		Button btnBack = (Button)findViewById(R.id.img_btn_back);
+		btnBack.setBackgroundResource(R.drawable.ic_btn_index);
 		hideView(findViewById(R.id.rlInfo));
 		hideView(findViewById(R.id.btnInfo));
 		if (item != null) {

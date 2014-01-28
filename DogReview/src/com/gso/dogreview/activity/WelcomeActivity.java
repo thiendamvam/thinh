@@ -31,6 +31,7 @@ public class WelcomeActivity extends FragmentActivity implements
 	private Button btnEnter;
 	private HorizontalListView gallery;
 	private ImageView imgLogo;
+	private Button btnAds;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -42,6 +43,7 @@ public class WelcomeActivity extends FragmentActivity implements
 		imgBtnSetting = (ImageButton) findViewById(R.id.imgBtn_setting_menu);
 		imgLogo = (ImageView)findViewById(R.id.imgLogoNew);
 		btnEnter = (Button) findViewById(R.id.btnEnter);
+		btnAds = (Button)findViewById(R.id.btnAds);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		TextView wcDes2 = (TextView)findViewById(R.id.wc_des2);
 		wcDes2.setText(Html.fromHtml(getResources().getString(R.string.welcome_screen_des2)));
@@ -62,8 +64,10 @@ public class WelcomeActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		if(DogReviewApplication.Instance().isPay()){
 			imgLogo.setImageResource(R.drawable.welcome_pay);
+			btnAds.setVisibility(View.GONE);
 		}else{
 			imgLogo.setImageResource(R.drawable.welcome_free);
+			btnAds.setVisibility(View.VISIBLE);
 		}
 	}
 

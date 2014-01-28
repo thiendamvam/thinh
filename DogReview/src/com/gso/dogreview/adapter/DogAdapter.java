@@ -148,7 +148,9 @@ public class DogAdapter extends BaseAdapter {
 //		view.invalidate();
 		view.setTag(viewHolder);
 		valueResetItemPosition++;
-		
+		if(position == IndexActivity.clickSelection&&position !=0){
+			view.setBackgroundColor(context.getResources().getColor(R.color.bg_item_listview_index));
+		}
 		view.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -162,6 +164,7 @@ public class DogAdapter extends BaseAdapter {
 				}else if(type == 2){
 					((FavouriteActivity)context).onItemClickListener(v);
 				}
+				IndexActivity.clickSelection = position2;
 			}
 		});
 		return view;

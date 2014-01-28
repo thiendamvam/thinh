@@ -49,6 +49,7 @@ public class IndexActivity extends FragmentActivity implements
 	private Button btnBack;
 	private TextView tvHeaderTitle;
 	private MyListView myListView;
+	public static int clickSelection = 0;
 	// private ToggleButton tglOptionLv;
 	private DbAdapter db;
 
@@ -62,10 +63,18 @@ public class IndexActivity extends FragmentActivity implements
 			Intent i = new Intent(IndexActivity.this, DogDetailActivity.class);
 			i.putExtra("data", item);
 			startActivity(i);
+			clickSelection = arg2;
 		};
 	};
 	private ImageButton btnInfo;
 
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		clickSelection = 0;
+	}
+	
 	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub

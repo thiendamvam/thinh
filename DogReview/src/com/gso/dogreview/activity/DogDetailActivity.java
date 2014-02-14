@@ -203,7 +203,7 @@ public class DogDetailActivity extends FragmentActivity implements
 	private ArrayList<Comment> getListFromCursor(Cursor cursor) {
 		// TODO Auto-generated method stub
 		ArrayList<Comment> list = new ArrayList<Comment>();
-		do {
+		 while (cursor.moveToNext()) {
 			try {
 
 				Comment item = new Comment();
@@ -218,7 +218,7 @@ public class DogDetailActivity extends FragmentActivity implements
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		} while (cursor.moveToNext());
+		}
 		return list;
 	}
 

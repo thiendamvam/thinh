@@ -55,10 +55,12 @@ public class FragmentView extends DialogFragment {
 		lnContent = (LinearLayout)v.findViewById(R.id.lnContent);
 		switch (pageNumber) {
 		case 1:
-			imgContent.setBackgroundResource(R.drawable.bg_setting_row1);	
+			imgContent.setBackgroundResource(R.drawable.bg_setting_row1);
+			setBtnCloseVisible(false);
 			break;
 		case 2:
 			imgContent.setBackgroundResource(R.drawable.bg_setting_row2);
+			setBtnCloseVisible(false);
 			break;
 
 		case 3:
@@ -89,5 +91,8 @@ public class FragmentView extends DialogFragment {
 		return v;
 	}
 	
+	void setBtnCloseVisible(boolean b){
+		imgBtnClose.setVisibility(b?View.VISIBLE:View.GONE);
+	}
 
 }

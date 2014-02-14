@@ -143,4 +143,7 @@ public class WelcomeActivity extends FragmentActivity implements
 		Intent i = new Intent(context, InfoActivity.class);
 		startActivity(i);
 	}
+	public void onGotoPaidVersionClicked(View v){
+		
+	}
 }

@@ -98,6 +98,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/btnInfo"
                     android:layout_centerHorizontal="true"
+                    android:background="@drawable/ad_google"
+                    android:onClick="onGotoPaidVersionClicked"
                     android:layout_marginTop="10dp" />
             </RelativeLayout>
         </ScrollView>

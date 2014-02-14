@@ -25,9 +25,9 @@
             android:layout_below="@+id/imgContent"
             android:layout_centerHorizontal="true"
             android:ellipsize="end"
-            android:textColor="#dcdddd"
             android:gravity="center_horizontal"
-            android:padding="20dp" />
+            android:padding="20dp"
+            android:textColor="#dcdddd" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -50,25 +50,44 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <ImageButton
-        android:id="@+id/btn_arrow_l"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:background="@color/transparant"
+        android:gravity="center_vertical"
         android:onClick="onArrowLeftClicked"
-        android:src="@drawable/ic_arrow_back_big" />
+        android:paddingRight="50dp" >
 
-    <ImageButton
-        android:id="@+id/btn_arrow_r"
+        <ImageButton
+            android:id="@+id/btn_arrow_l"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@color/transparant"
+            android:onClick="onArrowLeftClicked"
+            android:src="@drawable/ic_arrow_back_big" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:background="@color/transparant"
-        android:onClick="onArrowRightClicked"
-        android:src="@drawable/ic_arrow_next_big" />
+        android:gravity="center_vertical"
+        android:onClick="onArrowLeftClicked"
+        android:paddingLeft="50dp" >
+
+        <ImageButton
+            android:id="@+id/btn_arrow_r"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@color/transparant"
+            android:onClick="onArrowRightClicked"
+            android:src="@drawable/ic_arrow_next_big" />
+    </LinearLayout>
 
 </RelativeLayout>

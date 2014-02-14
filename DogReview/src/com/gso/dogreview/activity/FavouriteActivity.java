@@ -124,10 +124,10 @@ public class FavouriteActivity extends FragmentActivity implements
 						.getColumnIndex(DbAdapter.DOG_DESC)));
 				item.setAvatar(c.getString(c
 						.getColumnIndex(DbAdapter.DOG_AVATAR)));
-				item.setFavourite(c.getInt(c
-						.getColumnIndex(DbAdapter.DOG_FAVOURITE)) == 1 ? true
-						: false);
-
+//				item.setFavourite(c.getInt(c
+//						.getColumnIndex(DbAdapter.DOG_FAVOURITE)) == 1 ? true
+//						: false);
+				item.setFavourite(true);
 				list.add(item);
 			} catch (Exception e) {
 				// TODO: handle exception

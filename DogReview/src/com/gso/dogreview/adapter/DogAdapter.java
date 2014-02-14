@@ -89,61 +89,64 @@ public class DogAdapter extends BaseAdapter {
 		int position = position2;
 //		Log.e("getView",position+"is postion on windows and position of listview "+position2);
 		Dog item = list.get(position2);
-//		if (convertView == null) {
+		ViewUserHolder viewHolder= null;
+		if (convertView == null) {
 			
 			view = LayoutInflater.from(context).inflate(R.layout.dog_item, null);
-			final ViewUserHolder viewHolder = new ViewUserHolder();
+			viewHolder = new ViewUserHolder();
 			viewHolder.imgAvatar = (ImageView)view.findViewById(R.id.imgAvatar);
 			viewHolder.tvName = (TextView)view.findViewById(R.id.tvName);
 			viewHolder.tvDescription = (TextView)view.findViewById(R.id.tvDes);
 			viewHolder.imgFav = (ImageView)view.findViewById(R.id.imgFavourtie);
-			viewHolder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
+			view.setTag(viewHolder);
+				
+		} else {
+			view = convertView;
+			viewHolder = (ViewUserHolder)convertView.getTag();
+		}
+		viewHolder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
 
-			if(position == 0){
-				viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row1));
-			}else{
-				viewHolder.tvName.setText(item.getName());	
-			}
-			
-			viewHolder.tvDescription.setText(item.getDescription());
-			viewHolder.data = item;
-//			viewList.put(String.valueOf(position), view);
-			if(!item.isRead()){
-				viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_blue_no:R.drawable.ic_red_no);
-			}else{
-				viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
-			}
-			
-			
-			viewHolder.imgFav.setTag(viewHolder);
+		if(position == 0){
+			viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row1));
+		}else{
+			viewHolder.tvName.setText(item.getName());	
+		}
+		
+		viewHolder.tvDescription.setText(item.getDescription());
+		viewHolder.data = item;
+//		viewList.put(String.valueOf(position), view);
+		if(!item.isRead()){
+			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_blue_no:R.drawable.ic_red_no);
+		}else{
+			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
+		}
+		
+		
+		viewHolder.imgFav.setTag(viewHolder);
 
-//			if(position%2==0&&position%3==0){
-//				
-//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
+//		if(position%2==0&&position%3==0){
+//			
+//			view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
+//		}else{
+//			
+//			int mod= position%7 , value;
+//			if(mod >= 3){
+//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((mod-3)*30*density),(int)listviewHeight/7));			
 //			}else{
-//				
-//				int mod= position%7 , value;
-//				if(mod >= 3){
-//					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((mod-3)*30*density),(int)listviewHeight/7));			
-//				}else{
-//					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3 - mod)*30*density),(int)listviewHeight/7));
-//				}
-//				
-//					
+//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3 - mod)*30*density),(int)listviewHeight/7));
 //			}
-			
-//			if(position==0||position==5){
-//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3)*30*density),(int)listviewHeight/6));
-//			}else if(position==1||position==4){
-//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((2)*30*density),(int)listviewHeight/6));
-//			}else if(position==2||position==3){
-//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((1)*30*density),(int)listviewHeight/6));
-//			}
-			
-//		} else {
-//			view = convertView;
-//
+//			
+//				
 //		}
+		
+//		if(position==0||position==5){
+//			view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3)*30*density),(int)listviewHeight/6));
+//		}else if(position==1||position==4){
+//			view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((2)*30*density),(int)listviewHeight/6));
+//		}else if(position==2||position==3){
+//			view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((1)*30*density),(int)listviewHeight/6));
+//		}
+
 //		view.requestLayout();
 //		view.invalidate();
 		view.setTag(viewHolder);

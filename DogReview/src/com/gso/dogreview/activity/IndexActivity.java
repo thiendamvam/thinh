@@ -209,7 +209,7 @@ public class IndexActivity extends FragmentActivity implements
 		db.open();
 		Cursor c = db.getDogList();
 		if (c.moveToNext()) {
-			do {
+			while (c.moveToNext()) {
 				try {
 					Dog item = new Dog();
 					item.setId(c.getString(c.getColumnIndex(DbAdapter.DOG_ID)));
@@ -230,7 +230,7 @@ public class IndexActivity extends FragmentActivity implements
 					// TODO: handle exception
 					e.printStackTrace();
 				}
-			} while (c.moveToNext());
+			} 
 		} else {
 			ExelService exelService = new ExelService();
 			HashMap<String, Object> result = new HashMap<String, Object>();

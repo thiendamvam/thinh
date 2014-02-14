@@ -127,7 +127,7 @@ public class DogDetailActivity extends FragmentActivity implements
 		db.open();
 		Cursor c = db.getDogById(id);
 		if (c.getCount() > 0) {
-			do {
+			while (c.moveToNext()){
 				try {
 					item.setId((c.getString(c.getColumnIndex(DbAdapter.DOG_ID))));
 					item.setName((c.getString(c
@@ -144,7 +144,7 @@ public class DogDetailActivity extends FragmentActivity implements
 					e.printStackTrace();
 				}
 
-			} while (c.moveToNext());
+			} 
 			if (item != null) {
 				bindData(item);
 				setBackNextButton(item.getId());

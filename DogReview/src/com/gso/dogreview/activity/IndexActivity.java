@@ -364,7 +364,9 @@ public class IndexActivity extends FragmentActivity implements
 		ViewUserHolder holder = (ViewUserHolder) v.getTag();
 		if (holder != null) {
 			Dog item = holder.data;
+			
 			try {
+				Log.d("onIconFavouriteClicked", "name: "+item.getName());
 				db.open();
 				if (item.isFavourite()) {
 					item.setFavourite(false);

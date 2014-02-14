@@ -2,6 +2,7 @@ package com.gso.dogreview.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import com.gso.dogreview.Config;
 import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
+import com.gso.dogreview.activity.InfoActivity;
 import com.gso.dogreview.activity.Page8Activity;
 import com.gso.facebookframework.FacebookHandler;
 import com.gso.twitterframework.TwitterHandler;
@@ -27,6 +29,7 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 	private ImageButton imgBtnTwitter;
 	private ImageButton imgBtnFb;
 	private Context context;
+	private ImageButton imgBtnInfo;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -50,9 +53,11 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 		btnBack = (Button) v.findViewById(R.id.img_btn_back);
 		imgBtnTwitter = (ImageButton) v.findViewById(R.id.img_btn_twitter);
 		imgBtnFb = (ImageButton) v.findViewById(R.id.img_btn_facebook);
+		imgBtnInfo = (ImageButton)v.findViewById(R.id.btnInfo);
 		btnBack.setOnClickListener(this);
 		imgBtnTwitter.setOnClickListener(this);
 		imgBtnFb.setOnClickListener(this);
+		imgBtnInfo.setOnClickListener(this);
 
 		return v;
 	}
@@ -70,8 +75,17 @@ public class FooterFragment extends Fragment implements OnClickListener, ITwitte
 		}
 		else if(id== R.id.img_btn_facebook){
 			onFbClicked();
+		}else if(id == R.id.btnInfo){
+			onInfoClicked();
 		}
 
+	}
+
+	private void onInfoClicked() {
+		// TODO Auto-generated method stub
+		Log.d("exeInfoClicked","exeInfoClicked");
+		Intent i = new Intent(context, InfoActivity.class);
+		startActivity(i);
 	}
 
 	private void onBackClicked() {

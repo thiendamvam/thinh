@@ -115,11 +115,12 @@ public class FavouriteActivity extends FragmentActivity implements
 		// }
 		db.open();
 		Cursor c = db.getFavoriteDogList();
-		do {
+		while (c.moveToNext()) {
 			try {
 				Dog item = new Dog();
 				item.setId(c.getString(c.getColumnIndex(DbAdapter.DOG_ID)));
 				item.setName(c.getString(c.getColumnIndex(DbAdapter.DOG_NAME)));
+				item.setFavourite(true);
 				item.setDescription(c.getString(c
 						.getColumnIndex(DbAdapter.DOG_DESC)));
 				item.setAvatar(c.getString(c
@@ -127,13 +128,13 @@ public class FavouriteActivity extends FragmentActivity implements
 //				item.setFavourite(c.getInt(c
 //						.getColumnIndex(DbAdapter.DOG_FAVOURITE)) == 1 ? true
 //						: false);
-				item.setFavourite(true);
+				Log.d("getDataDogs","name: "+item.getName());
 				list.add(item);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		} while (c.moveToNext());
+		} 
 		c.close();
 		db.close();
 		return list;

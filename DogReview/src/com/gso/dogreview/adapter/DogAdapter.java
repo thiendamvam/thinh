@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import twitter4j.util.ImageUpload.ImgLyOAuthUploader;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -107,7 +109,14 @@ public class DogAdapter extends BaseAdapter {
 		viewHolder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
 
 		if(position == 0){
-			viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row1));
+			if(this.type == 2){
+				viewHolder.tvName.setText(item.getName());
+			}else{
+				viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row1));
+				viewHolder.imgFav.setVisibility(View.INVISIBLE);
+			}
+			
+			
 		}else{
 			viewHolder.tvName.setText(item.getName());	
 		}

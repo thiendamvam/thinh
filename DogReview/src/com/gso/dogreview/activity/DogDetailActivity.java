@@ -102,16 +102,16 @@ public class DogDetailActivity extends FragmentActivity implements
 			if (id != null) {
 				int index = Integer.parseInt(id);
 				if (index > 0 && index < count) {
-					btnBack.setVisibility(View.VISIBLE);
+//					btnBack.setVisibility(View.VISIBLE);
 					btnNext.setVisibility(View.VISIBLE);
 				} else if (index > 0 && index == count) {
-					btnBack.setVisibility(View.GONE);
+//					btnBack.setVisibility(View.GONE);
 					btnNext.setVisibility(View.GONE);
 				} else if (index < count) {
-					btnBack.setVisibility(View.VISIBLE);
+//					btnBack.setVisibility(View.VISIBLE);
 					btnNext.setVisibility(View.VISIBLE);
 				} else {
-					btnBack.setVisibility(View.GONE);
+//					btnBack.setVisibility(View.GONE);
 					btnNext.setVisibility(View.VISIBLE);
 				}
 			}

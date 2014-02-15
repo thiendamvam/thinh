@@ -29,7 +29,7 @@
     <string name="comment">コメントA</string>
     <string name="confirm_delete_favorite">お気に入りをすべて消去しますか？</string>
     <string name="confirm_delete_favorite_title">""</string>
-    <string name="confirm_delete_dog_read">お気に入りをすべて消去しますか？</string>
+    <string name="confirm_delete_dog_read">既読を全て未読にしますか？</string>
     <string name="confirm_delete_dog_read_title">""</string>
     <string name="info_text">※黒板の中にチョークで描かれた隠れちょもが「5匹」いるぞ。見つけられるかな</string>
     <string name="des_811">大学生のナズナはカフェでアルバイトをしています。ある日、お姉ちゃんのミズナがお店にやってきました。どうやら飼っているペットについて相談があるようです。</string>
@@ -44,5 +44,7 @@
     <string name="des_844">ちょも「そうだぞ、犬は犬同士、犬語でコミュニケーションをとっているのである！」ナズナ「ねぇ、ちょも それちょっと教えて！」</string>
     <string name="des_851">ちょも「わかったぞナズナ！ちょもが犬語を教えてあげるぞ！」ナズナ「やったー！覚えてお姉ちゃんに教えてあげよ～」</string>
     <string name="des_852">ちょも「任せろだぞ！」</string>
+    
+    <string name="index_row26_free">エンド／お知らせ</string>
 
 </resources>

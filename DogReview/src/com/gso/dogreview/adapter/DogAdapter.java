@@ -106,92 +106,121 @@ public class DogAdapter extends BaseAdapter {
 			view = convertView;
 			viewHolder = (ViewUserHolder)convertView.getTag();
 		}
-		viewHolder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
-
-		if(position == 0){
-			if(this.type == 2){
-				viewHolder.tvName.setText(item.getName());
-			}else{
-				viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row1));
-				viewHolder.imgFav.setVisibility(View.INVISIBLE);
-			}
-			
-			
+		boolean isRow26Free = false;
+		if(DogReviewApplication.Instance().isPay()){
+			isRow26Free = false;
 		}else{
-			viewHolder.tvName.setText(item.getName());	
+			if(getTypeRow(position)==25){
+				isRow26Free = true;
+			}
 		}
 		
-		viewHolder.tvDescription.setText(item.getDescription());
-		viewHolder.data = item;
-//		viewList.put(String.valueOf(position), view);
-		if(!item.isRead()){
+		if(isRow26Free){
+			viewHolder.imgFav.setVisibility(View.INVISIBLE);
+			viewHolder.tvName.setText(context.getResources().getString(R.string.index_row26_free));
 			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_blue_no:R.drawable.ic_red_no);
 		}else{
-			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
-		}
-		
-		
-		viewHolder.imgFav.setTag(viewHolder);
+			viewHolder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
 
-//		if(position%2==0&&position%3==0){
-//			
-//			view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
-//		}else{
-//			
-//			int mod= position%7 , value;
-//			if(mod >= 3){
-//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((mod-3)*30*density),(int)listviewHeight/7));			
-//			}else{
-//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3 - mod)*30*density),(int)listviewHeight/7));
-//			}
-//			
-//				
-//		}
-		
-//		if(position==0||position==5){
-//			view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3)*30*density),(int)listviewHeight/6));
-//		}else if(position==1||position==4){
-//			view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((2)*30*density),(int)listviewHeight/6));
-//		}else if(position==2||position==3){
-//			view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((1)*30*density),(int)listviewHeight/6));
-//		}
-
-//		view.requestLayout();
-//		view.invalidate();
-		view.setTag(viewHolder);
-		valueResetItemPosition++;
-		if(position == IndexActivity.clickSelection&&position !=0){
-			view.setBackgroundColor(Color.RED);//context.getResources().getColor(R.color.bg_item_listview_index)
-		}
-		view.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(type == 1){
-					if(position2!=0)
-						((IndexActivity)context).onItemClickListener(v);
-					else
-						((IndexActivity)context).gotoPage8();
-				}else if(type == 2){
-					((FavouriteActivity)context).onItemClickListener(v);
+			if(position == 0){
+				if(this.type == 2){
+					viewHolder.tvName.setText(item.getName());
+				}else{
+					viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row1));
+					viewHolder.imgFav.setVisibility(View.INVISIBLE);
 				}
-				IndexActivity.clickSelection = position2;
-				notifyDataSetChanged();
-				v.setBackgroundColor(Color.RED);
+				
+				
+			}else{
+				viewHolder.tvName.setText(item.getName());	
 			}
-		});
+			
+			viewHolder.tvDescription.setText(item.getDescription());
+			viewHolder.data = item;
+//			viewList.put(String.valueOf(position), view);
+			if(!item.isRead()){
+				viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_blue_no:R.drawable.ic_red_no);
+			}else{
+				viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
+			}
+			
+			
+			viewHolder.imgFav.setTag(viewHolder);
+
+//			if(position%2==0&&position%3==0){
+//				
+//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
+//			}else{
+//				
+//				int mod= position%7 , value;
+//				if(mod >= 3){
+//					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((mod-3)*30*density),(int)listviewHeight/7));			
+//				}else{
+//					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3 - mod)*30*density),(int)listviewHeight/7));
+//				}
+//				
+//					
+//			}
+			
+//			if(position==0||position==5){
+//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3)*30*density),(int)listviewHeight/6));
+//			}else if(position==1||position==4){
+//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((2)*30*density),(int)listviewHeight/6));
+//			}else if(position==2||position==3){
+//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((1)*30*density),(int)listviewHeight/6));
+//			}
+
+//			view.requestLayout();
+//			view.invalidate();
+			view.setTag(viewHolder);
+			valueResetItemPosition++;
+			if(position == IndexActivity.clickSelection&&position !=0){
+				view.setBackgroundColor(context.getResources().getColor(R.color.bg_item_listview_index_pressed));
+			}else{
+				view.setBackgroundColor(context.getResources().getColor(R.color.bg_item_listview_index));
+			}
+			view.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(type == 1){
+						if(position2==25)
+							((IndexActivity)context).onItemClickListener(v);
+						else if(position2!=0)
+							((IndexActivity)context).gotoPage26();
+						else
+							((IndexActivity)context).gotoPage8();
+					}else if(type == 2){
+						((FavouriteActivity)context).onItemClickListener(v);
+					}
+					IndexActivity.clickSelection = position2;
+					notifyDataSetChanged();
+					v.setBackgroundColor(context.getResources().getColor(R.color.bg_item_listview_index_pressed));
+				}
+			});
+		}
 		return view;
+	}
+
+	private int getTypeRow(int position) {
+		// TODO Auto-generated method stub
+		Log.d("getTypeRow","getTypeRow "+position);
+		return position;
 	}
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
 		int size = list.size();
+		Log.d("getCount","getCount "+size);
 		if(DogReviewApplication.Instance().isPay()){
-			return size;	
+			return size > 50?50:size;	
 		}else{
-			return size <= 25?size:25;
+			if(type == 1)
+				return size <= 25?size+1:25+1;
+			else 
+				return size <= 25?size:25;
 		}
 		
 	}

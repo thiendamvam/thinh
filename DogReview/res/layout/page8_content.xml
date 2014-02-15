@@ -75,7 +75,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:gravity="center_vertical"
-        android:onClick="onArrowLeftClicked"
+        android:onClick="onArrowRightClicked"
         android:paddingLeft="50dp" >
 
         <ImageButton

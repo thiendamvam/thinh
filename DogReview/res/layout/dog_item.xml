@@ -2,14 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/transparant"
     android:padding="0dp" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="0.9"
-        android:background="@color/bg_item_listview_index" >
+        android:alpha="0.9" >
 
         <ImageView
             android:id="@+id/imgAvatar"

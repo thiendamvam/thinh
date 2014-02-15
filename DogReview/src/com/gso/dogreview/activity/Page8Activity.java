@@ -141,21 +141,40 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 
 	private void setContentAndDes(boolean isInit, boolean isLeft) {
 		// TODO Auto-generated method stub
+		boolean isUpdateContent = true;
+		Log.d("setContentAndDes","isLeft = "+isLeft);
 		if(isInit){
 			
 		}else if(isLeft){
-			countPage --;
-		}else{ 
-			countPage++;
+			if(countPage>1){
+				countPage --;
+				isUpdateContent = true;
+			}else{
+				isUpdateContent = false;
+			}
+			
+		}else{
+			if(countPage < max){
+				countPage++;
+				isUpdateContent = true;
+			}else{
+				isUpdateContent = false;
+			}
+			
 		}
-		String des = getDes();
-		setDes(des);
-		if(!isInit)
-			currentPage = getNewPage(currentPage, isLeft);
-		setPageCount(countPage);
-		int resourceContent = getResourceContent();
-		setSrcContent(resourceContent);
-		setLeftRightVisibility();
+		if(isUpdateContent){
+			String des = getDes();
+			setDes(des);
+			if(!isInit)
+				currentPage = getNewPage(currentPage, isLeft);
+			setPageCount(countPage);
+			int resourceContent = getResourceContent();
+			setSrcContent(resourceContent);
+			setLeftRightVisibility();
+		}else{
+			contentTouched(false);
+		}
+		
 	}
 
 	private int getResourceContent() {

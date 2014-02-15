@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:app1="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_index" xmlns:app1="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/bg_index" >
 
     <RelativeLayout
         android:id="@+id/rlListViewContent"
@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/rlAds"
         android:layout_below="@+id/header"
-        android:layout_marginTop="-2dp" >
+        android:layout_marginTop="-2dp"
+         >
 
         <com.gso.dogreview.view.CenterSymmetricListview
             android:id="@+id/lv_list_item"
@@ -20,8 +21,8 @@
             android:divider="@color/transparant"
             android:dividerHeight="5dp"
             android:visibility="visible"
-            app1:indent_offset="22dp"
-            /><!--   -->
+            app1:indent_offset="22dp" />
+        <!--  -->
 
         <com.gso.dogreview.view.MyListView
             android:id="@+id/lv_list_item_cutom"
@@ -31,6 +32,26 @@
             android:dividerHeight="5dp"
             android:visibility="invisible" >
         </com.gso.dogreview.view.MyListView>
+
+        <ScrollView
+            android:id="@+id/srPage26"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_page8"
+            android:visibility="invisible" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/imgPage26Content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/page26_contents_end_free" />
+            </RelativeLayout>
+        </ScrollView>
     </RelativeLayout>
 
     <RelativeLayout
@@ -54,9 +75,10 @@
 
         <fragment
             android:name="com.gso.dogreview.fragment.HeaderFragment"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rlAds"
         android:layout_width="match_parent"
@@ -70,6 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rlFooter"
         android:layout_width="match_parent"

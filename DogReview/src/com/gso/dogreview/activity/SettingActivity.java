@@ -134,7 +134,7 @@ public class SettingActivity extends FragmentActivity implements
 //		fragment.setArguments(b);
 //		getSupportFragmentManager().beginTransaction().add(fragment, "fragment3").commit();
 		String title = getResources().getString(R.string.confirm_delete_favorite_title);
-		String message = getResources().getString(R.string.confirm_delete_favorite);
+		String message = getResources().getString(R.string.confirm_delete_dog_read);
 		Util.showConfirmDialog(context,  title, message, SettingActivity.this, DELETE_READ_DOG );
 	}
 	public void row4Cliked(View v){

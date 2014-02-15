@@ -23,9 +23,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.adapter.DogAdapter.ViewUserHolder;
@@ -67,6 +69,7 @@ public class IndexActivity extends FragmentActivity implements
 		};
 	};
 	private ImageButton btnInfo;
+	private boolean isPage26;
 
 	@Override
 	protected void onDestroy() {
@@ -89,12 +92,31 @@ public class IndexActivity extends FragmentActivity implements
 		myListView = (MyListView) findViewById(R.id.lv_list_item_cutom);
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
-		tvHeaderTitle.setText("INDEX");
+		
 		btnInfo = (ImageButton) findViewById(R.id.btnInfo);
 //		lvDogs.setOnItemClickListener(onItemClicked);
 		db = new DbAdapter(context);
 		hideView(findViewById(R.id.rlShare));
 		hideView(findViewById(R.id.img_btn_next));
+		imgBtnSetting.setOnClickListener(this);
+		btnBack.setOnClickListener(this);
+		btnInfo.setOnClickListener(this);
+		lvDogs.setOnItemClickListener(onItemClickListener);
+		isPage26 = getIntent().getBooleanExtra("is_page26", false);
+		if(isPage26){
+			hideView(findViewById(R.id.rlAds));
+			setViewVisibility(lvDogs, false);
+			setViewVisibility(findViewById(R.id.srPage26), true);
+			tvHeaderTitle.setText("CONTENTS");
+			Button btnBack = (Button)findViewById(R.id.img_btn_back);
+			btnBack.setBackgroundResource(R.drawable.ic_btn_index);
+			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)rlListViewContent.getLayoutParams();
+			params.setMargins(0, (int)(-14*DogReviewApplication.Instance().getDensity()), 0, 0);
+			rlListViewContent.setLayoutParams(params);
+		}else{
+			tvHeaderTitle.setText("INDEX");
+			hideView(findViewById(R.id.srPage26));
+		}
 		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
 		// tglOptionLv.setOnCheckedChangeListener(new
 		// CompoundButton.OnCheckedChangeListener() {
@@ -112,12 +134,8 @@ public class IndexActivity extends FragmentActivity implements
 		// }
 		// }
 		// });
-
-		imgBtnSetting.setOnClickListener(this);
-		btnBack.setOnClickListener(this);
-		btnInfo.setOnClickListener(this);
 		// lvDogs.setOnScrollListener(this);
-		lvDogs.setOnItemClickListener(onItemClickListener);//
+		//
 //		setViewVisibility(findViewById(R.id.progressBar), true);
 //		new asynLoadData().execute(null,null);
 	}
@@ -127,9 +145,12 @@ public class IndexActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		super.onResume();
 //		exeListDogs();
-		setViewVisibility(findViewById(R.id.progressBar), true);
+		if(!isPage26){
+			setViewVisibility(findViewById(R.id.progressBar), true);
+			new asynLoadData().execute(null,null);	
+		}
 		setViewVisibility(rlSettingMenu, false);
-		new asynLoadData().execute(null,null);
+		
 	}
 	
 	private void setViewVisibility(View v, boolean b) {
@@ -458,6 +479,13 @@ public class IndexActivity extends FragmentActivity implements
 	public void exeInfoClicked(View v){
 		Log.d("exeInfoClicked","exeInfoClicked");
 		Intent i = new Intent(context, InfoActivity.class);
+		startActivity(i);
+	}
+
+	public void gotoPage26() {
+		// TODO Auto-generated method stub
+		Intent i = new Intent(context, IndexActivity.class);
+		i.putExtra("is_page26", true);
 		startActivity(i);
 	}
 }

@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvContentDescription"
                     android:background="@color/transparant"
-                    android:src="@drawable/bg_illustration_41" />
+                    android:src="@drawable/illustration_41" />
 
                 <ListView
                     android:id="@+id/lv_chats"

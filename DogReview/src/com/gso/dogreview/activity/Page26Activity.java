@@ -136,6 +136,13 @@ public class Page26Activity extends FragmentActivity implements
 	}
 
 	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		setSettingGroupViewVisibility(false);
+		changeResourceSettingMenu(false);
+	}
+	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
@@ -144,7 +151,7 @@ public class Page26Activity extends FragmentActivity implements
 			setViewVisibility(findViewById(R.id.progressBar), true);
 			new asynLoadData().execute(null,null);	
 		}
-		setViewVisibility(rlSettingMenu, false);
+
 		
 	}
 	

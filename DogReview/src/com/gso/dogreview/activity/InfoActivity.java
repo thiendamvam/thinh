@@ -62,6 +62,15 @@ public class InfoActivity extends FragmentActivity implements OnClickListener {
 		}
 	}
 
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		if(rlSettingMenu.getVisibility()==View.VISIBLE){
+			setViewVisibility(false);
+			changeResourceSettingMenu(false);
+		}
+	}
 	private void exeMenuClicked() {
 		// TODO Auto-generated method stub
 		if (rlSettingMenu.getVisibility() == View.VISIBLE) {

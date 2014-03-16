@@ -84,12 +84,8 @@ public class DogAdapter extends BaseAdapter {
 	@Override
 	public View getView(final int position2, View convertView, ViewGroup parent) {
 		View view = null;
-//		convertView = viewList.get("" + position);
-//		int position = valueResetItemPosition!=1000?valueResetItemPosition:position2;
-//		if(position > 6 )
-//			position = 0;
+
 		int position = position2;
-//		Log.e("getView",position+"is postion on windows and position of listview "+position2);
 		Dog item = list.get(position2);
 		ViewUserHolder viewHolder= null;
 		if (convertView == null) {
@@ -119,63 +115,61 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.imgFav.setVisibility(View.INVISIBLE);
 			viewHolder.tvName.setText(context.getResources().getString(R.string.index_row26_free));
 			viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_blue_no:R.drawable.ic_red_no);
+			view.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(type == 1){
+						if(getTypeRow(position2)==25)
+							((IndexActivity)context).gotoPage26();
+					}else if(type == 2){
+						((FavouriteActivity)context).onItemClickListener(v);
+					}
+					IndexActivity.clickSelection = position2;
+					notifyDataSetChanged();
+//					v.setBackgroundColor(context.getResources().getColor(R.drawable.item_pressed));
+					v.setBackgroundResource(R.drawable.item_pressed);
+				}
+			});
+			
 		}else{
 			viewHolder.imgFav.setImageResource(item.isFavourite()?R.drawable.ic_favourite_fc:R.drawable.ic_favourite_unfc);
 
-			if(position == 0){
+			if(position == 0 || position == 1|| position==2||position == 3){
 				if(this.type == 2){
 					viewHolder.tvName.setText(item.getName());
 				}else{
-					viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row1));
+					if(position == 0){
+						viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row0));						
+					}else if(position == 1){
+						viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row1));
+					}else if(position == 2){
+						viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row2));
+					}else if(position == 3){
+						viewHolder.tvName.setText(context.getResources().getString(R.string.wc_row3));
+					}
+
 					viewHolder.imgFav.setVisibility(View.INVISIBLE);
 				}
-				
-				
 			}else{
 				viewHolder.tvName.setText(item.getName());	
 			}
 			
 			viewHolder.tvDescription.setText(item.getDescription());
 			viewHolder.data = item;
-//			viewList.put(String.valueOf(position), view);
 			if(!item.isRead()){
 				viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_blue_no:R.drawable.ic_red_no);
 			}else{
 				viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
 			}
 			
-			
 			viewHolder.imgFav.setTag(viewHolder);
-
-//			if(position%2==0&&position%3==0){
-//				
-//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)(3*30*density),(int)listviewHeight/7));
-//			}else{
-//				
-//				int mod= position%7 , value;
-//				if(mod >= 3){
-//					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((mod-3)*30*density),(int)listviewHeight/7));			
-//				}else{
-//					view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3 - mod)*30*density),(int)listviewHeight/7));
-//				}
-//				
-//					
-//			}
-			
-//			if(position==0||position==5){
-//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((3)*30*density),(int)listviewHeight/6));
-//			}else if(position==1||position==4){
-//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((2)*30*density),(int)listviewHeight/6));
-//			}else if(position==2||position==3){
-//				view.setLayoutParams(new AbsListView.LayoutParams((int)(listviewWidth-20*density)-(int)((1)*30*density),(int)listviewHeight/6));
-//			}
-
-//			view.requestLayout();
-//			view.invalidate();
 			view.setTag(viewHolder);
 			valueResetItemPosition++;
 			if(position == IndexActivity.clickSelection&&position !=0){
-				view.setBackgroundColor(context.getResources().getColor(R.color.bg_item_listview_index_pressed));
+//				view.setBackgroundColor(context.getResources().getColor(R.drawable.item_pressed));
+				view.setBackgroundResource(R.drawable.item_pressed);
 			}else{
 				view.setBackgroundColor(context.getResources().getColor(R.color.bg_item_listview_index));
 			}
@@ -185,18 +179,31 @@ public class DogAdapter extends BaseAdapter {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					if(type == 1){
-						if(position2==25)
-							((IndexActivity)context).onItemClickListener(v);
-						else if(position2!=0)
-							((IndexActivity)context).gotoPage26();
-						else
-							((IndexActivity)context).gotoPage8();
+//						if(position2!=0){
+//							((IndexActivity)context).onItemClickListener(v);
+//						}
+//						else
+						{
+							if(position2 == 0){
+								((IndexActivity)context).gotoPage(0);
+							}else if(position2 == 1){
+								((IndexActivity)context).gotoPage(1);
+							}else if(position2 == 2){
+								((IndexActivity)context).gotoPage(2);
+							}else if(position2 == 3){
+								((IndexActivity)context).gotoPage(3);
+							}else{
+								((IndexActivity)context).onItemClickListener(v);
+							}
+//							((IndexActivity)context).gotoPage8();
+						}
 					}else if(type == 2){
 						((FavouriteActivity)context).onItemClickListener(v);
 					}
 					IndexActivity.clickSelection = position2;
 					notifyDataSetChanged();
-					v.setBackgroundColor(context.getResources().getColor(R.color.bg_item_listview_index_pressed));
+//					v.setBackgroundColor(context.getResources().getColor(R.drawable.item_pressed));
+					v.setBackgroundResource(R.drawable.item_pressed);
 				}
 			});
 		}

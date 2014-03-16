@@ -32,7 +32,7 @@ public class InfoContentFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				String url = "https://play.google.com/store/apps/details?id="+DogReviewApplication.Instance().getPackageName();
+				String url = DogReviewApplication.Instance().getGoogleAppLink();
 				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 				startActivity(browserIntent);
 

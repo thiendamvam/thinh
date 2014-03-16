@@ -32,6 +32,7 @@ import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.adapter.DogAdapter.ViewUserHolder;
 import com.gso.dogreview.database.DbAdapter;
+import com.gso.dogreview.fragment.FragmentView;
 import com.gso.dogreview.model.Comment;
 import com.gso.dogreview.model.Dog;
 import com.gso.dogreview.service.ExelService;
@@ -76,6 +77,15 @@ public class IndexActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		clickSelection = 0;
+	}
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		if(rlSettingMenu.getVisibility()==View.VISIBLE){
+			setSettingGroupViewVisibility(false);
+			changeResourceSettingMenu(false);
+		}
 	}
 	
 	@Override
@@ -487,5 +497,53 @@ public class IndexActivity extends FragmentActivity implements
 		Intent i = new Intent(context, IndexActivity.class);
 		i.putExtra("is_page26", true);
 		startActivity(i);
+	}
+	public void gotoPage(int i) {
+		// TODO Auto-generated method stub
+		if(i == 0){
+//			gotoPage0();
+			gotoPage8New(0);
+		}else if(i == 1){
+			gotoPage8();
+		}else if(i == 2){
+			gotoPage8New(2);
+//			gotoPage9();
+		}else if(i == 3){
+			gotoPage8New(3);
+//			gotoPage10();
+		}
+	}
+	
+	public void gotoPage8New(int row) {
+		// TODO Auto-generated method stub
+		Intent i = new Intent(context, Page8Activity.class);
+		i.putExtra("row", row);
+		startActivity(i);
+	}
+	private void gotoPage0() {
+		// TODO Auto-generated method stub
+		FragmentView fragment = new FragmentView();
+		Bundle b = new Bundle();
+		b.putInt("data", 1);
+		fragment.setArguments(b);
+		getSupportFragmentManager().beginTransaction().add(fragment, "fragment1").commit();
+	}
+	private void gotoPage10() {
+		// TODO Auto-generated method stub
+
+		FragmentView fragment = new FragmentView();
+		Bundle b = new Bundle();
+		b.putInt("data", 10);
+		fragment.setArguments(b);
+		getSupportFragmentManager().beginTransaction().add(fragment, "fragment2").commit();
+	
+	}
+	private void gotoPage9() {
+		// TODO Auto-generated method stub
+		FragmentView fragment = new FragmentView();
+		Bundle b = new Bundle();
+		b.putInt("data", 9);
+		fragment.setArguments(b);
+		getSupportFragmentManager().beginTransaction().add(fragment, "fragment1").commit();
 	}
 }

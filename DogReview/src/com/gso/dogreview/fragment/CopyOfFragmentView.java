@@ -14,7 +14,7 @@ import android.widget.ScrollView;
 
 import com.gso.dogreview.R;
 
-public class FragmentView extends DialogFragment {
+public class CopyOfFragmentView extends DialogFragment {
 	private ImageView imgContent;
 	private ImageButton imgBtnClose;
 	private int pageNumber;
@@ -25,7 +25,7 @@ public class FragmentView extends DialogFragment {
 		// TODO Auto-generated method stub
 		super.onResume();
 		
-//		getDialog().getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		getDialog().getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 //		getDialog().getWindow().setBackgroundDrawableResource(R.drawable.bg_app_icon);
 	}
 	@Override

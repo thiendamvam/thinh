@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gso.dogreview.R;
+import com.gso.dogreview.fragment.FragmentView;
 
 public class Page8Activity extends FragmentActivity implements OnClickListener{
 
@@ -31,6 +32,7 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 	private RelativeLayout rlSettingMenu;
 	private ImageButton imgBtnSetting;
 	private Context context;
+	private String textTriable;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -38,6 +40,7 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 		super.onCreate(arg0);
 		setContentView(R.layout.page8_view);
 		context = this;
+		textTriable = getResources().getString(R.string.triangle);
 		imgContent = (ImageView) findViewById(R.id.imgContent);
 		tvDes = (TextView) findViewById(R.id.tvDes);
 		tvnumberPage = (TextView) findViewById(R.id.tvNumberPage);
@@ -49,7 +52,9 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 //		hideView(findViewById(R.id.rlShare));
 		hideView(findViewById(R.id.img_btn_next));
-		hideView(findViewById(R.id.btnInfo));
+//		hideView(findViewById(R.id.btnInfo));
+		hideView(findViewById(R.id.rlShare));
+		
 		contentTouched(true);
 		content.setOnTouchListener(new View.OnTouchListener() {
 			
@@ -61,6 +66,39 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 			}
 		});
 		imgBtnSetting.setOnClickListener(this);
+		int row =getIntent().getIntExtra("row", -1);
+		if(row!=-1){
+			initContent(row);	
+		}
+		
+	}
+	private void initContent(int row) {
+		// TODO Auto-generated method stub
+		FragmentView fragment =new 	FragmentView();
+		
+		if(row ==0){
+			Bundle b = new Bundle();
+			b.putInt("data", 1);
+			fragment.setArguments(b);
+		}else if(row ==1){
+			
+		}else if(row ==2){
+			Bundle b = new Bundle();
+			b.putInt("data", 9);
+			fragment.setArguments(b);
+		}else if(row ==3){
+			Bundle b = new Bundle();
+			b.putInt("data", 10);
+			fragment.setArguments(b);
+		}
+		getSupportFragmentManager().beginTransaction().replace(R.id.pageContent, fragment).commit();
+	}
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		setSettingGroupViewVisibility(false);
+		changeResourceSettingMenu(false);
 	}
 	private void exeMenuClicked() {
 		// TODO Auto-generated method stub
@@ -131,7 +169,7 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 	}
 
 	public void setPageCount(int page) {
-		tvnumberPage.setText("(" + page + "/" + max + ")");
+		tvnumberPage.setText("("+textTriable + page + "/" + max + ")");
 	}
 
 	public void setDes(String des) {

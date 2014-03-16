@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
 import com.gso.dogreview.adapter.ChatBaseAdapter;
 import com.gso.dogreview.database.DbAdapter;
@@ -35,6 +36,7 @@ import com.gso.dogreview.util.Util;
 public class DogDetailActivity extends FragmentActivity implements
 		OnClickListener {
 
+	public static String dogShare="";
 	private ImageView wvThumnail;
 	private TextView tvTitle;
 	private TextView tvDescription;
@@ -87,6 +89,9 @@ public class DogDetailActivity extends FragmentActivity implements
 		hideView(findViewById(R.id.btnInfo));
 		if (item != null) {
 			bindData(item);
+		}
+		if(!DogReviewApplication.Instance().isPay()){
+			btnNext.setVisibility(View.INVISIBLE);
 		}
 	}
 
@@ -159,6 +164,7 @@ public class DogDetailActivity extends FragmentActivity implements
 
 			// TODO Auto-generated method stub
 			tvTitle.setText("" + item.getName());
+			dogShare = item.getName();
 			tvDescription.setText("" + item.getDescription());
 			String id = item.getId();
 			id = id.length() > 1 ? id : "0" + id;

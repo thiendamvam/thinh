@@ -61,6 +61,16 @@ public class WelcomeActivity extends FragmentActivity implements
 		setResourceForVersion();
 	}
 
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		if(rlSettingMenu.getVisibility()==View.VISIBLE){
+			setViewVisibility(false);
+			changeResourceSettingMenu(false);
+			
+		}
+	}
 	private void initUIwithAppType() {
 		// TODO Auto-generated method stub
 		if(DogReviewApplication.Instance().isPay()){

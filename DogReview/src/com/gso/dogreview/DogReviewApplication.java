@@ -37,4 +37,9 @@ public class DogReviewApplication extends Application {
 	public boolean isPay() {
 		return isPay;
 	}
+
+	public String getGoogleAppLink() {
+		// TODO Auto-generated method stub
+		return "https://play.google.com/store/apps/details?id="+DogReviewApplication.Instance().getPackageName();
+	}
 }

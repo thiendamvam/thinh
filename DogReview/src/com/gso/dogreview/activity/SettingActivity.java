@@ -56,6 +56,15 @@ public class SettingActivity extends FragmentActivity implements
 	}
 
 	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		if(rlSettingMenu.getVisibility()==View.VISIBLE){
+			setViewVisibility(false);
+			changeResourceSettingMenu(false);
+		}
+	}
+	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		int id = v.getId();

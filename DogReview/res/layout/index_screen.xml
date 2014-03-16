@@ -11,8 +11,15 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/rlAds"
         android:layout_below="@+id/header"
-        android:layout_marginTop="-2dp"
-         >
+        android:layout_marginTop="-2dp" >
+
+        <ImageView
+            android:id="@+id/img_no_favourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone" />
 
         <com.gso.dogreview.view.CenterSymmetricListview
             android:id="@+id/lv_list_item"
@@ -45,10 +52,10 @@
                 android:layout_height="wrap_content" >
 
                 <ImageView
-                    android:layout_centerHorizontal="true"
                     android:id="@+id/imgPage26Content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:src="@drawable/page26_contents_end_free" />
             </RelativeLayout>
         </ScrollView>

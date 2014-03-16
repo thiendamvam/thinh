@@ -19,6 +19,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ public class FavouriteActivity extends FragmentActivity implements
 	private DbAdapter db;
 	private ImageButton imgBtnFavorite;
 	private RelativeLayout rlShare;
+	private ImageView imgNoFav;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -68,6 +70,7 @@ public class FavouriteActivity extends FragmentActivity implements
 		rlListViewContent = (RelativeLayout) findViewById(R.id.rlListViewContent);
 		rlShare = (RelativeLayout)findViewById(R.id.rlShare);
 		tvHeaderTitle = (TextView) findViewById(R.id.tvHeaderTitle);
+		imgNoFav = (ImageView)findViewById(R.id.img_no_favourite);
 		tvHeaderTitle.setText("FAVO");
 		db = new DbAdapter(context);
 
@@ -82,6 +85,15 @@ public class FavouriteActivity extends FragmentActivity implements
 		findViewById(R.id.img_btn_next).setVisibility(View.INVISIBLE);
 	}
 
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		if(rlSettingMenu.getVisibility()==View.VISIBLE){
+			setViewVisibility(false);
+			changeResourceSettingMenu(false);
+		}
+	}
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		// TODO Auto-generated method stub
@@ -100,7 +112,14 @@ public class FavouriteActivity extends FragmentActivity implements
 	private void exeListDogs() {
 		// TODO Auto-generated method stub
 		ArrayList<Dog> dogList = getDataDogs();
-		bindDataToListView(dogList, lvDogs);
+		if(dogList.size() == 0){
+			imgNoFav.setVisibility(View.VISIBLE);
+			imgNoFav.setImageResource(R.drawable.fav_nothing);
+			bindDataToListView(dogList, lvDogs);
+		}else{
+			imgNoFav.setVisibility(View.GONE);
+			bindDataToListView(dogList, lvDogs);
+		}
 	}
 
 	private ArrayList<Dog> getDataDogs() {
@@ -252,7 +271,8 @@ public class FavouriteActivity extends FragmentActivity implements
 						.setImageResource(item.isFavourite() ? R.drawable.ic_favourite_fc
 								: R.drawable.ic_favourite_unfc);
 				holder.imgFav.requestLayout();
-				adapter.removeView(holder.data);
+//				adapter.removeView(holder.data);
+				exeListDogs();
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();

@@ -17,9 +17,11 @@
     <string name="setting_row4">お気に入りの全消去</string>
     <string name="name_dev">C Daydream</string>
     <string name="email_dev">inunokimochi_app@gmail.com</string>
-    <string name="wc_row1">イントロ / キャラ紹介 / ⽝犬の⼗十戒</string>
-    
-    
+    <string name="wc_row1_old">イントロ / キャラ紹介 / ⽝犬の⼗十戒</string>
+    <string name="wc_row0">このアプリについて</string>
+    <string name="wc_row1">イントロ</string>
+    <string name="wc_row2">キャラクター紹介</string>
+    <string name="wc_row3">犬の十戒 </string>
 
     <!-- Exel file detail -->
     <string name="detail">詳細</string>
@@ -44,7 +46,10 @@
     <string name="des_844">ちょも「そうだぞ、犬は犬同士、犬語でコミュニケーションをとっているのである！」ナズナ「ねぇ、ちょも それちょっと教えて！」</string>
     <string name="des_851">ちょも「わかったぞナズナ！ちょもが犬語を教えてあげるぞ！」ナズナ「やったー！覚えてお姉ちゃんに教えてあげよ～」</string>
     <string name="des_852">ちょも「任せろだぞ！」</string>
-    
     <string name="index_row26_free">エンド／お知らせ</string>
+    <string name="triangle">▼</string>
+    <string name="text_share_default_p1">犬に関する疑問</string>
+    <string name="text_share_default_p2">をイラスト付で解説。
+可愛くてタメになる犬語辞典アプリ「イヌのココロ」より。</string>
 
 </resources>

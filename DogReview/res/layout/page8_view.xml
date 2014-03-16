@@ -6,15 +6,16 @@
 
     <RelativeLayout
         android:id="@+id/pageContent"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="-20dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/page8_footer"
+        android:layout_above="@+id/rlAds"
         android:layout_below="@+id/fr_header" >
 
         <fragment
             android:id="@+id/page8_content"
             android:name="com.gso.dogreview.fragment.Page8ContentFragment"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>
 
@@ -58,7 +59,19 @@
         android:id="@+id/page8_footer"
         android:name="com.gso.dogreview.fragment.FooterPage8Fragement"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_above="@+id/footer" />
+    <RelativeLayout
+        android:id="@+id/rlAds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+        android:background="#e9ca9a" >
 
+        <fragment
+            android:id="@+id/nend_ads"
+            android:name="com.gso.dogreview.ads.NendAds"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        </RelativeLayout>
 </RelativeLayout>

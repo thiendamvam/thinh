@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.database.DbAdapter;
-import com.gso.dogreview.fragment.FragmentView;
+import com.gso.dogreview.fragment.CopyOfFragmentView;
 import com.gso.dogreview.interfaces.IOkClicked;
 import com.gso.dogreview.util.Util;
 
@@ -123,21 +123,22 @@ public class SettingActivity extends FragmentActivity implements
 	
 	
 	public void row1Cliked(View v){
-		FragmentView fragment = new FragmentView();
+		CopyOfFragmentView fragment = new CopyOfFragmentView();
 		Bundle b = new Bundle();
 		b.putInt("data", 1);
+		b.putBoolean("is_full_screen", false);
 		fragment.setArguments(b);
 		getSupportFragmentManager().beginTransaction().add(fragment, "fragment1").commit();
 	}
 	public void row2Cliked(View v){
-		FragmentView fragment = new FragmentView();
+		CopyOfFragmentView fragment = new CopyOfFragmentView();
 		Bundle b = new Bundle();
 		b.putInt("data", 2);
 		fragment.setArguments(b);
 		getSupportFragmentManager().beginTransaction().add(fragment, "fragment2").commit();
 	}
 	public void row3Cliked(View v){
-//		FragmentView fragment = new FragmentView();
+//		CopyOfFragmentView fragment = new CopyOfFragmentView();
 //		Bundle b = new Bundle();
 //		b.putInt("data", 3);
 //		fragment.setArguments(b);
@@ -147,7 +148,7 @@ public class SettingActivity extends FragmentActivity implements
 		Util.showConfirmDialog(context,  title, message, SettingActivity.this, DELETE_READ_DOG );
 	}
 	public void row4Cliked(View v){
-//		FragmentView fragment = new FragmentView();
+//		CopyOfFragmentView fragment = new CopyOfFragmentView();
 //		getSupportFragmentManager().beginTransaction().add(fragment, "fragment4").commit();
 
 		String title = getResources().getString(R.string.confirm_delete_favorite_title);

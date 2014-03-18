@@ -35,7 +35,6 @@ public class FragmentView extends DialogFragment {
 		setStyle(DialogFragment.STYLE_NO_TITLE, STYLE_NO_TITLE);
 		setStyle(DialogFragment.STYLE_NO_FRAME, DialogFragment.STYLE_NORMAL);
 		
-		
 	}
 	@Override
 	public void onAttach(Activity activity) {
@@ -55,6 +54,7 @@ public class FragmentView extends DialogFragment {
 		lnContent = (LinearLayout)v.findViewById(R.id.lnContent);
 		switch (pageNumber) {
 		case 1:
+			lnContent.setBackgroundResource(R.drawable.bg_page09);
 			imgContent.setBackgroundResource(R.drawable.bg_setting_row1);
 //			setBtnCloseVisible(false);
 			break;
@@ -87,7 +87,8 @@ public class FragmentView extends DialogFragment {
 				dismiss();
 			}
 		});
-
+		imgBtnClose.setVisibility(View.INVISIBLE);
+		imgBtnClose.setClickable(false);
 		return v;
 	}
 	

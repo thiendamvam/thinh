@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -545,5 +546,10 @@ public class IndexActivity extends FragmentActivity implements
 		b.putInt("data", 9);
 		fragment.setArguments(b);
 		getSupportFragmentManager().beginTransaction().add(fragment, "fragment1").commit();
+	}
+	public void onGotoPaidVersionClicked(View v){
+		String url = "https://play.google.com/store/apps/details?id=com.gso.dogreviewpay";
+		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+		startActivity(browserIntent);
 	}
 }

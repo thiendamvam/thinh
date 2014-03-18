@@ -50,21 +50,19 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 		header.setText("CONTENTS");
 		setContentAndDes(true,true);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
-//		hideView(findViewById(R.id.rlShare));
 		hideView(findViewById(R.id.img_btn_next));
-//		hideView(findViewById(R.id.btnInfo));
 		hideView(findViewById(R.id.rlShare));
 		
-		contentTouched(true);
-		content.setOnTouchListener(new View.OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
-				contentTouched(false);
-				return false;
-			}
-		});
+//		contentTouched(true);
+//		content.setOnTouchListener(new View.OnTouchListener() {
+//			
+//			@Override
+//			public boolean onTouch(View v, MotionEvent event) {
+//				// TODO Auto-generated method stub
+//				contentTouched(false);
+//				return false;
+//			}
+//		});
 		imgBtnSetting.setOnClickListener(this);
 		int row =getIntent().getIntExtra("row", -1);
 		if(row!=-1){
@@ -112,9 +110,11 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 	}
 	public void changeResourceSettingMenu(final boolean isDown){
 		Log.d("changeResourceSettingMenu","isDown "+isDown);
-		Animation  anim = (Animation)AnimationUtils.loadAnimation(context, isDown?R.anim.rotate_90_down:R.anim.rotate_90_up);
-		imgBtnSetting.setAnimation(anim);
-		imgBtnSetting.startAnimation(anim);
+		if(rlSettingMenu.getVisibility() == View.VISIBLE){
+			Animation  anim = (Animation)AnimationUtils.loadAnimation(context, isDown?R.anim.rotate_90_down:R.anim.rotate_90_up);
+			imgBtnSetting.setAnimation(anim);
+			imgBtnSetting.startAnimation(anim);			
+		}
 	}
 	private void setSettingGroupViewVisibility(boolean b) {
 		// TODO Auto-generated method stub
@@ -210,7 +210,7 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 			setSrcContent(resourceContent);
 			setLeftRightVisibility();
 		}else{
-			contentTouched(false);
+//			contentTouched(false);
 		}
 		
 	}

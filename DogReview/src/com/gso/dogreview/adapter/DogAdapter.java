@@ -106,7 +106,7 @@ public class DogAdapter extends BaseAdapter {
 		if(DogReviewApplication.Instance().isPay()){
 			isRow26Free = false;
 		}else{
-			if(getTypeRow(position)==25){
+			if(getTypeRow(position)==28){//25 for old version
 				isRow26Free = true;
 			}
 		}
@@ -121,7 +121,7 @@ public class DogAdapter extends BaseAdapter {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					if(type == 1){
-						if(getTypeRow(position2)==25)
+						if(getTypeRow(position2)==28)//25 for old version
 							((IndexActivity)context).gotoPage26();
 					}else if(type == 2){
 						((FavouriteActivity)context).onItemClickListener(v);
@@ -153,6 +153,8 @@ public class DogAdapter extends BaseAdapter {
 					viewHolder.imgFav.setVisibility(View.INVISIBLE);
 				}
 			}else{
+				viewHolder.imgFav.setVisibility(View.VISIBLE);
+				item = list.get(position2 - 3);
 				viewHolder.tvName.setText(item.getName());	
 			}
 			
@@ -167,7 +169,7 @@ public class DogAdapter extends BaseAdapter {
 			viewHolder.imgFav.setTag(viewHolder);
 			view.setTag(viewHolder);
 			valueResetItemPosition++;
-			if(position == IndexActivity.clickSelection&&position !=0){
+			if(position == IndexActivity.clickSelection){//&&position !=0
 //				view.setBackgroundColor(context.getResources().getColor(R.drawable.item_pressed));
 				view.setBackgroundResource(R.drawable.item_pressed);
 			}else{
@@ -225,7 +227,7 @@ public class DogAdapter extends BaseAdapter {
 			return size > 50?50:size;	
 		}else{
 			if(type == 1)
-				return size <= 25?size+1:25+1;
+				return size <= 25?size+4:25+4;
 			else 
 				return size <= 25?size:25;
 		}

@@ -49,7 +49,7 @@ public class CopyOfFragmentView extends DialogFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View v = inflater.inflate(R.layout.image_popup_screen, container, false);
+		View v = inflater.inflate(R.layout.image_popup_screen_full, container, false);
 		imgContent = (ImageView)v.findViewById(R.id.imgeContent);
 		imgBtnClose = (ImageButton)v.findViewById(R.id.img_btn_close);
 		lnContent = (LinearLayout)v.findViewById(R.id.lnContent);

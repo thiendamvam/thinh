@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rlAds"
+        android:layout_marginLeft="-5dp"
         android:layout_below="@+id/fr_header" >
 
         <fragment

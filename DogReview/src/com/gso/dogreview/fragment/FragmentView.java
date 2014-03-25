@@ -73,6 +73,7 @@ public class FragmentView extends DialogFragment {
 			break;
 		case 10:
 			lnContent.setBackgroundResource(R.drawable.bg_page09);
+			imgContent.setVisibility(View.VISIBLE);
 			imgContent.setBackgroundResource(R.drawable.bg_page10);
 			break;
 		default:

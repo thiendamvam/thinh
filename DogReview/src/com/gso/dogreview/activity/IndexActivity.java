@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.ClipData.Item;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -217,6 +218,7 @@ public class IndexActivity extends FragmentActivity implements
 			}else{
 				Toast.makeText(context, "Can not get data for now", Toast.LENGTH_LONG).show();
 			}
+//			gotoPressedIndex();
 		}
 	}
 	
@@ -285,6 +287,21 @@ public class IndexActivity extends FragmentActivity implements
 		return list;
 	}
 
+	public void gotoPressedIndex() {
+		// TODO Auto-generated method stub
+		 if(clickSelection >=0){
+			lvDogs.post(new Runnable() {
+				@Override
+				public void run() {
+					myListView.setSelection(clickSelection);
+					View v = myListView.getChildAt(clickSelection);
+					if (v != null) {
+						v.requestFocus();
+					}
+				}
+			});
+		 }
+	}
 	private void storeDogsToDatabase(ArrayList<Dog> list) {
 		// TODO Auto-generated method stub
 		for (Dog item : list) {
@@ -304,8 +321,13 @@ public class IndexActivity extends FragmentActivity implements
 
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
-		adapter = new DogAdapter(context, dogList, rlListViewContent,1);
-		lvDogs2.setAdapter(adapter);
+		if(adapter==null){
+			adapter = new DogAdapter(context, dogList, rlListViewContent,1);
+			lvDogs2.setAdapter(adapter);
+		}else{
+			adapter.notifyDataSetChanged();
+		}
+		
 //		myListView.setAdapter(adapter);
 //		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
 	}
@@ -514,7 +536,12 @@ public class IndexActivity extends FragmentActivity implements
 //			gotoPage10();
 		}
 	}
-	
+	public void gotoPage10New(int row) {
+		// TODO Auto-generated method stub
+		Intent i = new Intent(context, Page8Activity.class);
+		i.putExtra("row", row);
+		startActivity(i);
+	}
 	public void gotoPage8New(int row) {
 		// TODO Auto-generated method stub
 		Intent i = new Intent(context, Page8Activity.class);

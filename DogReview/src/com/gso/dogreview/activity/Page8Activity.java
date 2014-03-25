@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.gso.dogreview.R;
 import com.gso.dogreview.fragment.FragmentView;
+import com.gso.dogreview.fragment.FragmentViewPage10;
 
 public class Page8Activity extends FragmentActivity implements OnClickListener{
 
@@ -85,9 +86,12 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 			b.putInt("data", 9);
 			fragment.setArguments(b);
 		}else if(row ==3){
+			FragmentViewPage10 fragment10 =new 	FragmentViewPage10();
 			Bundle b = new Bundle();
 			b.putInt("data", 10);
-			fragment.setArguments(b);
+			fragment10.setArguments(b);
+			getSupportFragmentManager().beginTransaction().replace(R.id.pageContent, fragment10).commit();
+			return;
 		}
 		getSupportFragmentManager().beginTransaction().replace(R.id.pageContent, fragment).commit();
 	}
@@ -127,7 +131,7 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 	public void onAttachFragment(Fragment fragment) {
 		// TODO Auto-generated method stub
 		super.onAttachFragment(fragment);
-		if(getFragmentManager().findFragmentById(R.id.fr_header)!=null){
+		if(getSupportFragmentManager().findFragmentById(R.id.fr_header)!=null){
 			setContenParams();
 		}
 	}
@@ -141,9 +145,9 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 	
 	private void setContenParams() {
 		// TODO Auto-generated method stub
-		if(getFragmentManager().findFragmentById(R.id.fr_header)!=null){
+		if(getSupportFragmentManager().findFragmentById(R.id.fr_header)!=null){
 			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)content.getLayoutParams();
-			params.addRule(RelativeLayout.BELOW, getFragmentManager().findFragmentById(R.id.fr_header).getView().findViewById(R.id.header).getId());
+			params.addRule(RelativeLayout.BELOW, getSupportFragmentManager().findFragmentById(R.id.fr_header).getView().findViewById(R.id.header).getId());
 			content.setLayoutParams(params);
 		}
 	}

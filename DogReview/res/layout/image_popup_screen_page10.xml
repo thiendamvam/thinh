@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_page09"
+    android:padding="0dp" >
+
+    <ScrollView
+        android:id="@+id/srContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/lnContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imgeContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparant"
+                android:src="@drawable/bg_page10_backup_part1" />
+
+            <ImageView
+                android:id="@+id/imgeContent2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparant"
+                android:src="@drawable/bg_page10_backup_part2" />
+
+            <ImageView
+                android:id="@+id/imgeContent3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparant"
+                android:src="@drawable/bg_page10_backup_part3" />
+
+            <ImageView
+                android:id="@+id/imgeContent4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparant"
+                android:src="@drawable/bg_page10_backup_part4" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/img_btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/transparant"
+        android:src="@drawable/btn_close"
+        android:visibility="gone" />
+
+</RelativeLayout>

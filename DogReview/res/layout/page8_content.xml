@@ -35,7 +35,14 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="7dp" >
-
+            <TextView
+                android:id="@+id/tvTriagleNumberPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/tvNumberPage"
+                />
+            
+            
             <TextView
                 android:id="@+id/tvNumberPage"
                 android:layout_width="wrap_content"

@@ -97,6 +97,16 @@
             android:layout_height="wrap_content" />
     </RelativeLayout>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rlAds"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="-10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/transparant"
+        android:src="@drawable/ic_content_11_bupbe" />
+
     <RelativeLayout
         android:id="@+id/rlAds"
         android:layout_width="match_parent"

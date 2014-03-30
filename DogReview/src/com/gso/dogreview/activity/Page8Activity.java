@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
@@ -34,6 +35,7 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 	private ImageButton imgBtnSetting;
 	private Context context;
 	private String textTriable;
+	private TextView tvTriable;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -42,6 +44,8 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 		setContentView(R.layout.page8_view);
 		context = this;
 		textTriable = getResources().getString(R.string.triangle);
+		tvTriable = (TextView)findViewById(R.id.tvTriagleNumberPage);
+		setTriableAlpha();
 		imgContent = (ImageView) findViewById(R.id.imgContent);
 		tvDes = (TextView) findViewById(R.id.tvDes);
 		tvnumberPage = (TextView) findViewById(R.id.tvNumberPage);
@@ -70,6 +74,16 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 			initContent(row);	
 		}
 		
+	}
+	private void setTriableAlpha() {
+		// TODO Auto-generated method stub
+		AlphaAnimation anim = new AlphaAnimation(1.0f, 0.0f);
+		anim.setDuration(600);
+//		anim.setRepeatMode(AlphaAnimation.RESTART);
+		tvTriable.setText(textTriable);
+		anim.setRepeatCount(Animation.INFINITE);
+		tvTriable.setAnimation(anim);
+		anim.start();
 	}
 	private void initContent(int row) {
 		// TODO Auto-generated method stub
@@ -173,7 +187,9 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 	}
 
 	public void setPageCount(int page) {
-		tvnumberPage.setText("("+textTriable + page + "/" + max + ")");
+		
+		tvnumberPage.setText("(" + page + "/" + max + ")");
+//		tvnumberPage.setText("("+textTriable + page + "/" + max + ")");
 	}
 
 	public void setDes(String des) {

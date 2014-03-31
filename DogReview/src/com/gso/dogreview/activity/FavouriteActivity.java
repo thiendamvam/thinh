@@ -78,7 +78,7 @@ public class FavouriteActivity extends FragmentActivity implements
 		imgBtnFavorite.setVisibility(View.GONE);
 		
 		rlShare.setVisibility(View.GONE);
-
+		findViewById(R.id.img_chomo).setVisibility(View.GONE);
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
 		lvDogs.setOnItemClickListener(onItemClicked);//

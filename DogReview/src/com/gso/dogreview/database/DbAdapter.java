@@ -23,6 +23,7 @@ public class DbAdapter {
 	public static final String DOG_AVATAR = "DOG_AVATAR";
 	public static final String DOG_FAVOURITE = "DOG_FAVOURITE";
 	public static final String DOG_READ = "DOG_READ";
+	public static final String DOG_INTRO = "DOG_INTRO";
 	/*
 	 * Comment table
 	 */
@@ -45,7 +46,8 @@ public class DbAdapter {
 			+ DOG_TABLE + " USING FTS3(" + DOG_ID
 			+ " text not null primary key," + DOG_NAME + " text," + DOG_DESC
 			+ " text," + DOG_AVATAR + " text," +DOG_FAVOURITE + " integer," +
-			DOG_READ + " integer"+
+			DOG_READ + " integer,"+
+			DOG_INTRO + " integer"+
 
 			");";
 
@@ -115,18 +117,18 @@ public class DbAdapter {
 	public Cursor getFavoriteDogList() {
 
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
-				DOG_AVATAR, DOG_FAVOURITE, DOG_READ }, DOG_FAVOURITE+" MATCH ?", new String[]{"1"}, null, null, null);
+				DOG_AVATAR, DOG_FAVOURITE, DOG_READ, DOG_INTRO }, DOG_FAVOURITE+" MATCH ?", new String[]{"1"}, null, null, null);
 	}
 	
 	public Cursor getDogList() {
 
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
-				DOG_AVATAR, DOG_FAVOURITE, DOG_READ }, null, null, null, null, null);
+				DOG_AVATAR, DOG_FAVOURITE, DOG_READ, DOG_INTRO }, null, null, null, null, null);
 	}
 	public Cursor getDogListByName(String query) {
 
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
-				DOG_AVATAR, DOG_FAVOURITE, DOG_READ }, DOG_NAME + " MATCH ?", new String[] { "*" + query
+				DOG_AVATAR, DOG_FAVOURITE, DOG_READ, DOG_INTRO }, DOG_NAME + " MATCH ?", new String[] { "*" + query
 				+ "*" }, null, null, null);
 	}
 	public boolean insertDog(Dog dog) throws SQLiteException {
@@ -137,6 +139,7 @@ public class DbAdapter {
 		insertedValue.put(DOG_AVATAR, dog.getAvatar());
 		insertedValue.put(DOG_FAVOURITE, dog.isFavourite()?1:0);
 		insertedValue.put(DOG_READ, dog.isRead()?1:0);
+		insertedValue.put(DOG_INTRO, dog.isIntroView()?1:0);
 		Cursor c = mDb.rawQuery("select *	from " + DOG_TABLE + " where "
 				+ DOG_ID + "='" + dog.getId() + "'", null);
 		if (c.getCount() < 1) {
@@ -154,6 +157,7 @@ public class DbAdapter {
 		insertedValue.put(DOG_AVATAR, dog.getAvatar());
 		insertedValue.put(DOG_FAVOURITE, dog.isFavourite()?1:0);
 		insertedValue.put(DOG_READ, dog.isRead()?1:0);
+		insertedValue.put(DOG_INTRO, dog.isIntroView()?1:0);
 //		Cursor c = mDb.rawQuery("select *	from " + DOG_TABLE + " where "
 //				+ DOG_ID + "='" + dog.getId() + "'", null);
 //		if (c.getCount() > 0) {
@@ -251,7 +255,7 @@ public class DbAdapter {
 	public Cursor getDogById(String id) {
 		// TODO Auto-generated method stub
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID,
-				DOG_NAME, DOG_AVATAR,  DOG_DESC, DOG_FAVOURITE, DOG_READ },
+				DOG_NAME, DOG_AVATAR,  DOG_DESC, DOG_FAVOURITE, DOG_READ, DOG_INTRO },
 				DOG_ID + " MATCH ?",
 				new String[] { "*" + id + "*" }, null, null, null);
 	}

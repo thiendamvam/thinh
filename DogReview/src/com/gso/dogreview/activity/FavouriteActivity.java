@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.gso.dogreview.R;
+import com.gso.dogreview.activity.IndexActivity.asynGotoDetail;
 import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.adapter.DogAdapter.ViewUserHolder;
 import com.gso.dogreview.database.DbAdapter;
@@ -285,9 +287,55 @@ public class FavouriteActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		ViewUserHolder holder = (ViewUserHolder) v.getTag();
 		Dog item = holder.data;
-		Intent i = new Intent(FavouriteActivity.this, DogDetailActivity.class);
-		i.putExtra("data", item);
-		startActivity(i);
+//		Intent i = new Intent(FavouriteActivity.this, DogDetailActivity.class);
+//		i.putExtra("data", item);
+//		startActivity(i);
+		setViewVisibility(true);
+		new asynGotoDetail(item).execute(null,null);
 	}
+	
+	class asynGotoDetail extends AsyncTask<Void, Boolean, Boolean>{
+
+		private Dog item;
+		public asynGotoDetail(Dog item) {
+			// TODO Auto-generated constructor stub
+			this.item = item;
+		}
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			try {
+				if(!item.isRead()){
+					item.setRead(true);
+					db.open();
+					db.updateDog(item);
+					db.close();
+					return true;
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return false;
+			}
+			
+			return true;
+		}
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			setViewVisibility(false);
+			super.onPostExecute(result);
+			if(result){
+				
+			}else{
+				Toast.makeText(context, "Can not save dog state for now", Toast.LENGTH_LONG).show();
+			}
+			Intent i = new Intent(FavouriteActivity.this, DogDetailActivity.class);
+			i.putExtra("data", item);
+			i.putExtra("count",lvDogs.getAdapter().getCount() );
+			startActivity(i);
+		}
+	}
+	
 
 }

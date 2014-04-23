@@ -87,6 +87,7 @@ public class DogAdapter extends BaseAdapter {
 
 		int position = position2;
 		Dog item = list.get(position2);
+		final Dog itemTemp;
 		ViewUserHolder viewHolder= null;
 		if (convertView == null) {
 			
@@ -152,12 +153,19 @@ public class DogAdapter extends BaseAdapter {
 
 					viewHolder.imgFav.setVisibility(View.INVISIBLE);
 				}
+				
+				if(!item.isRead()){
+					viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_blue_no:R.drawable.ic_red_no);
+				}else{
+					viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
+				}
 			}else{
 				viewHolder.imgFav.setVisibility(View.VISIBLE);
-				item = list.get(position2 - 3);
+//				item = list.get(position2 - 3);
 				viewHolder.tvName.setText(item.getName());	
 			}
 			
+			itemTemp = item;
 			viewHolder.tvDescription.setText(item.getDescription());
 			viewHolder.data = item;
 			if(!item.isRead()){
@@ -187,13 +195,13 @@ public class DogAdapter extends BaseAdapter {
 //						else
 						{
 							if(position2 == 0){
-								((IndexActivity)context).gotoPage(0);
+								((IndexActivity)context).gotoPage(0, itemTemp);
 							}else if(position2 == 1){
-								((IndexActivity)context).gotoPage(1);
+								((IndexActivity)context).gotoPage(1, itemTemp);
 							}else if(position2 == 2){
-								((IndexActivity)context).gotoPage(2);
+								((IndexActivity)context).gotoPage(2, itemTemp);
 							}else if(position2 == 3){
-								((IndexActivity)context).gotoPage(3);
+								((IndexActivity)context).gotoPage(3, itemTemp);
 							}else{
 								((IndexActivity)context).onItemClickListener(v);
 							}
@@ -221,10 +229,25 @@ public class DogAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
+//		int size = list.size();
+//		Log.d("getCount","getCount "+size);
+//		if(DogReviewApplication.Instance().isPay()){
+//			return size > 50?50:size;	
+//		}else{
+//			if(type == 1)
+//				return size <= 25?size+4:25+4;
+//			else 
+//				return size <= 25?size:25;
+//		}
+		
 		int size = list.size();
 		Log.d("getCount","getCount "+size);
 		if(DogReviewApplication.Instance().isPay()){
-			return size > 50?50:size;	
+			if(type == 1)
+				return size <= 50+4?size+4:50+4;
+			else 
+				return size <= 50?size:50;
+
 		}else{
 			if(type == 1)
 				return size <= 25?size+4:25+4;

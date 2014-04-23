@@ -2,6 +2,7 @@ package com.gso.dogreview.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
@@ -284,9 +285,24 @@ public class IndexActivity extends FragmentActivity implements
 		c.close();
 		db.close();
 		setProgressBarVisibility(false);
+		
+		list = (ArrayList<Dog>)add4ItemToDogsList(list);
 		return list;
 	}
 
+	private List<Dog> add4ItemToDogsList( List<Dog> list) {
+		// TODO Auto-generated method stub
+		
+		for(int i=0; i < 4; i++){
+			Dog item = new Dog();
+			item.setRead(false);
+			item.setIntroView(true);
+			list.add(0, item);
+		}
+		
+		return list;
+
+	}
 	public void gotoPressedIndex() {
 		// TODO Auto-generated method stub
 		 if(clickSelection >=0){
@@ -503,8 +519,16 @@ public class IndexActivity extends FragmentActivity implements
 		}
 	}
 	
-	public void gotoPage8() {
+	public void gotoPage8(Dog item) {
 		// TODO Auto-generated method stub
+		
+		if(!item.isRead()){
+			item.setRead(true);
+			db.open();
+			db.updateDog(item);
+			db.close();
+		}
+		
 		Intent i = new Intent(context, Page8Activity.class);
 		startActivity(i);
 	}
@@ -521,18 +545,18 @@ public class IndexActivity extends FragmentActivity implements
 		i.putExtra("is_page26", true);
 		startActivity(i);
 	}
-	public void gotoPage(int i) {
+	public void gotoPage(int i, Dog item) {
 		// TODO Auto-generated method stub
 		if(i == 0){
 //			gotoPage0();
-			gotoPage8New(0);
+			gotoPage8New(0, item);
 		}else if(i == 1){
-			gotoPage8();
+			gotoPage8(item);
 		}else if(i == 2){
-			gotoPage8New(2);
+			gotoPage8New(2, item);
 //			gotoPage9();
 		}else if(i == 3){
-			gotoPage8New(3);
+			gotoPage8New(3, item);
 //			gotoPage10();
 		}
 	}
@@ -542,8 +566,16 @@ public class IndexActivity extends FragmentActivity implements
 		i.putExtra("row", row);
 		startActivity(i);
 	}
-	public void gotoPage8New(int row) {
+	public void gotoPage8New(int row, Dog item) {
 		// TODO Auto-generated method stub
+		
+		if(!item.isRead()){
+			item.setRead(true);
+			db.open();
+			db.updateDog(item);
+			db.close();
+		}
+		
 		Intent i = new Intent(context, Page8Activity.class);
 		i.putExtra("row", row);
 		startActivity(i);

@@ -10,6 +10,7 @@ public class Dog implements Serializable{
 	private String avatar;
 	private boolean isFavourite;
 	private boolean isRead;
+	private boolean isIntroView;
 
 	/**
 	 * @return the avatar
@@ -96,6 +97,14 @@ public class Dog implements Serializable{
 	 */
 	public void setRead(boolean isRead) {
 		this.isRead = isRead;
+	}
+
+	public boolean isIntroView() {
+		return isIntroView;
+	}
+
+	public void setIntroView(boolean isIntroView) {
+		this.isIntroView = isIntroView;
 	}
 
 }

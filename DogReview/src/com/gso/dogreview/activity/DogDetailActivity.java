@@ -92,7 +92,10 @@ public class DogDetailActivity extends FragmentActivity implements
 		}
 		if(!DogReviewApplication.Instance().isPay()){
 			btnNext.setVisibility(View.INVISIBLE);
+		}else{
+			hideView(findViewById(R.id.rlAds));
 		}
+	
 	}
 
 	private void hideView(View v) {

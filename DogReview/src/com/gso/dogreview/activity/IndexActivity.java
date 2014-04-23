@@ -130,6 +130,12 @@ public class IndexActivity extends FragmentActivity implements
 			tvHeaderTitle.setText("INDEX");
 			hideView(findViewById(R.id.srPage26));
 		}
+		
+		if(DogReviewApplication.Instance().isPay()){
+			hideView(findViewById(R.id.rlAds));
+		}else{
+			
+		}
 		// tglOptionLv = (ToggleButton) findViewById(R.id.tglOptionLv);
 		// tglOptionLv.setOnCheckedChangeListener(new
 		// CompoundButton.OnCheckedChangeListener() {

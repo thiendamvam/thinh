@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
 import com.gso.dogreview.fragment.FragmentView;
 import com.gso.dogreview.fragment.FragmentViewPage10;
@@ -57,6 +58,13 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
 		hideView(findViewById(R.id.img_btn_next));
 		hideView(findViewById(R.id.rlShare));
+		
+		
+		if(DogReviewApplication.Instance().isPay()){
+			hideView(findViewById(R.id.rlAds));
+		}else{
+			
+		}
 		
 //		contentTouched(true);
 //		content.setOnTouchListener(new View.OnTouchListener() {

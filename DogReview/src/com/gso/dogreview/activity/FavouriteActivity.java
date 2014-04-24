@@ -290,7 +290,6 @@ public class FavouriteActivity extends FragmentActivity implements
 //		Intent i = new Intent(FavouriteActivity.this, DogDetailActivity.class);
 //		i.putExtra("data", item);
 //		startActivity(i);
-		setViewVisibility(true);
 		new asynGotoDetail(item).execute(null,null);
 	}
 	

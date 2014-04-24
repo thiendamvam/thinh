@@ -168,7 +168,6 @@ public class IndexActivity extends FragmentActivity implements
 			setViewVisibility(findViewById(R.id.progressBar), true);
 			new asynLoadData().execute(null,null);	
 		}
-		setViewVisibility(rlSettingMenu, false);
 		
 	}
 	
@@ -273,6 +272,7 @@ public class IndexActivity extends FragmentActivity implements
 				}
 			} 
 		} else {
+			Log.d("ExelService","ExelService");
 			ExelService exelService = new ExelService();
 			HashMap<String, Object> result = new HashMap<String, Object>();
 			result = exelService.getFileContent(context, "contents.xls");
@@ -292,7 +292,7 @@ public class IndexActivity extends FragmentActivity implements
 		db.close();
 		setProgressBarVisibility(false);
 		
-		list = (ArrayList<Dog>)add4ItemToDogsList(list);
+//		list = (ArrayList<Dog>)add4ItemToDogsList(list);
 		return list;
 	}
 
@@ -301,6 +301,7 @@ public class IndexActivity extends FragmentActivity implements
 		
 		for(int i=0; i < 4; i++){
 			Dog item = new Dog();
+			item.setId("ads"+i);
 			item.setRead(false);
 			item.setIntroView(true);
 			list.add(0, item);
@@ -326,6 +327,7 @@ public class IndexActivity extends FragmentActivity implements
 	}
 	private void storeDogsToDatabase(ArrayList<Dog> list) {
 		// TODO Auto-generated method stub
+		list = (ArrayList<Dog>)add4ItemToDogsList(list);
 		for (Dog item : list) {
 			db.insertDog(item);
 
@@ -528,12 +530,6 @@ public class IndexActivity extends FragmentActivity implements
 	public void gotoPage8(Dog item) {
 		// TODO Auto-generated method stub
 		
-		if(!item.isRead()){
-			item.setRead(true);
-			db.open();
-			db.updateDog(item);
-			db.close();
-		}
 		
 		Intent i = new Intent(context, Page8Activity.class);
 		startActivity(i);
@@ -553,6 +549,19 @@ public class IndexActivity extends FragmentActivity implements
 	}
 	public void gotoPage(int i, Dog item) {
 		// TODO Auto-generated method stub
+		
+		try {
+			if(!item.isRead()){
+				item.setRead(true);
+				db.open();
+				db.updateDog(item);
+				db.close();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 		if(i == 0){
 //			gotoPage0();
 			gotoPage8New(0, item);
@@ -575,12 +584,6 @@ public class IndexActivity extends FragmentActivity implements
 	public void gotoPage8New(int row, Dog item) {
 		// TODO Auto-generated method stub
 		
-		if(!item.isRead()){
-			item.setRead(true);
-			db.open();
-			db.updateDog(item);
-			db.close();
-		}
 		
 		Intent i = new Intent(context, Page8Activity.class);
 		i.putExtra("row", row);

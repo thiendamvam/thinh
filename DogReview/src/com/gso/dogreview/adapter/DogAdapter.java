@@ -154,11 +154,11 @@ public class DogAdapter extends BaseAdapter {
 					viewHolder.imgFav.setVisibility(View.INVISIBLE);
 				}
 				
-				if(!item.isRead()){
-					viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_blue_no:R.drawable.ic_red_no);
-				}else{
-					viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
-				}
+//				if(!item.isRead()){
+//					viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_blue_no:R.drawable.ic_red_no);
+//				}else{
+//					viewHolder.imgAvatar.setImageResource(position%2==0?R.drawable.ic_idex_img_equa:R.drawable.ic_idex_img_notequa);
+//				}
 			}else{
 				viewHolder.imgFav.setVisibility(View.VISIBLE);
 //				item = list.get(position2 - 3);

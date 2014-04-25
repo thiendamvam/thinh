@@ -128,7 +128,7 @@ public class DogAdapter extends BaseAdapter {
 						((FavouriteActivity)context).onItemClickListener(v);
 					}
 					IndexActivity.clickSelection = position2;
-					notifyDataSetChanged();
+//					notifyDataSetChanged();
 //					v.setBackgroundColor(context.getResources().getColor(R.drawable.item_pressed));
 					v.setBackgroundResource(R.drawable.item_pressed);
 				}
@@ -211,7 +211,7 @@ public class DogAdapter extends BaseAdapter {
 						((FavouriteActivity)context).onItemClickListener(v);
 					}
 					IndexActivity.clickSelection = position2;
-					notifyDataSetChanged();
+//					notifyDataSetChanged();
 //					v.setBackgroundColor(context.getResources().getColor(R.drawable.item_pressed));
 					v.setBackgroundResource(R.drawable.item_pressed);
 				}

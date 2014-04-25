@@ -114,7 +114,7 @@ public class IndexActivity extends FragmentActivity implements
 		imgBtnSetting.setOnClickListener(this);
 		btnBack.setOnClickListener(this);
 		btnInfo.setOnClickListener(this);
-		lvDogs.setOnItemClickListener(onItemClickListener);
+//		lvDogs.setOnItemClickListener(onItemClickListener);
 		isPage26 = getIntent().getBooleanExtra("is_page26", false);
 		if(isPage26){
 			hideView(findViewById(R.id.rlAds));
@@ -304,6 +304,10 @@ public class IndexActivity extends FragmentActivity implements
 			item.setId("ads"+i);
 			item.setRead(false);
 			item.setIntroView(true);
+			item.setAvatar("");
+			item.setDescription("");
+			item.setFavourite(false);
+			item.setName("");
 			list.add(0, item);
 		}
 		

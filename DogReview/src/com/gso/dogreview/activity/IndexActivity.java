@@ -248,8 +248,9 @@ public class IndexActivity extends FragmentActivity implements
 		setProgressBarVisibility(true);
 		db.open();
 		Cursor c = db.getDogList();
-		if (c.moveToNext()) {
-			while (c.moveToNext()) {
+		if (c!=null && c.getCount() > 0) 
+		{
+			do {
 				try {
 					Dog item = new Dog();
 					item.setId(c.getString(c.getColumnIndex(DbAdapter.DOG_ID)));
@@ -270,7 +271,7 @@ public class IndexActivity extends FragmentActivity implements
 					// TODO: handle exception
 					e.printStackTrace();
 				}
-			} 
+			} while (c.moveToNext());
 		} else {
 			Log.d("ExelService","ExelService");
 			ExelService exelService = new ExelService();
@@ -301,7 +302,7 @@ public class IndexActivity extends FragmentActivity implements
 		
 		for(int i=0; i < 4; i++){
 			Dog item = new Dog();
-			item.setId("ads"+i);
+			item.setId("ads_new"+i);
 			item.setRead(false);
 			item.setIntroView(true);
 			item.setAvatar("");
@@ -332,8 +333,13 @@ public class IndexActivity extends FragmentActivity implements
 	private void storeDogsToDatabase(ArrayList<Dog> list) {
 		// TODO Auto-generated method stub
 		list = (ArrayList<Dog>)add4ItemToDogsList(list);
-		for (Dog item : list) {
-			db.insertDog(item);
+		int size = list.size();
+		for (int i=0; i< size; i++) {
+			Dog item = list.get(i);
+			if(!db.insertDog(item)){
+				list.remove(i);
+				--i;
+			}
 
 		}
 	}

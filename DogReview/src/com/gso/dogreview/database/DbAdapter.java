@@ -142,11 +142,13 @@ public class DbAdapter {
 		insertedValue.put(DOG_INTRO, dog.isIntroView()?1:0);
 		Cursor c = mDb.rawQuery("select *	from " + DOG_TABLE + " where "
 				+ DOG_ID + "='" + dog.getId() + "'", null);
-		if (c.getCount() < 1) {
+//		if (c.getCount() < 1) 
+		{
 			return mDb.insert(DOG_TABLE, null, insertedValue) != -1;
-		} else {
-			return false;
 		}
+//		else {
+//			return false;
+//		}
 
 	}
 	public boolean updateDog(Dog dog) throws SQLiteException {

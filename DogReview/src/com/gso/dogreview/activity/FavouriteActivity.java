@@ -30,6 +30,7 @@ import android.widget.ToggleButton;
 import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
 import com.gso.dogreview.activity.IndexActivity.asynGotoDetail;
+import com.gso.dogreview.activity.IndexActivity.asynLoadData;
 import com.gso.dogreview.adapter.DogAdapter;
 import com.gso.dogreview.adapter.DogAdapter.ViewUserHolder;
 import com.gso.dogreview.database.DbAdapter;
@@ -101,11 +102,67 @@ public class FavouriteActivity extends FragmentActivity implements
 		}
 	}
 	@Override
-	public void onWindowFocusChanged(boolean hasFocus) {
+	protected void onResume() {
 		// TODO Auto-generated method stub
-		super.onWindowFocusChanged(hasFocus);
-		exeListDogs();
+		super.onResume();
+//		exeListDogs();
+		new asynLoadData().execute();
+		
 	}
+	
+	class asynLoadData extends AsyncTask<Void, Boolean, Boolean>{
+
+		private ArrayList<Dog> dogList;
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			setProgressBarVisibility(true);
+		}
+		
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			try {
+				dogList = getDataDogs();
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+		}
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+		// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			setProgressBarVisibility(false);
+			if(result){
+//				bindDataToListView(dogList, lvDogs);
+				if(dogList.size() == 0){
+					imgNoFav.setVisibility(View.VISIBLE);
+					imgNoFav.setImageResource(R.drawable.fav_nothing);
+					bindDataToListView(dogList, lvDogs);
+				}else{
+					imgNoFav.setVisibility(View.GONE);
+					bindDataToListView(dogList, lvDogs);
+				}
+			}else{
+				Toast.makeText(context, "Can not get data for now", Toast.LENGTH_LONG).show();
+			}
+//			gotoPressedIndex();
+		}
+	}
+	
+//	@Override
+//	public void onWindowFocusChanged(boolean hasFocus) {
+//		// TODO Auto-generated method stub
+//		super.onWindowFocusChanged(hasFocus);
+//		exeListDogs();
+//	}
 
 	public OnItemClickListener onItemClicked = new OnItemClickListener() {
 		@Override
@@ -167,8 +224,15 @@ public class FavouriteActivity extends FragmentActivity implements
 
 	private void bindDataToListView(ArrayList<Dog> dogList, ListView lvDogs2) {
 		// TODO Auto-generated method stub
-		adapter = new DogAdapter(context, dogList, rlListViewContent, 2);
-		 lvDogs2.setAdapter(adapter);
+		if(adapter == null){
+			adapter = new DogAdapter(context, dogList, rlListViewContent, 2);
+			lvDogs2.setAdapter(adapter);
+		}else{
+			adapter.changeSrc(dogList);
+			adapter.notifyDataSetChanged();
+		}
+		
+		 
 //		myListView.setAdapter(adapter);
 //		myListView.setDynamics(new SimpleDynamics(0.9f, 0.6f));
 	}
@@ -304,6 +368,12 @@ public class FavouriteActivity extends FragmentActivity implements
 			// TODO Auto-generated constructor stub
 			this.item = item;
 		}
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+		}
+		
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			// TODO Auto-generated method stub

@@ -497,7 +497,7 @@ public class IndexActivity extends FragmentActivity implements
 		new asynGotoDetail(item).execute(null,null);
 	}
 
-	class asynGotoDetail extends AsyncTask<Void, Boolean, Boolean>{
+	public class asynGotoDetail extends AsyncTask<Void, Boolean, Boolean>{
 
 		private Dog item;
 		public asynGotoDetail(Dog item) {

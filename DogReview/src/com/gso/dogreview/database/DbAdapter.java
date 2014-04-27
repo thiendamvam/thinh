@@ -259,6 +259,13 @@ public class DbAdapter {
 		return mDb.query(DOG_TABLE, new String[] { DOG_ID,
 				DOG_NAME, DOG_AVATAR,  DOG_DESC, DOG_FAVOURITE, DOG_READ, DOG_INTRO },
 				DOG_ID + " MATCH ?",
-				new String[] { "*" + id + "*" }, null, null, null);
+				new String[] { "" + id + "" }, null, null, null);
+	}
+
+	public Cursor getReadDogList() {
+		// TODO Auto-generated method stub
+		return mDb.query(DOG_TABLE, new String[] { DOG_ID, DOG_NAME, DOG_DESC,
+				DOG_AVATAR, DOG_FAVOURITE, DOG_READ, DOG_INTRO }, DOG_READ+" MATCH ?", new String[]{"1"}, null, null, null);
+
 	}
 }

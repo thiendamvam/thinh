@@ -350,7 +350,7 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 
 	private void hideView(View v) {
 		// TODO Auto-generated method stub
-		v.setVisibility(View.INVISIBLE);
+		v.setVisibility(View.GONE);
 	}
 
 	public int getNewPage(int page, boolean isLeft){

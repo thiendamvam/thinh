@@ -29,7 +29,7 @@ import com.gso.dogreview.model.Dog;
 public class DogAdapter extends BaseAdapter {
 
 	public static int valueResetItemPosition = 1000 ;
-	private final List<Dog> list;
+	private List<Dog> list;
 	private Context context;
 	private HashMap<String, View> viewList = new HashMap<String, View>();
 	public static List<ViewUserHolder> listSectionView = new ArrayList<ViewUserHolder>();
@@ -128,8 +128,8 @@ public class DogAdapter extends BaseAdapter {
 						((FavouriteActivity)context).onItemClickListener(v);
 					}
 					IndexActivity.clickSelection = position2;
-//					notifyDataSetChanged();
-//					v.setBackgroundColor(context.getResources().getColor(R.drawable.item_pressed));
+					notifyDataSetChanged();
+					v.setBackgroundColor(context.getResources().getColor(R.drawable.item_pressed));
 					v.setBackgroundResource(R.drawable.item_pressed);
 				}
 			});
@@ -278,6 +278,11 @@ public class DogAdapter extends BaseAdapter {
 			}
 		}
 		super.notifyDataSetChanged();
+	}
+
+	public void changeSrc(ArrayList<Dog> dogList) {
+		// TODO Auto-generated method stub
+		this.list = dogList;
 	}
 
 }

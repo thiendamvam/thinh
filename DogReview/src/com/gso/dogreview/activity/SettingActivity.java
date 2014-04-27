@@ -1,7 +1,10 @@
 package com.gso.dogreview.activity;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -15,10 +18,12 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
 import com.gso.dogreview.database.DbAdapter;
 import com.gso.dogreview.fragment.CopyOfFragmentView;
 import com.gso.dogreview.interfaces.IOkClicked;
+import com.gso.dogreview.model.Dog;
 import com.gso.dogreview.util.Util;
 
 public class SettingActivity extends FragmentActivity implements
@@ -33,6 +38,7 @@ public class SettingActivity extends FragmentActivity implements
 	private Context context;
 	private ImageButton imgBtnSetting;
 	private TextView tvHeaderTitle;
+	private DbAdapter db;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -52,6 +58,8 @@ public class SettingActivity extends FragmentActivity implements
 
 		imgBtnBack.setOnClickListener(this);
 		imgSeting.setOnClickListener(this);
+		
+		db = new DbAdapter(context);
 
 	}
 
@@ -163,14 +171,75 @@ public class SettingActivity extends FragmentActivity implements
 	public void onCompleted(boolean b, int requestDilog) {
 		// TODO Auto-generated method stub
 		if(b){
-			DbAdapter db = new DbAdapter(context);
-			db.open();
 			if(requestDilog==DELETE_FAVOURITE){
-				db.removeFavorites();	
+				exeRemoveFavoriteDogs();	
 			}else{
-				db.removeReadDogList();
+				exeRemoveSelectedDogs();
 			}
-			db.close();
 		}
+	}
+	
+	
+	private void exeRemoveFavoriteDogs() {
+		// TODO Auto-generated method stub
+		ArrayList<Dog> dogList = getDataDogs(1);
+		if(dogList !=null){
+			if(dogList.size() == 0){
+			}else{
+				db.open();
+				for(Dog item: dogList){
+					item.setFavourite(false);
+					db.updateDog(item);
+				}
+				db.close();
+			}
+		}
+	}
+	
+	private void exeRemoveSelectedDogs() {
+		// TODO Auto-generated method stub
+		ArrayList<Dog> dogList = getDataDogs(2);
+		if(dogList !=null){
+			if(dogList.size() == 0){
+			}else{
+				db.open();
+				for(Dog item: dogList){
+					item.setRead(false);
+					db.updateDog(item);
+				}
+				db.close();
+			}
+		}
+	}
+	
+	private ArrayList<Dog> getDataDogs(int i) {
+		
+		// 1: fovorite
+		// 2: clicked
+		// TODO Auto-generated method stub
+		ArrayList<Dog> list = new ArrayList<Dog>();
+
+		db.open();
+		Cursor c = i== 1? db.getFavoriteDogList(): db.getReadDogList();
+		while (c.moveToNext()) {
+			try {
+				Dog item = new Dog();
+				item.setId(c.getString(c.getColumnIndex(DbAdapter.DOG_ID)));
+				item.setName(c.getString(c.getColumnIndex(DbAdapter.DOG_NAME)));
+				item.setFavourite(true);
+				item.setDescription(c.getString(c
+						.getColumnIndex(DbAdapter.DOG_DESC)));
+				item.setAvatar(c.getString(c
+						.getColumnIndex(DbAdapter.DOG_AVATAR)));
+				Log.d("getDataDogs","name: "+item.getName());
+				list.add(item);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		} 
+		c.close();
+		db.close();
+		return list;
 	}
 }

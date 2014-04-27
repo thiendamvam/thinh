@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.gso.dogreview.DogReviewApplication;
 import com.gso.dogreview.R;
 import com.gso.dogreview.activity.IndexActivity.asynGotoDetail;
 import com.gso.dogreview.adapter.DogAdapter;
@@ -85,6 +86,9 @@ public class FavouriteActivity extends FragmentActivity implements
 		btnBack.setOnClickListener(this);
 		lvDogs.setOnItemClickListener(onItemClicked);//
 		findViewById(R.id.img_btn_next).setVisibility(View.INVISIBLE);
+		if(DogReviewApplication.Instance().isPay()){
+			findViewById(R.id.rlAds).setVisibility(View.GONE);
+		}
 	}
 
 	@Override

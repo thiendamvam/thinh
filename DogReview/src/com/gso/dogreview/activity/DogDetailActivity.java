@@ -134,8 +134,8 @@ public class DogDetailActivity extends FragmentActivity implements
 		Log.d("bindDataFromDogId", count + " is count and id is " + id);
 		db.open();
 		Cursor c = db.getDogById(id);
-		if (c.getCount() > 0) {
-			while (c.moveToNext()){
+		if (c!=null && c.getCount() > 0) {
+			do{
 				try {
 					item.setId((c.getString(c.getColumnIndex(DbAdapter.DOG_ID))));
 					item.setName((c.getString(c
@@ -152,7 +152,7 @@ public class DogDetailActivity extends FragmentActivity implements
 					e.printStackTrace();
 				}
 
-			} 
+			} while (c.moveToNext());
 			if (item != null) {
 				bindData(item);
 				setBackNextButton(item.getId());
@@ -310,11 +310,17 @@ public class DogDetailActivity extends FragmentActivity implements
 					if (id > 0) {
 						id++;
 						bindDataFromDogId("" + id);
+						if(id < 54){
+							IndexActivity.clickSelection++;
+						}
 					}
 				} else {
 					if (id < count) {
 						id--;
 						bindDataFromDogId("" + id);
+					}
+					if(id > 0){
+						IndexActivity.clickSelection--;
 					}
 
 				}

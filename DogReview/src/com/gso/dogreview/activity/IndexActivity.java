@@ -165,6 +165,7 @@ public class IndexActivity extends FragmentActivity implements
 		super.onResume();
 //		exeListDogs();
 		if(!isPage26){
+			Log.d("onResume", "onResume");
 			setViewVisibility(findViewById(R.id.progressBar), true);
 			new asynLoadData().execute(null,null);	
 		}
@@ -279,6 +280,8 @@ public class IndexActivity extends FragmentActivity implements
 			result = exelService.getFileContent(context, "contents.xls");
 			if(result.containsKey("dog_list")){
 				list = (ArrayList<Dog>)result.get("dog_list");
+				//remove the row 0
+				list.remove(0);
 				storeDogsToDatabase(list);
 			}
 			if(result.containsKey("comment_list")){
@@ -288,12 +291,11 @@ public class IndexActivity extends FragmentActivity implements
 			
 			
 		}
-
+		Log.d("getDataDogs","list size: "+list.size());
 		c.close();
 		db.close();
 		setProgressBarVisibility(false);
 		
-//		list = (ArrayList<Dog>)add4ItemToDogsList(list);
 		return list;
 	}
 
@@ -359,6 +361,7 @@ public class IndexActivity extends FragmentActivity implements
 			adapter = new DogAdapter(context, dogList, rlListViewContent,1);
 			lvDogs2.setAdapter(adapter);
 		}else{
+			adapter.changeSrc(dogList);
 			adapter.notifyDataSetChanged();
 		}
 		

@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rlAds"
-        android:layout_below="@+id/rlHeader" >
+        android:layout_below="@+id/rlHeader"
+        android:layout_marginTop="-17dp" >
 
         <ScrollView
             android:id="@+id/srContent"
@@ -18,7 +19,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="100dp" >
+                android:paddingBottom="40dp" >
 
                 <TextView
                     android:id="@+id/tvTitle"
@@ -29,21 +30,11 @@
                     android:text="@string/welcome_screen_des"
                     android:visibility="gone" />
 
-                <ImageView
-                    android:id="@+id/imgTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/transparant" />
-
                 <RelativeLayout
-                    android:background="@drawable/bg_dog_detail_info"
                     android:id="@+id/rlDetailInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imgTitle" >
+                    android:background="@drawable/bg_dog_detail_info" >
 
                     <RelativeLayout
                         android:id="@+id/rlThumbnail"
@@ -54,15 +45,25 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginTop="0dp"
+                        android:layout_marginTop="17dp"
                         android:background="@android:color/transparent" >
+
+                        <ImageView
+                            android:id="@+id/imgTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="18dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/transparant" />
 
                         <ImageView
                             android:id="@+id/wvThumnail"
                             android:layout_width="381dp"
                             android:layout_height="280dp"
-                            android:layout_margin="0dp"
+                            android:layout_below="@+id/imgTitle"
                             android:layout_centerHorizontal="true"
+                            android:layout_margin="0dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/dog" />
                     </RelativeLayout>
@@ -111,9 +112,9 @@
                     android:id="@+id/img_illustation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
                     android:layout_below="@+id/tvContentDescription"
                     android:background="@color/transparant"
+                    android:scaleType="fitXY"
                     android:src="@drawable/illustration_41" />
 
                 <ListView

@@ -56,12 +56,12 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 		header.setText("CONTENTS");
 		setContentAndDes(true,true);
 		rlSettingMenu = (RelativeLayout) findViewById(R.id.rlMenu_setting);
-		hideView(findViewById(R.id.img_btn_next));
-		hideView(findViewById(R.id.rlShare));
+		findViewById(R.id.img_btn_next).setVisibility(View.GONE);
+		findViewById(R.id.rlShare).setVisibility(View.GONE);
 		
 		
 		if(DogReviewApplication.Instance().isPay()){
-			hideView(findViewById(R.id.rlAds));
+			findViewById(R.id.rlAds).setVisibility(View.GONE);
 		}else{
 			
 		}

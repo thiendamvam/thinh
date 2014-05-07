@@ -129,8 +129,8 @@ public class DogAdapter extends BaseAdapter {
 					}
 					IndexActivity.clickSelection = position2;
 					notifyDataSetChanged();
-					v.setBackgroundColor(context.getResources().getColor(R.drawable.item_pressed));
-					v.setBackgroundResource(R.drawable.item_pressed);
+//					v.setBackgroundColor(context.getResources().getColor(R.drawable.item_pressed));
+//					v.setBackgroundResource(R.drawable.item_pressed);
 				}
 			});
 			

@@ -207,6 +207,9 @@ public class FavouriteActivity extends FragmentActivity implements
 						.getColumnIndex(DbAdapter.DOG_DESC)));
 				item.setAvatar(c.getString(c
 						.getColumnIndex(DbAdapter.DOG_AVATAR)));
+				item.setRead(c.getInt(c
+						.getColumnIndex(DbAdapter.DOG_READ)) == 1 ? true
+						: false);
 //				item.setFavourite(c.getInt(c
 //						.getColumnIndex(DbAdapter.DOG_FAVOURITE)) == 1 ? true
 //						: false);

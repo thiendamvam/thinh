@@ -239,8 +239,8 @@ public class SettingActivity extends FragmentActivity implements OnClickListener
 		// TODO Auto-generated method stub
 		ArrayList<Dog> dogList = getDataDogs(1);
 		if (dogList != null) {
-			if (dogList.size() == 0) {
-			} else {
+			if (dogList.size() > 0) {
+
 				db.open();
 				for (Dog item : dogList) {
 					item.setFavourite(false);
@@ -255,8 +255,8 @@ public class SettingActivity extends FragmentActivity implements OnClickListener
 		// TODO Auto-generated method stub
 		ArrayList<Dog> dogList = getDataDogs(2);
 		if (dogList != null) {
-			if (dogList.size() == 0) {
-			} else {
+			if (dogList.size() > 0) {
+			
 				db.open();
 				for (Dog item : dogList) {
 					item.setRead(false);
@@ -275,21 +275,29 @@ public class SettingActivity extends FragmentActivity implements OnClickListener
 		ArrayList<Dog> list = new ArrayList<Dog>();
 
 		db.open();
-		Cursor c = i == 1 ? db.getFavoriteDogList() : db.getReadDogList();
-		while (c.moveToNext()) {
-			try {
-				Dog item = new Dog();
-				item.setId(c.getString(c.getColumnIndex(DbAdapter.DOG_ID)));
-				item.setName(c.getString(c.getColumnIndex(DbAdapter.DOG_NAME)));
-				item.setFavourite(true);
-				item.setDescription(c.getString(c.getColumnIndex(DbAdapter.DOG_DESC)));
-				item.setAvatar(c.getString(c.getColumnIndex(DbAdapter.DOG_AVATAR)));
-				Log.d("getDataDogs", "name: " + item.getName());
-				list.add(item);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
+		Cursor c = null;
+		if(i == 1){
+			c  = db.getFavoriteDogList();
+		}else if(i == 2){
+			c = db.getReadDogList();
+		}
+		
+		if(c !=null && c.getCount() > 0){
+			do{
+				try {
+					Dog item = new Dog();
+					item.setId(c.getString(c.getColumnIndex(DbAdapter.DOG_ID)));
+					item.setName(c.getString(c.getColumnIndex(DbAdapter.DOG_NAME)));
+					item.setFavourite(true);
+					item.setDescription(c.getString(c.getColumnIndex(DbAdapter.DOG_DESC)));
+					item.setAvatar(c.getString(c.getColumnIndex(DbAdapter.DOG_AVATAR)));
+					Log.d("getDataDogs", "name: " + item.getName());
+					list.add(item);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			}while (c.moveToNext()) ;
 		}
 		c.close();
 		db.close();

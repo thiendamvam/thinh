@@ -126,6 +126,7 @@ public class IndexActivity extends FragmentActivity implements
 			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)rlListViewContent.getLayoutParams();
 			params.setMargins(0, (int)(-14*DogReviewApplication.Instance().getDensity()), 0, 0);
 			rlListViewContent.setLayoutParams(params);
+			findViewById(R.id.img_chomo).setVisibility(View.GONE);
 		}else{
 			tvHeaderTitle.setText("INDEX");
 			hideView(findViewById(R.id.srPage26));

@@ -7,9 +7,13 @@
         android:id="@+id/nend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        NendApiKey="c5cb8bc474345961c6e7a9778c947957ed8e1e4f"
-        NendSpotId="3174"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
+        NendApiKey="2024aafc347d1ab31fe612481b73bca78c745cc0"
+        NendSpotId="176007" />
+    <!--
+            NendApiKey="2024aafc347d1ab31fe612481b73bca78c745cc0"
+        NendSpotId="176007"
+    -->
 
 </RelativeLayout>

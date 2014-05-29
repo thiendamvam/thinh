@@ -135,8 +135,8 @@ public class Page8Activity extends FragmentActivity implements OnClickListener{
 		}
 	}
 	public void changeResourceSettingMenu(final boolean isDown){
-		Log.d("changeResourceSettingMenu","isDown "+isDown);
-		if(rlSettingMenu.getVisibility() == View.VISIBLE){
+		Log.d("changeResourceSettingMenu",rlSettingMenu.getVisibility() +"isDown "+isDown);
+		if(imgBtnSetting.getVisibility() == View.VISIBLE){
 			Animation  anim = (Animation)AnimationUtils.loadAnimation(context, isDown?R.anim.rotate_90_down:R.anim.rotate_90_up);
 			imgBtnSetting.setAnimation(anim);
 			imgBtnSetting.startAnimation(anim);			

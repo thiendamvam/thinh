@@ -60,7 +60,7 @@
                         <ImageView
                             android:id="@+id/wvThumnail"
                             android:layout_width="381dp"
-                            android:layout_height="280dp"
+                            android:layout_height="250dp"
                             android:layout_below="@+id/imgTitle"
                             android:layout_centerHorizontal="true"
                             android:layout_margin="0dp"
